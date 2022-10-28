@@ -53,6 +53,7 @@ in
     programs.gnome-terminal = {
       enable = true;
       profile.will = {
+        default = true;
         audibleBell = false;
         scrollOnOutput = true;
       };
