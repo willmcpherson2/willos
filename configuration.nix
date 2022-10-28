@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 let
+  willos = /home/will/willos;
   home-manager = fetchTarball "https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz";
 in
 {
@@ -24,6 +25,8 @@ in
   };
   services.gnome.core-utilities.enable = false;
 
+  services.openssh.enable = true;
+
   users.users.will = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
@@ -42,8 +45,14 @@ in
 
     programs.neovim = {
       enable = true;
+      extraConfig = "luafile ${willos}/init.lua";
       plugins = with pkgs.vimPlugins; [
+        nvim-lspconfig
+        nvim-treesitter
         fern-vim
+        vim-fugitive
+        vim-sleuth
+        vim-commentary
       ];
       viAlias = true;
       vimAlias = true;
