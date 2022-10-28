@@ -80,6 +80,10 @@ in
       "org/gnome/settings-daemon/plugins/power" = {
         sleep-inactive-ac-type = "nothing";
       };
+      "org/gnome/terminal/legacy/profiles:/:will" = {
+        default-size-columns = 150;
+        default-size-rows = 50;
+      };
     };
   };
 
