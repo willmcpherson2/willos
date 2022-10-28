@@ -17,6 +17,13 @@ in
   time.timeZone = "Australia/Melbourne";
   i18n.defaultLocale = "en_AU.UTF-8";
 
+  services.xserver = {
+    enable = true;
+    gdm.enable = true;
+    gnome.enable = true;
+  };
+  services.gnome.core-utilities.enable = false;
+
   users.users.will = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
@@ -26,11 +33,6 @@ in
     home.packages = with pkgs; [
       tree
     ];
-
-    programs.bash.enable = true;
-
-    xsession.enable = true;
-    xsession.windowManager.xmonad.enable = true;
 
     programs.git = {
       enable = true;
@@ -47,6 +49,8 @@ in
       vimAlias = true;
       vimdiffAlias = true;
     };
+
+    dconf.settings = { };
   };
 
   system.stateVersion = "22.05";
