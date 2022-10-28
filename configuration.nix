@@ -50,6 +50,14 @@ in
       vimdiffAlias = true;
     };
 
+    programs.gnome-terminal = {
+      enable = true;
+      profile.will = {
+        audibleBell = false;
+        scrollOnOutput = true;
+      };
+    };
+
     dconf.settings = {
       "org/gnome/desktop/interface" = {
         clock-format = "12h";
