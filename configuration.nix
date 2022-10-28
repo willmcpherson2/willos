@@ -54,6 +54,7 @@ in
       enable = true;
       profile.will = {
         default = true;
+        visibleName = "will";
         audibleBell = false;
         scrollOnOutput = true;
       };
