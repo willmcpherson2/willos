@@ -50,7 +50,24 @@ in
       vimdiffAlias = true;
     };
 
-    dconf.settings = { };
+    dconf.settings = {
+      "org/gnome/desktop/interface" = {
+        clock-format = "12h";
+      };
+      "org/gtk/settings/file-chooser" = {
+        clock-format = "12h";
+      };
+      "org/gnome/desktop/peripherals/mouse" = {
+        natural-scroll = true;
+        speed = -0.67;
+      };
+      "org/gnome/settings-daemon/plugins/color" = {
+        night-light-enabled = true;
+      };
+      "org/gnome/settings-daemon/plugins/power" = {
+        sleep-inactive-ac-type = "nothing";
+      };
+    };
   };
 
   system.stateVersion = "22.05";
