@@ -72,7 +72,7 @@ in
         speed = -0.67;
       };
       "org/gnome/desktop/session" = {
-        idle-delay = 0;
+        idle-delay = "uint32 0";
       };
       "org/gnome/settings-daemon/plugins/color" = {
         night-light-enabled = true;
