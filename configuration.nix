@@ -17,10 +17,9 @@ in
   time.timeZone = "Australia/Melbourne";
   i18n.defaultLocale = "en_AU.UTF-8";
 
-  services.xserver = {
-    enable = true;
-    gdm.enable = true;
+  services.xserver.desktopManager = {
     gnome.enable = true;
+    gdm.enable = true;
   };
   services.gnome.core-utilities.enable = false;
 
