@@ -1,10 +1,9 @@
 { pkgs ? import <nixpkgs> { } }:
 
 let
-  configuration = ./configuration.nix;
+  willos = ./.;
 in
 pkgs.mkShell {
-  name = "willos";
   shellHook =
     ''
       set -euxo pipefail
@@ -29,7 +28,7 @@ pkgs.mkShell {
       swapon "$DISK"2
 
       nixos-generate-config --root /mnt
-      cp ${configuration} /mnt/etc/nixos/configuration.nix
+      cp -r ${willos}/* /mnt/etc/nixos
 
       mkpasswd --method=sha-512 "$PASSWORD" > /mnt/etc/passwordFile-will
       chmod 600 /mnt/etc/passwordFile-will

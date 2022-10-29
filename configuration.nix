@@ -47,7 +47,7 @@ in
 
     programs.neovim = {
       enable = true;
-      extraConfig = "luafile init.lua";
+      extraConfig = "luafile ${./init.lua}";
       plugins = with pkgs.vimPlugins; [
         nvim-lspconfig
         nvim-treesitter
