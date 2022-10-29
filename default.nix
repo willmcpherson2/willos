@@ -10,6 +10,7 @@ pkgs.mkShell {
       set -euxo pipefail
 
       read -p "disk = " DISK
+      read -sp "password = " PASSWORD
 
       parted "$DISK" -- mklabel gpt
       parted "$DISK" -- mkpart primary 512MB -8GB
@@ -26,8 +27,13 @@ pkgs.mkShell {
         mount /dev/disk/by-label/boot /mnt/boot && break || sleep 1
       done
       swapon "$DISK"2
+
       nixos-generate-config --root /mnt
       cp ${configuration} /mnt/etc/nixos/configuration.nix
-      nixos-install
+
+      mkpasswd --method=sha-512 "$PASSWORD" > /mnt/etc/passwordFile-will
+      chmod 600 /mnt/etc/passwordFile-will
+
+      nixos-install --no-root-passwd
     '';
 }

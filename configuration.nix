@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 
 let
-  willos = /home/will/willos;
   home-manager = fetchTarball "https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz";
 in
 {
@@ -27,9 +26,12 @@ in
 
   services.openssh.enable = true;
 
+  users.mutableUsers = false;
+  users.users.root.hashedPassword = "!";
   users.users.will = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
+    passwordFile = "/etc/passwordFile-will";
   };
 
   home-manager.users.will = { pkgs, ... }: {
@@ -45,7 +47,7 @@ in
 
     programs.neovim = {
       enable = true;
-      extraConfig = "luafile ${willos}/init.lua";
+      extraConfig = "luafile init.lua";
       plugins = with pkgs.vimPlugins; [
         nvim-lspconfig
         nvim-treesitter
