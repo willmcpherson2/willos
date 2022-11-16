@@ -28,23 +28,25 @@ Map("", "<space>", "<nop>")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-Map("n", "<bs>", "<c-^>")
 Map("n", "Q", "<nop>")
 
-Map("n", "<leader>w", vim.cmd.wa)
-Map("n", "<leader>q", vim.cmd.qa)
+Map("n", "<leader>w", "<cmd>wa<cr>")
+Map("n", "<leader>q", "<cmd>qa<cr>")
+Map("n", "<leader>Q", "<cmd>qa!<cr>")
 
-Map("n", "<leader>c", vim.cmd.bd)
-Map("n", "<s-h>", vim.cmd.bp)
-Map("n", "<s-l>", vim.cmd.bn)
+Map("n", "<bs>", "<c-^>")
+Map("n", "<leader>c", "<cmd>bd<cr>")
+Map("n", "<leader>C", "<cmd>bd!<cr>")
+Map("n", "<s-h>", "<cmd>bp<cr>")
+Map("n", "<s-l>", "<cmd>bn<cr>")
 
 Map("n", "<c-h>", "<c-w>h")
 Map("n", "<c-j>", "<c-w>j")
 Map("n", "<c-k>", "<c-w>k")
 Map("n", "<c-l>", "<c-w>l")
 
-Map("n", "<leader>n", vim.cmd.noh)
-Map("n", "<leader>R", ":%s/\\<<c-r><c-w>\\>/<c-r><c-w>/g<c-f>$F/i")
+Map("n", "<leader>n", "<cmd>noh<cr><c-l>")
+Map("n", "<leader>r", ":%s/\\<<c-r><c-w>\\>/<c-r><c-w>/g<c-f>$F/i")
 Map("n", "<leader>-", "80a-<esc>0")
 
 -- plugins
@@ -72,7 +74,7 @@ require("packer").startup(function(use)
     "noib3/nvim-cokeline",
     config = function()
       require("cokeline").setup {
-        show_if_buffers_are_at_least = 2
+        show_if_buffers_are_at_least = 2,
       }
     end
   }
@@ -92,30 +94,31 @@ require("packer").startup(function(use)
   }
 
   use "hrsh7th/cmp-nvim-lsp"
+  use "hrsh7th/cmp-vsnip"
+  use "hrsh7th/vim-vsnip"
   use "ray-x/cmp-treesitter"
-  use "hrsh7th/cmp-path"
-  use "hrsh7th/cmp-buffer"
+
   use {
     "hrsh7th/nvim-cmp",
     config = function()
       local cmp = require("cmp")
       cmp.setup {
+        snippet = {
+          expand = function(args)
+            vim.fn["vsnip#anonymous"](args.body)
+          end,
+        },
         sources = {
           { name = "nvim_lsp" },
+          { name = "vsnip" },
           { name = "treesitter" },
-          { name = "path" },
-          { name = "buffer" },
-        },
-        window = {
-          completion = cmp.config.window.bordered(),
-          documentation = cmp.config.window.bordered(),
         },
         mapping = cmp.mapping.preset.insert({
-          ["<c-space>"] = cmp.mapping.complete(),
-          ["<cr>"] = cmp.mapping.confirm({ select = true }),
-          ["<c-e>"] = cmp.mapping.abort(),
           ["<c-u>"] = cmp.mapping.scroll_docs(-4),
           ["<c-d>"] = cmp.mapping.scroll_docs(4),
+          ["<c-space>"] = cmp.mapping.complete(),
+          ["<c-e>"] = cmp.mapping.abort(),
+          ["<cr>"] = cmp.mapping.confirm({ select = true }),
         }),
       }
     end
@@ -141,7 +144,7 @@ require("packer").startup(function(use)
       local builtin = require("telescope.builtin")
 
       Map("n", "<leader>ff", builtin.find_files)
-      Map("n", "<leader>b", builtin.buffers)
+      Map("n", "<leader>fb", builtin.buffers)
       Map("n", "<leader>f/", builtin.live_grep)
       Map("n", "<leader>f*", builtin.grep_string)
       Map("n", "<leader>fh", builtin.help_tags)
@@ -150,8 +153,8 @@ require("packer").startup(function(use)
       Map("n", "<leader>gb", builtin.git_branches)
       Map("n", "<leader>gc", builtin.git_commits)
 
-      Map("n", "<leader>fs", builtin.lsp_dynamic_workspace_symbols)
-      Map("n", "<leader>fd", builtin.diagnostics)
+      Map("n", "<leader>ls", builtin.lsp_dynamic_workspace_symbols)
+      Map("n", "<leader>le", builtin.diagnostics)
     end
   }
 
@@ -162,6 +165,7 @@ require("packer").startup(function(use)
         highlight = { enable = true },
         context_commentstring = { enable = true },
         ensure_installed = {
+          "vim",
           "lua",
           "help",
           "diff",
@@ -182,6 +186,7 @@ require("packer").startup(function(use)
           "make",
           "python",
           "java",
+          "kotlin",
         },
       }
     end
@@ -192,14 +197,14 @@ require("packer").startup(function(use)
     config = function()
       local lspconfig = require("lspconfig")
 
-      Map("n", "<leader>i", vim.lsp.buf.hover)
-      Map("n", "<leader>d", vim.lsp.buf.definition)
-      Map("n", "<leader>a", vim.lsp.buf.code_action)
-      Map("n", "<leader>f", function() vim.lsp.buf.format { async = true } end)
-      Map("n", "<leader>r", vim.lsp.buf.rename)
-      Map("n", "<leader>ei", vim.diagnostic.open_float)
-      Map("n", "<leader>en", vim.diagnostic.goto_next)
-      Map("n", "<leader>ep", vim.diagnostic.goto_prev)
+      Map("n", "<leader>li", vim.lsp.buf.hover)
+      Map("n", "<leader>ld", vim.lsp.buf.definition)
+      Map("n", "<leader>la", vim.lsp.buf.code_action)
+      Map("n", "<leader>lf", function() vim.lsp.buf.format { async = true } end)
+      Map("n", "<leader>lr", vim.lsp.buf.rename)
+      Map("n", "<leader>lo", vim.diagnostic.open_float)
+      Map("n", "<leader>ln", vim.diagnostic.goto_next)
+      Map("n", "<leader>lp", vim.diagnostic.goto_prev)
 
       vim.diagnostic.config {
         signs = false,
@@ -220,7 +225,11 @@ require("packer").startup(function(use)
         }
       }
 
-      lspconfig.hls.setup {}
+      lspconfig.hls.setup {
+        haskell = {
+          formattingProvider = "fourmolu"
+        }
+      }
 
       lspconfig.rnix.setup {}
 
@@ -254,6 +263,8 @@ require("packer").startup(function(use)
       lspconfig.html.setup {}
 
       lspconfig.cssls.setup {}
+
+      lspconfig.kotlin_language_server.setup {}
     end
   }
 end)
