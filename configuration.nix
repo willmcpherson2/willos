@@ -22,7 +22,6 @@ in
     desktopManager.gnome.enable = true;
     displayManager.gdm.enable = true;
   };
-  services.gnome.core-utilities.enable = false;
 
   services.openssh.enable = true;
 
@@ -48,53 +47,10 @@ in
     programs.neovim = {
       enable = true;
       extraConfig = "luafile ${./init.lua}";
-      plugins = with pkgs.vimPlugins; [
-        nvim-lspconfig
-        nvim-treesitter
-        fern-vim
-        vim-fugitive
-        vim-sleuth
-        vim-commentary
-      ];
+      plugins = with pkgs.vimPlugins; [ packer-nvim ];
       viAlias = true;
       vimAlias = true;
       vimdiffAlias = true;
-    };
-
-    programs.gnome-terminal = {
-      enable = true;
-      profile.will = {
-        default = true;
-        visibleName = "will";
-        audibleBell = false;
-        scrollOnOutput = true;
-      };
-    };
-
-    dconf.settings = {
-      "org/gnome/desktop/interface" = {
-        clock-format = "12h";
-      };
-      "org/gtk/settings/file-chooser" = {
-        clock-format = "12h";
-      };
-      "org/gnome/desktop/peripherals/mouse" = {
-        natural-scroll = true;
-        speed = -0.67;
-      };
-      "org/gnome/desktop/session" = {
-        idle-delay = "uint32 0";
-      };
-      "org/gnome/settings-daemon/plugins/color" = {
-        night-light-enabled = true;
-      };
-      "org/gnome/settings-daemon/plugins/power" = {
-        sleep-inactive-ac-type = "nothing";
-      };
-      "org/gnome/terminal/legacy/profiles:/:will" = {
-        default-size-columns = 150;
-        default-size-rows = 50;
-      };
     };
   };
 
