@@ -57,7 +57,7 @@ require("packer").startup(function(use)
   use {
     "olimorris/onedarkpro.nvim",
     config = function()
-      vim.cmd.colorscheme("onedarkpro")
+      vim.cmd("colorscheme onedarkpro")
     end
   }
 
