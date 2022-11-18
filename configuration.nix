@@ -99,6 +99,7 @@ in
       extraConfig = {
         core.editor = "nvim";
         init.defaultBranch = "main";
+        commit.verbose = true;
       };
     };
 
