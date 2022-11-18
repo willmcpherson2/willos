@@ -33,15 +33,73 @@ in
     passwordFile = "/etc/passwordFile-will";
   };
 
+  fonts.fonts = with pkgs; [
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+  ];
+
   home-manager.users.will = { pkgs, ... }: {
     home.packages = with pkgs; [
+      # system
+      wl-clipboard
+      gnomeExtensions.night-theme-switcher
+
+      # cli
+      file
       tree
+      ripgrep
+
+      # apps
+      firefox
+
+      # nix
+      rnix-lsp
+
+      # bash
+      nodePackages.bash-language-server
+
+      # lua
+      sumneko-lua-language-server
+
+      # c
+      gcc
+      clang-tools
+
+      # web
+      nodejs
+      nodePackages.typescript
+      nodePackages.typescript-language-server
+      nodePackages.vscode-langservers-extracted
+
+      # python
+      python310
+      python310Packages.python-lsp-server
+
+      # haskell
+      ghc
+      cabal-install
+      haskell-language-server
+      haskellPackages.hoogle
+
+      # rust
+      rustc
+      cargo
+      rustfmt
+      rust-analyzer
     ];
+
+    programs.bash = {
+      enable = true;
+      bashrcExtra = builtins.readFile ./bashrc;
+    };
 
     programs.git = {
       enable = true;
       userName = "William McPherson";
       userEmail = "willmcpherson2@gmail.com";
+      extraConfig = {
+        core.editor = "nvim";
+        init.defaultBranch = "main";
+      };
     };
 
     programs.neovim = {
@@ -51,6 +109,28 @@ in
       viAlias = true;
       vimAlias = true;
       vimdiffAlias = true;
+    };
+
+    dconf.settings = {
+      "org/gnome/desktop/interface" = {
+        clock-format = "12h";
+      };
+      "org/gtk/settings/file-chooser" = {
+        clock-format = "12h";
+      };
+      "org/gnome/desktop/peripherals/mouse" = {
+        natural-scroll = true;
+        speed = -0.67;
+      };
+      "org/gnome/settings-daemon/plugins/color" = {
+        night-light-enabled = true;
+      };
+      "org/gnome/settings-daemon/plugins/power" = {
+        sleep-inactive-ac-type = "nothing";
+      };
+      "org/gnome/desktop/interface" = {
+        monospace-font-name = "JetBrainsMono Nerd Font Mono 10";
+      };
     };
   };
 

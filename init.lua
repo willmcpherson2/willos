@@ -62,15 +62,6 @@ require("packer").startup(function(use)
   }
 
   use {
-    "f-person/auto-dark-mode.nvim",
-    config = function()
-      local auto_dark_mode = require("auto-dark-mode")
-      auto_dark_mode.setup {}
-      auto_dark_mode.init()
-    end
-  }
-
-  use {
     "noib3/nvim-cokeline",
     config = function()
       require("cokeline").setup {
@@ -200,7 +191,7 @@ require("packer").startup(function(use)
       Map("n", "<leader>li", vim.lsp.buf.hover)
       Map("n", "<leader>ld", vim.lsp.buf.definition)
       Map("n", "<leader>la", vim.lsp.buf.code_action)
-      Map("n", "<leader>lf", function() vim.lsp.buf.format { async = true } end)
+      Map("n", "<leader>lf", vim.lsp.buf.formatting)
       Map("n", "<leader>lr", vim.lsp.buf.rename)
       Map("n", "<leader>lo", vim.diagnostic.open_float)
       Map("n", "<leader>ln", vim.diagnostic.goto_next)
@@ -212,6 +203,10 @@ require("packer").startup(function(use)
         severity_sort = true,
       }
 
+      lspconfig.rnix.setup {}
+
+      lspconfig.bashls.setup {}
+
       lspconfig.sumneko_lua.setup {
         settings = {
           Lua = {
@@ -220,24 +215,6 @@ require("packer").startup(function(use)
             },
             telemetry = {
               enable = false,
-            },
-          }
-        }
-      }
-
-      lspconfig.hls.setup {
-        haskell = {
-          formattingProvider = "fourmolu"
-        }
-      }
-
-      lspconfig.rnix.setup {}
-
-      lspconfig.rust_analyzer.setup {
-        settings = {
-          ["rust-analyzer"] = {
-            rustfmt = {
-              extraArgs = { "+stable", },
             },
           }
         }
@@ -254,17 +231,21 @@ require("packer").startup(function(use)
         },
       }
 
-      lspconfig.pylsp.setup {}
-
-      lspconfig.clojure_lsp.setup {}
-
-      lspconfig.tsserver.setup {}
-
       lspconfig.html.setup {}
 
       lspconfig.cssls.setup {}
 
-      lspconfig.kotlin_language_server.setup {}
+      lspconfig.tsserver.setup {}
+
+      lspconfig.pylsp.setup {}
+
+      lspconfig.hls.setup {
+        haskell = {
+          formattingProvider = "fourmolu"
+        }
+      }
+
+      lspconfig.rust_analyzer.setup {}
     end
   }
 end)
