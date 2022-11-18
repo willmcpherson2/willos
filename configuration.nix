@@ -135,7 +135,10 @@ in
         sleep-inactive-ac-type = "nothing";
       };
       "org/gnome/desktop/interface" = {
-        monospace-font-name = "JetBrainsMono Nerd Font Mono 10";
+        monospace-font-name = "JetBrainsMono Nerd Font Mono 14";
+      };
+      "org/gnome/Console" = {
+        theme = "auto";
       };
     };
   };
