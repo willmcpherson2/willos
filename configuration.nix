@@ -111,6 +111,11 @@ in
       vimdiffAlias = true;
     };
 
+    home.file.ghci = {
+      source = ./ghci;
+      target = ".ghci";
+    };
+
     dconf.settings = {
       "org/gnome/desktop/interface" = {
         clock-format = "12h";
