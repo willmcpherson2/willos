@@ -46,6 +46,7 @@ in
       # cli
       file
       tree
+      cloc
       ripgrep
 
       # apps
