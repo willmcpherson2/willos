@@ -55,9 +55,17 @@ require("packer").startup(function(use)
   use "wbthomason/packer.nvim"
 
   use {
-    "olimorris/onedarkpro.nvim",
+    "willmcpherson2/gnome.nvim",
     config = function()
-      vim.cmd("colorscheme onedarkpro")
+      require("gnome").init()
+    end
+  }
+
+  use {
+    "rmehri01/onenord.nvim",
+    tag = "v0.7.0",
+    config = function()
+      require("onenord").setup()
     end
   }
 
