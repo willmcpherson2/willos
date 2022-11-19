@@ -22,6 +22,7 @@ in
     desktopManager.gnome.enable = true;
     displayManager.gdm.enable = true;
   };
+  services.gnome.core-utilities.enable = false;
 
   services.openssh.enable = true;
 
@@ -39,8 +40,17 @@ in
 
   home-manager.users.will = { pkgs, ... }: {
     home.packages = with pkgs; [
-      # system
-      wl-clipboard
+      # gnome
+      gnome-console
+      gnome-connections
+      gnome.nautilus
+      gnome.totem
+      gnome.eog
+      gnome.baobab
+      gnome.gnome-system-monitor
+      gnome.gnome-logs
+      gnome.gnome-font-viewer
+      gnome.gnome-characters
       gnomeExtensions.night-theme-switcher
 
       # cli
@@ -48,6 +58,7 @@ in
       tree
       cloc
       ripgrep
+      wl-clipboard
 
       # apps
       firefox
@@ -140,6 +151,12 @@ in
       };
       "org/gnome/Console" = {
         theme = "auto";
+      };
+      "org/gnome/desktop/app-folders" = {
+        folder-children = [ ];
+      };
+      "org/gnome/shell" = {
+        favorite-apps = [ ];
       };
     };
   };
