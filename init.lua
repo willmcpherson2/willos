@@ -37,8 +37,6 @@ Map("n", "<leader>Q", "<cmd>qa!<cr>")
 Map("n", "<bs>", "<c-^>")
 Map("n", "<leader>c", "<cmd>bd<cr>")
 Map("n", "<leader>C", "<cmd>bd!<cr>")
-Map("n", "<s-h>", "<cmd>bp<cr>")
-Map("n", "<s-l>", "<cmd>bn<cr>")
 
 Map("n", "<c-h>", "<c-w>h")
 Map("n", "<c-j>", "<c-w>j")
@@ -75,6 +73,11 @@ require("packer").startup(function(use)
       require("cokeline").setup {
         show_if_buffers_are_at_least = 2,
       }
+
+      Map("n", "<s-h>", "<Plug>(cokeline-focus-prev)")
+      Map("n", "<s-l>", "<Plug>(cokeline-focus-next)")
+      Map("n", "<s-left>", "<Plug>(cokeline-switch-prev)")
+      Map("n", "<s-right>", "<Plug>(cokeline-switch-next)")
     end
   }
 
