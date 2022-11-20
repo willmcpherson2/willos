@@ -64,7 +64,7 @@ in
       wl-clipboard
 
       # apps
-      firefox
+      firefox-wayland
 
       # nix
       rnix-lsp
