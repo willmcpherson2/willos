@@ -132,13 +132,17 @@ in
     dconf.settings = {
       "org/gnome/desktop/interface" = {
         clock-format = "12h";
-      };
-      "org/gtk/settings/file-chooser" = {
-        clock-format = "12h";
+        monospace-font-name = "JetBrainsMono Nerd Font Mono 14";
       };
       "org/gnome/desktop/peripherals/mouse" = {
         natural-scroll = true;
         speed = -0.67;
+      };
+      "org/gnome/desktop/app-folders" = {
+        folder-children = [ ];
+      };
+      "org/gnome/shell" = {
+        favorite-apps = [ ];
       };
       "org/gnome/settings-daemon/plugins/color" = {
         night-light-enabled = true;
@@ -146,17 +150,11 @@ in
       "org/gnome/settings-daemon/plugins/power" = {
         sleep-inactive-ac-type = "nothing";
       };
-      "org/gnome/desktop/interface" = {
-        monospace-font-name = "JetBrainsMono Nerd Font Mono 14";
-      };
       "org/gnome/Console" = {
         theme = "auto";
       };
-      "org/gnome/desktop/app-folders" = {
-        folder-children = [ ];
-      };
-      "org/gnome/shell" = {
-        favorite-apps = [ ];
+      "org/gtk/settings/file-chooser" = {
+        clock-format = "12h";
       };
     };
   };
