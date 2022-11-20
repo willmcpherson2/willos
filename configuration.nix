@@ -154,6 +154,7 @@ in
         folder-children = [ ];
       };
       "org/gnome/shell" = {
+        enabled-extensions = [ "nightthemeswitcher@romainvigier.fr" ];
         favorite-apps = [ ];
       };
       "org/gnome/settings-daemon/plugins/color" = {
@@ -167,6 +168,14 @@ in
       };
       "org/gtk/settings/file-chooser" = {
         clock-format = "12h";
+      };
+
+      "org/gnome/shell/extensions/nightthemeswitcher/gtk-variants" = {
+        enabled = true;
+      };
+      "org/gnome/shell/extensions/nightthemeswitcher/time" = {
+        always-enable-ondemand = true;
+        nightlight-follow-disable = true;
       };
 
       "org/gnome/settings-daemon/plugins/media-keys" = {
