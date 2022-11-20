@@ -131,9 +131,21 @@ require("packer").startup(function(use)
       gs.setup {}
       Map("n", "<leader>gs", gs.show)
       Map("n", "<leader>gd", gs.diffthis)
-      Map("n", "<leader>gi", function() gs.blame_line { full = true } end)
       Map("n", "<leader>gn", gs.next_hunk)
       Map("n", "<leader>gp", gs.prev_hunk)
+      Map("n", "<leader>gh", function() gs.setqflist("all") end)
+    end
+  }
+
+  use {
+    "jose-elias-alvarez/null-ls.nvim",
+    config = function()
+      local null_ls = require("null-ls")
+      null_ls.setup {
+        sources = {
+          null_ls.builtins.code_actions.gitsigns,
+        },
+      }
     end
   }
 
