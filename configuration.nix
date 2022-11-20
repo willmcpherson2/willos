@@ -104,7 +104,7 @@ in
 
     programs.bash = {
       enable = true;
-      bashrcExtra = builtins.readFile ./bashrc;
+      initExtra = builtins.readFile ./bashrc;
     };
 
     programs.git = {
