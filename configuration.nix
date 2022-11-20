@@ -129,6 +129,15 @@ in
       target = ".ghci";
     };
 
+    xdg.mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "audio/x-wav" = [ "org.gnome.Totem.desktop" ];
+        "audio/mpeg" = [ "org.gnome.Totem.desktop" ];
+        "audio/x-vorbis+ogg" = [ "org.gnome.Totem.desktop" ];
+      };
+    };
+
     dconf.settings = {
       "org/gnome/desktop/interface" = {
         clock-format = "12h";
