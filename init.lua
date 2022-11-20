@@ -96,32 +96,30 @@ require("packer").startup(function(use)
   }
 
   use "hrsh7th/cmp-nvim-lsp"
-  use "hrsh7th/cmp-vsnip"
-  use "hrsh7th/vim-vsnip"
   use "ray-x/cmp-treesitter"
-
+  use "hrsh7th/cmp-buffer"
   use {
     "hrsh7th/nvim-cmp",
     config = function()
       local cmp = require("cmp")
       cmp.setup {
-        snippet = {
-          expand = function(args)
-            vim.fn["vsnip#anonymous"](args.body)
-          end,
+        completion = {
+          autocomplete = false,
         },
         sources = {
           { name = "nvim_lsp" },
-          { name = "vsnip" },
           { name = "treesitter" },
+          { name = "buffer" },
         },
-        mapping = cmp.mapping.preset.insert({
+        mapping = {
+          ["<c-n>"] = cmp.mapping.complete(),
+          ["<c-e>"] = cmp.mapping.abort(),
+          ["<c-k>"] = cmp.mapping.select_prev_item(),
+          ["<c-j>"] = cmp.mapping.select_next_item(),
           ["<c-u>"] = cmp.mapping.scroll_docs(-4),
           ["<c-d>"] = cmp.mapping.scroll_docs(4),
-          ["<c-space>"] = cmp.mapping.complete(),
-          ["<c-e>"] = cmp.mapping.abort(),
           ["<cr>"] = cmp.mapping.confirm({ select = true }),
-        }),
+        },
       }
     end
   }
