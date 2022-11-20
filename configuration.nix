@@ -62,6 +62,10 @@ in
       cloc
       ripgrep
       wl-clipboard
+      nvimpager
+      fd
+      htop
+      ncdu
 
       # apps
       firefox-wayland
