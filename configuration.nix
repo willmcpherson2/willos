@@ -118,19 +118,19 @@ in
 
     home.file = {
       neovim = {
-        source = ./init.lua;
+        source = ./dot/init.lua;
         target = ".config/nvim/init.lua";
       };
       gitconfig = {
-        source = ./gitconfig;
+        source = ./dot/gitconfig;
         target = ".gitconfig";
       };
       bashrc = {
-        source = ./bashrc;
+        source = ./dot/bashrc;
         target = ".bashrc";
       };
       ghci = {
-        source = ./ghci;
+        source = ./dot/ghci;
         target = ".ghci";
       };
     };
