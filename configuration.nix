@@ -71,6 +71,8 @@ in
       fd
       htop
       ncdu
+      ffmpeg
+      youtube-dl
 
       # apps
       firefox-wayland
