@@ -1,9 +1,11 @@
 { config, pkgs, ... }:
 
 let
-  home-manager = fetchTarball "https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz";
+  home-manager = fetchTarball "https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz";
 in
 {
+  system.stateVersion = "22.11";
+
   imports = [
     ./hardware-configuration.nix
     "${home-manager}/nixos"
@@ -39,6 +41,8 @@ in
   ];
 
   home-manager.users.will = { pkgs, ... }: {
+    home.stateVersion = "22.11";
+
     home.packages = with pkgs; [
       wofi
       wofi-emoji
@@ -57,6 +61,7 @@ in
       gnomeExtensions.night-theme-switcher
 
       # cli
+      git
       file
       tree
       cloc
@@ -106,34 +111,28 @@ in
       rust-analyzer
     ];
 
-    programs.bash = {
-      enable = true;
-      initExtra = builtins.readFile ./bashrc;
-    };
-
-    programs.git = {
-      enable = true;
-      userName = "William McPherson";
-      userEmail = "willmcpherson2@gmail.com";
-      extraConfig = {
-        core.editor = "nvim";
-        init.defaultBranch = "main";
-        commit.verbose = true;
-      };
-    };
-
     programs.neovim = {
       enable = true;
-      extraConfig = "luafile ${./init.lua}";
       plugins = with pkgs.vimPlugins; [ packer-nvim ];
-      viAlias = true;
-      vimAlias = true;
-      vimdiffAlias = true;
     };
 
-    home.file.ghci = {
-      source = ./ghci;
-      target = ".ghci";
+    home.file = {
+      neovim = {
+        source = ./init.lua;
+        target = ".config/nvim/init.lua";
+      };
+      gitconfig = {
+        source = ./gitconfig;
+        target = ".gitconfig";
+      };
+      bashrc = {
+        source = ./bashrc;
+        target = ".bashrc";
+      };
+      ghci = {
+        source = ./ghci;
+        target = ".ghci";
+      };
     };
 
     xdg.mimeApps = {
@@ -200,6 +199,4 @@ in
       };
     };
   };
-
-  system.stateVersion = "22.05";
 }
