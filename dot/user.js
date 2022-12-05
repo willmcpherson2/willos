@@ -8,3 +8,4 @@ user_pref("font.default.x-western", "sans-serif");
 user_pref("font.name.monospace.x-western", "JetBrainsMonoNL Nerd Font Mono");
 user_pref("font.size.monospace.x-western", 14);
 user_pref("font.size.variable.x-western", 18);
+user_pref("findbar.highlightAll", true);
