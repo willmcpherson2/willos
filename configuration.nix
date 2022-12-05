@@ -68,7 +68,7 @@ in
       cloc
       ripgrep
       wl-clipboard
-      nvimpager
+      page
       fd
       htop
       ncdu

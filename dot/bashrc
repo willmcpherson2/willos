@@ -12,6 +12,7 @@ alias vi="nvim"
 alias vim="nvim"
 
 export EDITOR="nvim"
-export PAGER="nvimpager"
+export PAGER="page"
+export MANPAGER="page -t man"
 
 export PATH="/etc/nixos/bin:$PATH"
