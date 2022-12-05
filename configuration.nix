@@ -159,7 +159,7 @@ in
       };
       "org/gnome/desktop/peripherals/mouse" = {
         natural-scroll = true;
-        speed = -0.67;
+        speed = -0.80;
       };
       "org/gnome/desktop/app-folders" = {
         folder-children = [ ];
