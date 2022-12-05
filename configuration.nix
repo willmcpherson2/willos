@@ -74,9 +74,6 @@ in
       ffmpeg
       youtube-dl
 
-      # apps
-      firefox-wayland
-
       # nix
       rnix-lsp
 
@@ -116,6 +113,14 @@ in
     programs.neovim = {
       enable = true;
       plugins = with pkgs.vimPlugins; [ packer-nvim ];
+    };
+
+    programs.firefox = {
+      enable = true;
+      package = pkgs.firefox-wayland;
+      profiles.will = {
+        extraConfig = builtins.readFile ./dot/user.js;
+      };
     };
 
     home.file = {
