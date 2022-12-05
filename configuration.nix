@@ -157,6 +157,7 @@ in
       "org/gnome/desktop/interface" = {
         clock-format = "12h";
         monospace-font-name = "JetBrainsMono Nerd Font Mono 14";
+        enable-animations = false;
       };
       "org/gnome/desktop/peripherals/mouse" = {
         natural-scroll = true;
