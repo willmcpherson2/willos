@@ -74,6 +74,7 @@ in
       ncdu
       ffmpeg
       youtube-dl
+      unzip
 
       # nix
       rnix-lsp
