@@ -164,6 +164,10 @@ in
       "org/gnome/desktop/app-folders" = {
         folder-children = [ ];
       };
+      "org/gnome/desktop/background" = {
+        picture-uri = "file:///run/current-system/sw/share/backgrounds/gnome/dune-l.svg";
+        picture-uri-dark = "file:///run/current-system/sw/share/backgrounds/gnome/dune-d.svg";
+      };
       "org/gnome/shell" = {
         enabled-extensions = [ "nightthemeswitcher@romainvigier.fr" ];
         favorite-apps = [ ];
