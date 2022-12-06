@@ -45,9 +45,6 @@ in
     home.stateVersion = "22.11";
 
     home.packages = with pkgs; [
-      wofi
-      wofi-emoji
-
       # gnome
       gnome-console
       gnome-connections
@@ -60,6 +57,7 @@ in
       gnome.gnome-font-viewer
       gnome.gnome-characters
       gnomeExtensions.night-theme-switcher
+      gnomeExtensions.emoji-selector
 
       # cli
       git
@@ -171,7 +169,10 @@ in
         picture-uri-dark = "file:///run/current-system/sw/share/backgrounds/gnome/dune-d.svg";
       };
       "org/gnome/shell" = {
-        enabled-extensions = [ "nightthemeswitcher@romainvigier.fr" ];
+        enabled-extensions = [
+          "nightthemeswitcher@romainvigier.fr"
+          "emoji-selector@maestroschan.fr"
+        ];
         favorite-apps = [ ];
       };
       "org/gnome/settings-daemon/plugins/color" = {
@@ -193,23 +194,6 @@ in
       "org/gnome/shell/extensions/nightthemeswitcher/time" = {
         always-enable-ondemand = true;
         nightlight-follow-disable = true;
-      };
-
-      "org/gnome/settings-daemon/plugins/media-keys" = {
-        custom-keybindings = [
-          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
-          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
-        ];
-      };
-      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-        name = "run";
-        binding = "<Super>r";
-        command = "wofi --show drun";
-      };
-      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
-        name = "emoji";
-        binding = "<Super>e";
-        command = "wofi-emoji";
       };
     };
   };
