@@ -5,6 +5,8 @@ user_pref("browser.uiCustomization.state", '{"placements":{"widget-overflow-fixe
 user_pref("ui.key.menuAccessKeyFocuses", false);
 user_pref("browser.display.use_document_fonts", 0);
 user_pref("font.default.x-western", "sans-serif");
+user_pref("font.name.sans-serif.x-western", "Liberation Sans");
+user_pref("font.name.serif.x-western", "Liberation Serif");
 user_pref("font.name.monospace.x-western", "JetBrainsMonoNL Nerd Font Mono");
 user_pref("font.size.monospace.x-western", 14);
 user_pref("font.size.variable.x-western", 18);
