@@ -9,3 +9,5 @@ user_pref("font.name.monospace.x-western", "JetBrainsMonoNL Nerd Font Mono");
 user_pref("font.size.monospace.x-western", 14);
 user_pref("font.size.variable.x-western", 18);
 user_pref("findbar.highlightAll", true);
+user_pref("browser.aboutConfig.showWarning", false);
+user_pref("browser.zoom.full", false);
