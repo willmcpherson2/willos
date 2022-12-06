@@ -41,7 +41,7 @@ in
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
 
-  home-manager.users.will = { pkgs, ... }: {
+  home-manager.users.will = { pkgs, lib, ... }: {
     home.stateVersion = "22.11";
 
     home.packages = with pkgs; [
@@ -167,6 +167,9 @@ in
       "org/gnome/desktop/background" = {
         picture-uri = "file:///run/current-system/sw/share/backgrounds/gnome/dune-l.svg";
         picture-uri-dark = "file:///run/current-system/sw/share/backgrounds/gnome/dune-d.svg";
+      };
+      "org/gnome/desktop/session" = {
+        idle-delay = lib.hm.gvariant.mkUint32 0;
       };
       "org/gnome/shell" = {
         enabled-extensions = [
