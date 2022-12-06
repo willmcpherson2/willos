@@ -10,6 +10,7 @@ alias diff="git diff --no-index"
 alias grep="grep --color=auto"
 alias vi="nvim"
 alias vim="nvim"
+alias ncdu="ncdu --color off"
 
 export EDITOR="nvim"
 export PAGER="page"
