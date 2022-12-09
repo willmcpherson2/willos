@@ -38,10 +38,10 @@ Map("n", "<bs>", "<c-^>")
 Map("n", "<leader>c", "<cmd>bd<cr>")
 Map("n", "<leader>C", "<cmd>bd!<cr>")
 
-Map("n", "<c-h>", "<c-w>h")
-Map("n", "<c-j>", "<c-w>j")
-Map("n", "<c-k>", "<c-w>k")
-Map("n", "<c-l>", "<c-w>l")
+Map("n", "<c-left>", "<c-w><left>")
+Map("n", "<c-down>", "<c-w><down>")
+Map("n", "<c-up>", "<c-w><up>")
+Map("n", "<c-right>", "<c-w><right>")
 
 Map("n", "<leader>n", "<cmd>noh<cr><c-l>")
 Map("n", "<leader>r", ":%s/\\<<c-r><c-w>\\>/<c-r><c-w>/g<c-f>$F/i")
@@ -74,10 +74,10 @@ require("packer").startup(function(use)
         show_if_buffers_are_at_least = 2,
       }
 
-      Map("n", "<s-h>", "<Plug>(cokeline-focus-prev)")
-      Map("n", "<s-l>", "<Plug>(cokeline-focus-next)")
-      Map("n", "<s-left>", "<Plug>(cokeline-switch-prev)")
-      Map("n", "<s-right>", "<Plug>(cokeline-switch-next)")
+      Map("n", "<s-left>", "<Plug>(cokeline-focus-prev)")
+      Map("n", "<s-right>", "<Plug>(cokeline-focus-next)")
+      Map("n", "<s-down>", "<Plug>(cokeline-switch-prev)")
+      Map("n", "<s-up>", "<Plug>(cokeline-switch-next)")
     end
   }
 
