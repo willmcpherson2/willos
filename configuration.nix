@@ -73,6 +73,7 @@ in
       ffmpeg
       youtube-dl
       unzip
+      appimage-run
 
       # nix
       rnix-lsp
