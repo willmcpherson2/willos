@@ -114,8 +114,8 @@ require("packer").startup(function(use)
         mapping = {
           ["<c-n>"] = cmp.mapping.complete(),
           ["<c-e>"] = cmp.mapping.abort(),
-          ["<c-k>"] = cmp.mapping.select_prev_item(),
-          ["<c-j>"] = cmp.mapping.select_next_item(),
+          ["<up>"] = cmp.mapping.select_prev_item(),
+          ["<down>"] = cmp.mapping.select_next_item(),
           ["<c-u>"] = cmp.mapping.scroll_docs(-4),
           ["<c-d>"] = cmp.mapping.scroll_docs(4),
           ["<cr>"] = cmp.mapping.confirm({ select = true }),
