@@ -59,6 +59,7 @@ in
       gnomeExtensions.emoji-selector
       catppuccin-gtk
       alacritty
+      tmux
 
       # cli
       git
@@ -113,6 +114,32 @@ in
       rust-analyzer
     ];
 
+    programs.bash = {
+      enable = true;
+      historySize = -1;
+      historyFileSize = -1;
+      historyControl = [ "ignoredups" ];
+      shellAliases = {
+        diff = "git diff --no-index";
+        grep = "grep --color=auto";
+        vi = "nvim";
+        vim = "nvim";
+        ncdu = "ncdu --color off";
+      };
+      sessionVariables = {
+        EDITOR = "nvim";
+        PAGER = "page";
+        MANPAGER = "page -t man";
+      };
+      profileExtra = ''
+        export WINIT_UNIX_BACKEND=x11
+      '';
+      initExtra = ''
+        stty -ixon
+        set enable-bracketed-paste on
+      '';
+    };
+
     programs.neovim = {
       enable = true;
       plugins = with pkgs.vimPlugins; [ packer-nvim ];
@@ -139,17 +166,13 @@ in
         source = ./dot/init.lua;
         target = ".config/nvim/init.lua";
       };
+      tmux = {
+        source = ./dot/tmux.conf;
+        target = ".config/tmux/tmux.conf";
+      };
       gitconfig = {
         source = ./dot/gitconfig;
         target = ".gitconfig";
-      };
-      bashrc = {
-        source = ./dot/bashrc;
-        target = ".bashrc";
-      };
-      profile = {
-        source = ./dot/profile;
-        target = ".profile";
       };
       ghci = {
         source = ./dot/ghci;
