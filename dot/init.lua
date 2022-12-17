@@ -52,18 +52,19 @@ Map("n", "<leader>-", "80a-<esc>0")
 require("packer").startup(function(use)
   use "wbthomason/packer.nvim"
 
+  use "catppuccin/nvim"
+
   use {
     "willmcpherson2/gnome.nvim",
     config = function()
-      require("gnome").init()
-    end
-  }
-
-  use {
-    "rmehri01/onenord.nvim",
-    tag = "v0.7.0",
-    config = function()
-      require("onenord").setup()
+      require("gnome").setup {
+        on_light = function()
+          vim.cmd.colorscheme("catppuccin-latte")
+        end,
+        on_dark = function()
+          vim.cmd.colorscheme("catppuccin-frappe")
+        end,
+      }
     end
   }
 

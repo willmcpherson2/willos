@@ -39,27 +39,26 @@ in
     passwordFile = "/etc/passwordFile-will";
   };
 
-  fonts.fonts = with pkgs; [
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-  ];
+  fonts = {
+    fonts = with pkgs; [
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    ];
+    fontconfig = {
+      defaultFonts = {
+        monospace = [ "JetBrainsMonoNL Nerd Font Mono" ];
+      };
+    };
+  };
 
   home-manager.users.will = { pkgs, lib, ... }: {
     home.stateVersion = "22.11";
 
     home.packages = with pkgs; [
-      # gnome
-      gnome-console
-      gnome-connections
-      gnome.nautilus
-      gnome.totem
-      gnome.eog
-      gnome.baobab
-      gnome.gnome-system-monitor
-      gnome.gnome-logs
-      gnome.gnome-font-viewer
-      gnome.gnome-characters
+      # desktop
       gnomeExtensions.night-theme-switcher
       gnomeExtensions.emoji-selector
+      catppuccin-gtk
+      alacritty
 
       # cli
       git
@@ -76,6 +75,7 @@ in
       youtube-dl
       unzip
       appimage-run
+      pycritty
 
       # nix
       rnix-lsp
@@ -127,6 +127,14 @@ in
     };
 
     home.file = {
+      alacritty-latte = {
+        source = ./dot/latte.yml;
+        target = ".config/pycritty/saves/latte.yml";
+      };
+      alacritty-frappe = {
+        source = ./dot/frappe.yml;
+        target = ".config/pycritty/saves/frappe.yml";
+      };
       neovim = {
         source = ./dot/init.lua;
         target = ".config/nvim/init.lua";
@@ -139,33 +147,24 @@ in
         source = ./dot/bashrc;
         target = ".bashrc";
       };
+      profile = {
+        source = ./dot/profile;
+        target = ".profile";
+      };
       ghci = {
         source = ./dot/ghci;
         target = ".ghci";
       };
     };
 
-    xdg.mimeApps = {
-      enable = true;
-      defaultApplications = {
-        "audio/x-wav" = [ "org.gnome.Totem.desktop" ];
-        "audio/mpeg" = [ "org.gnome.Totem.desktop" ];
-        "audio/x-vorbis+ogg" = [ "org.gnome.Totem.desktop" ];
-      };
-    };
-
     dconf.settings = {
       "org/gnome/desktop/interface" = {
         clock-format = "12h";
-        monospace-font-name = "JetBrainsMono Nerd Font Mono 14";
         enable-animations = false;
       };
       "org/gnome/desktop/peripherals/mouse" = {
         natural-scroll = true;
         speed = -0.80;
-      };
-      "org/gnome/desktop/app-folders" = {
-        folder-children = [ ];
       };
       "org/gnome/desktop/background" = {
         picture-uri = "file:///run/current-system/sw/share/backgrounds/gnome/dune-l.svg";
@@ -179,16 +178,12 @@ in
           "nightthemeswitcher@romainvigier.fr"
           "emoji-selector@maestroschan.fr"
         ];
-        favorite-apps = [ ];
       };
       "org/gnome/settings-daemon/plugins/color" = {
         night-light-enabled = true;
       };
       "org/gnome/settings-daemon/plugins/power" = {
         sleep-inactive-ac-type = "nothing";
-      };
-      "org/gnome/Console" = {
-        theme = "auto";
       };
       "org/gtk/settings/file-chooser" = {
         clock-format = "12h";
@@ -200,6 +195,11 @@ in
       "org/gnome/shell/extensions/nightthemeswitcher/time" = {
         always-enable-ondemand = true;
         nightlight-follow-disable = true;
+      };
+      "org/gnome/shell/extensions/nightthemeswitcher/commands" = {
+        enabled = true;
+        sunrise = "pycritty load latte";
+        sunset = "pycritty load frappe";
       };
     };
   };
