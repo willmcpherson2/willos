@@ -172,7 +172,7 @@ in
       };
       gitconfig = {
         source = ./dot/gitconfig;
-        target = ".gitconfig";
+        target = ".config/git/config";
       };
       ghci = {
         source = ./dot/ghci;
