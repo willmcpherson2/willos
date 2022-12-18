@@ -2,6 +2,7 @@
 
 let
   home-manager = fetchTarball "https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz";
+  catppuccinAlacritty = fetchTarball "https://github.com/catppuccin/alacritty/archive/main.tar.gz";
 in
 {
   nix = import ./nix.nix;
@@ -154,13 +155,17 @@ in
     };
 
     home.file = {
-      alacritty-latte = {
-        source = ./dot/latte.yml;
-        target = ".config/pycritty/saves/latte.yml";
+      alacritty = {
+        source = ./dot/alacritty.yml;
+        target = ".config/pycritty/saves/alacritty.yml";
       };
-      alacritty-frappe = {
-        source = ./dot/frappe.yml;
-        target = ".config/pycritty/saves/frappe.yml";
+      alacrittyLatte = {
+        source = "${catppuccinAlacritty}/catppuccin-latte.yml";
+        target = ".config/pycritty/themes/latte.yml";
+      };
+      alacrittyFrappe = {
+        source = "${catppuccinAlacritty}/catppuccin-frappe.yml";
+        target = ".config/pycritty/themes/frappe.yml";
       };
       neovim = {
         source = ./dot/init.lua;
@@ -221,8 +226,8 @@ in
       };
       "org/gnome/shell/extensions/nightthemeswitcher/commands" = {
         enabled = true;
-        sunrise = "pycritty load latte";
-        sunset = "pycritty load frappe";
+        sunrise = "pycritty load alacritty; pycritty -t latte";
+        sunset = "pycritty load alacritty; pycritty -t frappe";
       };
     };
   };
