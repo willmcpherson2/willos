@@ -60,7 +60,6 @@ in
       gnomeExtensions.emoji-selector
       catppuccin-gtk
       alacritty
-      tmux
 
       # cli
       git
@@ -176,10 +175,6 @@ in
       neovim = {
         source = ./dot/init.lua;
         target = ".config/nvim/init.lua";
-      };
-      tmux = {
-        source = ./dot/tmux.conf;
-        target = ".config/tmux/tmux.conf";
       };
       gitconfig = {
         source = ./dot/gitconfig;

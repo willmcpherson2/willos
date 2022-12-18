@@ -1,6 +1,9 @@
 env:
   TERM: xterm-256color
 window:
-    dynamic_padding: true
+  dynamic_padding: true
+  startup_mode: Windowed
 font:
-    size: 16.0
+  size: 16.0
+shell:
+ program: nvim

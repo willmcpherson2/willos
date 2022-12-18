@@ -12,8 +12,7 @@ vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.softtabstop = 2
 vim.o.expandtab = true
-vim.o.number = true
-vim.o.relativenumber = true
+vim.o.cmdheight = 0
 
 -- maps
 
@@ -47,6 +46,9 @@ Map("n", "<leader>n", "<cmd>noh<cr><c-l>")
 Map("n", "<leader>r", ":%s/\\<<c-r><c-w>\\>/<c-r><c-w>/g<c-f>$F/i")
 Map("n", "<leader>-", "80a-<esc>0")
 
+Map("n", "<c-t>", "<cmd>term<cr>")
+Map("t", "<c-a>", "<c-\\><c-n>")
+
 -- plugins
 
 require("packer").startup(function(use)
@@ -71,8 +73,30 @@ require("packer").startup(function(use)
   use {
     "noib3/nvim-cokeline",
     config = function()
+      local get_hex = require("cokeline.utils").get_hex
       require("cokeline").setup {
         show_if_buffers_are_at_least = 2,
+        rendering = {
+          max_buffer_width = 30,
+        },
+        components = {
+          {
+            text = " ",
+            bg = get_hex("Normal", "bg"),
+          },
+          { text = " ", },
+          {
+            text = "",
+            delete_buffer_on_left_click = true,
+          },
+          { text = " ", },
+          {
+            text = function(buffer)
+              return buffer.filename
+            end,
+          },
+          { text = " ", },
+        },
       }
 
       Map("n", "<s-left>", "<Plug>(cokeline-focus-prev)")
