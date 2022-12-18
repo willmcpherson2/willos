@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 set -euxo pipefail
 
 ssh-keygen -t ed25519 -C "willmcpherson2@gmail.com"

@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # $1 = image input path
 # $2 = audio input path
 # $3 = video output path

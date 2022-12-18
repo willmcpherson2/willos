@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # $1 = input url
 # $2 = output filename
 
