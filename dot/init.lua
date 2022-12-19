@@ -37,17 +37,13 @@ Map("n", "<bs>", "<c-^>")
 Map("n", "<leader>c", "<cmd>bd<cr>")
 Map("n", "<leader>C", "<cmd>bd!<cr>")
 
-Map("n", "<c-left>", "<c-w><left>")
-Map("n", "<c-down>", "<c-w><down>")
-Map("n", "<c-up>", "<c-w><up>")
-Map("n", "<c-right>", "<c-w><right>")
-
 Map("n", "<leader>n", "<cmd>noh<cr><c-l>")
 Map("n", "<leader>r", ":%s/\\<<c-r><c-w>\\>/<c-r><c-w>/g<c-f>$F/i")
 Map("n", "<leader>-", "80a-<esc>0")
 
-Map("n", "<c-t>", "<cmd>term<cr>")
 Map("t", "<c-a>", "<c-\\><c-n>")
+Map("n", "<c-t>", "<cmd>term<cr>")
+Map("t", "<c-t>", "<c-\\><c-o><cmd>term<cr>")
 
 -- plugins
 
@@ -99,10 +95,15 @@ require("packer").startup(function(use)
         },
       }
 
-      Map("n", "<s-left>", "<Plug>(cokeline-focus-prev)")
-      Map("n", "<s-right>", "<Plug>(cokeline-focus-next)")
-      Map("n", "<s-down>", "<Plug>(cokeline-switch-prev)")
-      Map("n", "<s-up>", "<Plug>(cokeline-switch-next)")
+      Map("n", "<c-left>", "<Plug>(cokeline-focus-prev)")
+      Map("n", "<c-right>", "<Plug>(cokeline-focus-next)")
+      Map("n", "<c-down>", "<Plug>(cokeline-switch-prev)")
+      Map("n", "<c-up>", "<Plug>(cokeline-switch-next)")
+
+      Map("t", "<s-left>", "<c-\\><c-o><Plug>(cokeline-focus-prev)")
+      Map("t", "<s-right>", "<c-\\><c-o><Plug>(cokeline-focus-next)")
+      Map("t", "<s-down>", "<c-\\><c-o><Plug>(cokeline-switch-prev)")
+      Map("t", "<s-up>", "<c-\\><c-o><Plug>(cokeline-switch-next)")
     end
   }
 

@@ -6,4 +6,9 @@ window:
 font:
   size: 16.0
 shell:
- program: nvim
+  program: nvim
+  args:
+    - -c
+    - term
+    - -c
+    - startinsert
