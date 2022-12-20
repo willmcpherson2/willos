@@ -60,6 +60,7 @@ in
       gnomeExtensions.emoji-selector
       catppuccin-gtk
       alacritty
+      gimp
 
       # cli
       git
