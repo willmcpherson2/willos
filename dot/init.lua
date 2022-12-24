@@ -283,11 +283,7 @@ require("packer").startup(function(use)
 
       lspconfig.pylsp.setup {}
 
-      lspconfig.hls.setup {
-        haskell = {
-          formattingProvider = "fourmolu"
-        }
-      }
+      lspconfig.hls.setup {}
 
       lspconfig.rust_analyzer.setup {}
     end
