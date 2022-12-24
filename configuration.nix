@@ -137,10 +137,8 @@ in
         EDITOR = "nvim";
         PAGER = "page";
         MANPAGER = "page -t man";
+        WINIT_UNIX_BACKEND = "x11";
       };
-      profileExtra = ''
-        export WINIT_UNIX_BACKEND=x11
-      '';
       initExtra = ''
         stty -ixon
         set enable-bracketed-paste on

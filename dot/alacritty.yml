@@ -1,8 +1,7 @@
-env:
-  TERM: xterm-256color
 window:
   dynamic_padding: true
-  startup_mode: Windowed
+  startup_mode: Maximized
+  decorations: none
 font:
   size: 16.0
 shell:
