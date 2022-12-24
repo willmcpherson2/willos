@@ -50,7 +50,23 @@ Map("t", "<c-t>", "<c-\\><c-o><cmd>term<cr>")
 require("packer").startup(function(use)
   use "wbthomason/packer.nvim"
 
-  use "catppuccin/nvim"
+  use {
+    "catppuccin/nvim",
+    config = function()
+      require("catppuccin").setup {
+        integrations = {
+          cmp = true,
+          gitsigns = true,
+          telescope = true,
+          treesitter = true,
+          treesitter_context = false,
+          native_lsp = {
+            enabled = true,
+          },
+        },
+      }
+    end
+  }
 
   use {
     "willmcpherson2/gnome.nvim",
@@ -71,6 +87,9 @@ require("packer").startup(function(use)
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
     config = function()
       require("lualine").setup {
+        options = {
+          theme = "catppuccin"
+        },
         sections = {
           lualine_b = {
             {
