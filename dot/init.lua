@@ -137,6 +137,8 @@ require("packer").startup(function(use)
     end
   }
 
+  use "L3MON4D3/LuaSnip"
+  use "saadparwaiz1/cmp_luasnip"
   use "hrsh7th/cmp-nvim-lsp"
   use "ray-x/cmp-treesitter"
   use "hrsh7th/cmp-buffer"
@@ -145,22 +147,24 @@ require("packer").startup(function(use)
     config = function()
       local cmp = require("cmp")
       cmp.setup {
-        completion = {
-          autocomplete = false,
+        snippet = {
+          expand = function(args)
+            require("luasnip").lsp_expand(args.body)
+          end,
         },
         sources = {
+          { name = "luasnip" },
           { name = "nvim_lsp" },
           { name = "treesitter" },
           { name = "buffer" },
         },
         mapping = {
-          ["<c-n>"] = cmp.mapping.complete(),
           ["<c-e>"] = cmp.mapping.abort(),
           ["<up>"] = cmp.mapping.select_prev_item(),
           ["<down>"] = cmp.mapping.select_next_item(),
           ["<c-u>"] = cmp.mapping.scroll_docs(-4),
           ["<c-d>"] = cmp.mapping.scroll_docs(4),
-          ["<cr>"] = cmp.mapping.confirm({ select = true }),
+          ["<cr>"] = cmp.mapping.confirm(),
         },
       }
     end
