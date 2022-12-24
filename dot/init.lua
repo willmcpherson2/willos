@@ -131,13 +131,6 @@ require("packer").startup(function(use)
   }
 
   use {
-    "Darazaki/indent-o-matic",
-    config = function()
-      require("indent-o-matic").setup {}
-    end
-  }
-
-  use {
     "numToStr/Comment.nvim",
     config = function()
       require("Comment").setup()
