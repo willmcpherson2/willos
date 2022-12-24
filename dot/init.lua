@@ -67,6 +67,29 @@ require("packer").startup(function(use)
   }
 
   use {
+    "nvim-lualine/lualine.nvim",
+    requires = { "kyazdani42/nvim-web-devicons", opt = true },
+    config = function()
+      require("lualine").setup {
+        sections = {
+          lualine_b = {
+            {
+              "macro-recording", fmt = function()
+                local recording_register = vim.fn.reg_recording()
+                if recording_register == "" then
+                  return ""
+                else
+                  return "recording @" .. recording_register
+                end
+              end
+            },
+          },
+        }
+      }
+    end
+  }
+
+  use {
     "noib3/nvim-cokeline",
     config = function()
       local get_hex = require("cokeline.utils").get_hex
