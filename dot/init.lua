@@ -222,30 +222,7 @@ require("packer").startup(function(use)
       require("nvim-treesitter.configs").setup {
         highlight = { enable = true },
         context_commentstring = { enable = true },
-        ensure_installed = {
-          "vim",
-          "lua",
-          "help",
-          "diff",
-          "markdown",
-          "javascript",
-          "typescript",
-          "tsx",
-          "html",
-          "css",
-          "haskell",
-          "nix",
-          "llvm",
-          "rust",
-          "toml",
-          "yaml",
-          "c",
-          "cpp",
-          "make",
-          "python",
-          "java",
-          "kotlin",
-        },
+        ensure_installed = "all",
       }
     end
   }
