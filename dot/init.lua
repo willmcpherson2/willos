@@ -108,43 +108,22 @@ require("packer").startup(function(use)
   }
 
   use {
-    "noib3/nvim-cokeline",
+    "akinsho/bufferline.nvim",
+    after = "catppuccin",
     config = function()
-      local get_hex = require("cokeline.utils").get_hex
-      require("cokeline").setup {
-        show_if_buffers_are_at_least = 2,
-        rendering = {
-          max_buffer_width = 30,
-        },
-        components = {
-          {
-            text = " ",
-            bg = get_hex("Normal", "bg"),
-          },
-          { text = " ", },
-          {
-            text = "",
-            delete_buffer_on_left_click = true,
-          },
-          { text = " ", },
-          {
-            text = function(buffer)
-              return buffer.filename
-            end,
-          },
-          { text = " ", },
-        },
+      require("bufferline").setup {
+        highlights = require("catppuccin.groups.integrations.bufferline").get()
       }
 
-      Map("n", "<c-left>", "<Plug>(cokeline-focus-prev)")
-      Map("n", "<c-right>", "<Plug>(cokeline-focus-next)")
-      Map("n", "<c-down>", "<Plug>(cokeline-switch-prev)")
-      Map("n", "<c-up>", "<Plug>(cokeline-switch-next)")
+      Map("n", "<c-left>", "<cmd>BufferLineCyclePrev<cr>")
+      Map("n", "<c-right>", "<cmd>BufferLineCycleNext<cr>")
+      Map("n", "<c-down>", "<cmd>BufferLineMovePrev<cr>")
+      Map("n", "<c-up>", "<cmd>BufferLineMoveNext<cr>")
 
-      Map("t", "<s-left>", "<c-\\><c-o><Plug>(cokeline-focus-prev)")
-      Map("t", "<s-right>", "<c-\\><c-o><Plug>(cokeline-focus-next)")
-      Map("t", "<s-down>", "<c-\\><c-o><Plug>(cokeline-switch-prev)")
-      Map("t", "<s-up>", "<c-\\><c-o><Plug>(cokeline-switch-next)")
+      Map("t", "<s-left>", "<c-\\><c-o><cmd>BufferLineCyclePrev<cr>")
+      Map("t", "<s-right>", "<c-\\><c-o><cmd>BufferLineCycleNext<cr>")
+      Map("t", "<s-down>", "<c-\\><c-o><cmd>BufferLineMovePrev<cr>")
+      Map("t", "<s-up>", "<c-\\><c-o><cmd>BufferLineMoveNext<cr>")
     end
   }
 
