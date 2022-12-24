@@ -52,8 +52,13 @@ require("packer").startup(function(use)
 
   use {
     "catppuccin/nvim",
+    as = "catppuccin",
     config = function()
       require("catppuccin").setup {
+        background = {
+          light = "latte",
+          dark = "frappe",
+        },
         integrations = {
           cmp = true,
           gitsigns = true,
@@ -65,20 +70,14 @@ require("packer").startup(function(use)
           },
         },
       }
+      vim.cmd.colorscheme("catppuccin")
     end
   }
 
   use {
     "willmcpherson2/gnome.nvim",
     config = function()
-      require("gnome").setup {
-        on_light = function()
-          vim.cmd.colorscheme("catppuccin-latte")
-        end,
-        on_dark = function()
-          vim.cmd.colorscheme("catppuccin-frappe")
-        end,
-      }
+      require("gnome").setup {}
     end
   }
 
