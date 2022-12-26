@@ -14,7 +14,7 @@ vim.o.softtabstop = 2
 vim.o.expandtab = true
 vim.o.cmdheight = 0
 
--- maps
+-- mappings
 
 function Map(mode, key, cmd)
   vim.keymap.set(mode, key, cmd, {
@@ -29,21 +29,27 @@ vim.g.maplocalleader = " "
 
 Map("n", "Q", "<nop>")
 
-Map("n", "<leader>w", "<cmd>wa<cr>")
-Map("n", "<leader>q", "<cmd>qa<cr>")
-Map("n", "<leader>Q", "<cmd>qa!<cr>")
+Map("n", "<leader>w", ":wa<cr>")
+Map("n", "<leader>q", ":qa<cr>")
+Map("n", "<leader>Q", ":qa!<cr>")
 
 Map("n", "<bs>", "<c-^>")
-Map("n", "<leader>c", "<cmd>bd<cr>")
-Map("n", "<leader>C", "<cmd>bd!<cr>")
+Map("n", "<leader>c", ":bd<cr>")
+Map("n", "<leader>C", ":bd!<cr>")
 
-Map("n", "<leader>n", "<cmd>noh<cr><c-l>")
-Map("n", "<leader>r", ":%s/\\<<c-r><c-w>\\>/<c-r><c-w>/g<c-f>$F/i")
+Map("t", "<c-n>", "<c-\\><c-n>")
+Map("n", "<c-t>", ":term<cr>")
+Map("t", "<c-t>", "<c-\\><c-o>:term<cr>")
+
+Map("n", "<leader>r", ":%s///g<c-f>")
+Map("v", "<leader>r", ":s///g<c-f>")
+Map("n", "<leader>R", ":%s/\\<<c-r><c-w>\\>/<c-r><c-w>/g<c-f><left>")
+Map("v", "<leader>R", ":s/\\<<c-r><c-w>\\>/<c-r><c-w>/g<c-f><left>")
+
+Map("v", "Q", ":'<,'>norm! @q<cr>")
+
+Map("n", "<leader>n", ":noh<cr><c-l>")
 Map("n", "<leader>-", "80a-<esc>0")
-
-Map("t", "<c-a>", "<c-\\><c-n>")
-Map("n", "<c-t>", "<cmd>term<cr>")
-Map("t", "<c-t>", "<c-\\><c-o><cmd>term<cr>")
 
 -- plugins
 
@@ -115,15 +121,15 @@ require("packer").startup(function(use)
         highlights = require("catppuccin.groups.integrations.bufferline").get()
       }
 
-      Map("n", "<c-left>", "<cmd>BufferLineCyclePrev<cr>")
-      Map("n", "<c-right>", "<cmd>BufferLineCycleNext<cr>")
-      Map("n", "<c-down>", "<cmd>BufferLineMovePrev<cr>")
-      Map("n", "<c-up>", "<cmd>BufferLineMoveNext<cr>")
+      Map("n", "<c-left>", ":BufferLineCyclePrev<cr>")
+      Map("n", "<c-right>", ":BufferLineCycleNext<cr>")
+      Map("n", "<c-down>", ":BufferLineMovePrev<cr>")
+      Map("n", "<c-up>", ":BufferLineMoveNext<cr>")
 
-      Map("t", "<s-left>", "<c-\\><c-o><cmd>BufferLineCyclePrev<cr>")
-      Map("t", "<s-right>", "<c-\\><c-o><cmd>BufferLineCycleNext<cr>")
-      Map("t", "<s-down>", "<c-\\><c-o><cmd>BufferLineMovePrev<cr>")
-      Map("t", "<s-up>", "<c-\\><c-o><cmd>BufferLineMoveNext<cr>")
+      Map("t", "<s-left>", "<c-\\><c-o>:BufferLineCyclePrev<cr>")
+      Map("t", "<s-right>", "<c-\\><c-o>:BufferLineCycleNext<cr>")
+      Map("t", "<s-down>", "<c-\\><c-o>:BufferLineMovePrev<cr>")
+      Map("t", "<s-up>", "<c-\\><c-o>:BufferLineMoveNext<cr>")
     end
   }
 
