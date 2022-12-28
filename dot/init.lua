@@ -14,8 +14,6 @@ vim.o.softtabstop = 2
 vim.o.expandtab = true
 vim.o.spelllang = "en_au,en_gb"
 
--- specialize
-
 -- mappings
 
 function Map(mode, key, cmd)
@@ -140,6 +138,7 @@ require("packer").startup(function(use)
     "hrsh7th/nvim-cmp",
     requires = {
       "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-nvim-lsp-signature-help",
       "ray-x/cmp-treesitter",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-buffer",
@@ -152,6 +151,7 @@ require("packer").startup(function(use)
       cmp.setup {
         sources = {
           { name = "nvim_lsp" },
+          { name = "nvim_lsp_signature_help" },
           { name = "treesitter" },
           { name = "path" },
           { name = "buffer" },
