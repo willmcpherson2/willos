@@ -12,7 +12,6 @@ vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.softtabstop = 2
 vim.o.expandtab = true
-vim.o.cmdheight = 0
 
 -- mappings
 
@@ -70,7 +69,6 @@ require("packer").startup(function(use)
           gitsigns = true,
           telescope = true,
           treesitter = true,
-          treesitter_context = false,
           native_lsp = {
             enabled = true,
           },
@@ -87,27 +85,22 @@ require("packer").startup(function(use)
     end
   }
 
+  use "kyazdani42/nvim-web-devicons"
+
   use {
     "nvim-lualine/lualine.nvim",
-    requires = { "kyazdani42/nvim-web-devicons", opt = true },
     config = function()
       require("lualine").setup {
         options = {
           theme = "catppuccin"
         },
         sections = {
-          lualine_b = {
+          lualine_c = {
             {
-              "macro-recording", fmt = function()
-                local recording_register = vim.fn.reg_recording()
-                if recording_register == "" then
-                  return ""
-                else
-                  return "recording @" .. recording_register
-                end
-              end
-            },
-          },
+              "filename",
+              path = 1,
+            }
+          }
         }
       }
     end
@@ -140,13 +133,15 @@ require("packer").startup(function(use)
     end
   }
 
-  use "L3MON4D3/LuaSnip"
-  use "saadparwaiz1/cmp_luasnip"
-  use "hrsh7th/cmp-nvim-lsp"
-  use "ray-x/cmp-treesitter"
-  use "hrsh7th/cmp-buffer"
   use {
     "hrsh7th/nvim-cmp",
+    requires = {
+      "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
+      "hrsh7th/cmp-nvim-lsp",
+      "ray-x/cmp-treesitter",
+      "hrsh7th/cmp-buffer",
+    },
     config = function()
       local cmp = require("cmp")
       cmp.setup {
@@ -200,7 +195,7 @@ require("packer").startup(function(use)
 
   use {
     "nvim-telescope/telescope.nvim",
-    requires = { { "nvim-lua/plenary.nvim" } },
+    requires = { "nvim-lua/plenary.nvim" },
     config = function()
       local builtin = require("telescope.builtin")
 
