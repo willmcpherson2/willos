@@ -222,7 +222,6 @@ require("packer").startup(function(use)
     config = function()
       require("nvim-treesitter.configs").setup {
         highlight = { enable = true },
-        context_commentstring = { enable = true },
         ensure_installed = "all",
       }
     end
