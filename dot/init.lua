@@ -12,6 +12,9 @@ vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.softtabstop = 2
 vim.o.expandtab = true
+vim.o.spelllang = "en_au,en_gb"
+
+-- specialize
 
 -- mappings
 
@@ -136,25 +139,25 @@ require("packer").startup(function(use)
   use {
     "hrsh7th/nvim-cmp",
     requires = {
-      "L3MON4D3/LuaSnip",
-      "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-nvim-lsp",
       "ray-x/cmp-treesitter",
+      "hrsh7th/cmp-path",
       "hrsh7th/cmp-buffer",
+      "f3fora/cmp-spell",
+      "hrsh7th/cmp-emoji",
+      "dmitmel/cmp-digraphs",
     },
     config = function()
       local cmp = require("cmp")
       cmp.setup {
-        snippet = {
-          expand = function(args)
-            require("luasnip").lsp_expand(args.body)
-          end,
-        },
         sources = {
-          { name = "luasnip" },
           { name = "nvim_lsp" },
           { name = "treesitter" },
+          { name = "path" },
           { name = "buffer" },
+          { name = "spell" },
+          { name = "emoji", insert = true },
+          { name = "digraphs" },
         },
         mapping = {
           ["<c-e>"] = cmp.mapping.abort(),
