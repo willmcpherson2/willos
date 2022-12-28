@@ -2,6 +2,8 @@ window:
   dynamic_padding: true
   startup_mode: Maximized
   decorations: none
+mouse:
+  hide_when_typing: true
 font:
   size: 16.0
 shell:
