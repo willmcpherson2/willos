@@ -219,10 +219,33 @@ require("packer").startup(function(use)
 
   use {
     "nvim-treesitter/nvim-treesitter",
+    requires = { "nvim-treesitter/nvim-treesitter-textobjects" },
     config = function()
       require("nvim-treesitter.configs").setup {
-        highlight = { enable = true },
         ensure_installed = "all",
+        highlight = { enable = true },
+        incremental_selection = {
+          enable = true,
+          keymaps = {
+            init_selection = "gnn",
+            node_incremental = "n",
+            node_decremental = "p",
+          },
+        },
+        textobjects = {
+          select = {
+            enable = true,
+            keymaps = {
+              ["aa"] = "@parameter.outer",
+              ["ia"] = "@parameter.inner",
+            },
+          },
+          swap = {
+            enable = true,
+            swap_next = { ["<leader>a"] = "@parameter.inner" },
+            swap_previous = { ["<leader>A"] = "@parameter.inner" },
+          },
+        },
       }
     end
   }
