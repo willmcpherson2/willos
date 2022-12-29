@@ -100,9 +100,18 @@ in
 
       # web
       nodejs
-      nodePackages.typescript
-      nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
+      nodePackages.typescript
+      (symlinkJoin
+        {
+          name = "typescript-language-server";
+          paths = [ nodePackages.typescript-language-server ];
+          buildInputs = [ makeWrapper ];
+          postBuild = ''
+            wrapProgram $out/bin/typescript-language-server \
+              --add-flags --tsserver-path=${nodePackages.typescript}/lib/node_modules/typescript/lib/
+          '';
+        })
 
       # python
       python310
@@ -119,6 +128,9 @@ in
       cargo
       rustfmt
       rust-analyzer
+
+      # yaml
+      nodePackages.yaml-language-server
     ];
 
     programs.bash = {

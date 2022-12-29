@@ -304,6 +304,10 @@ require("packer").startup(function(use)
 
       lspconfig.tsserver.setup {}
 
+      lspconfig.jsonls.setup {}
+
+      lspconfig.yamlls.setup {}
+
       lspconfig.pylsp.setup {}
 
       lspconfig.hls.setup {}
