@@ -227,9 +227,8 @@ require("packer").startup(function(use)
         incremental_selection = {
           enable = true,
           keymaps = {
-            init_selection = "gnn",
-            node_incremental = "n",
-            node_decremental = "p",
+            node_incremental = "<c-down>",
+            node_decremental = "<c-up>",
           },
         },
         textobjects = {
