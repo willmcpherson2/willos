@@ -32,6 +32,14 @@ in
 
   services.openssh.enable = true;
 
+  virtualisation.docker = {
+    enable = true;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+  };
+
   users.mutableUsers = false;
   users.users.root.hashedPassword = "!";
   users.users.will = {
@@ -78,6 +86,7 @@ in
       unzip
       appimage-run
       pycritty
+      heroku
 
       (writeShellScriptBin "audio-to-video" (builtins.readFile ./bin/audio-to-video.sh))
       (writeShellScriptBin "new-ssh-key" (builtins.readFile ./bin/new-ssh-key.sh))
