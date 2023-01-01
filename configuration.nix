@@ -2,7 +2,7 @@
 
 let
   home-manager = fetchTarball "https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz";
-  doom = fetchTarball "https://github.com/nix-community/nix-doom-emacs/archive/master.tar.gz";
+  emacs-overlay = fetchTarball "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
 in
 {
   nix = import ./nix.nix;
@@ -62,11 +62,16 @@ in
   home-manager.users.will = { pkgs, lib, ... }: {
     home.stateVersion = "22.11";
 
+    nixpkgs.overlays = [
+      (import emacs-overlay)
+    ];
+
     home.packages = with pkgs; [
       # desktop
       gnomeExtensions.night-theme-switcher
       gnomeExtensions.emoji-selector
       gimp
+      emacs-all-the-icons-fonts
 
       # cli
       git
@@ -84,9 +89,6 @@ in
       unzip
       appimage-run
       heroku
-
-      (pkgs.callPackage doom { doomPrivateDir = ./doom.d; })
-      emacs-all-the-icons-fonts
 
       (writeShellScriptBin "audio-to-video" (builtins.readFile ./bin/audio-to-video.sh))
       (writeShellScriptBin "new-ssh-key" (builtins.readFile ./bin/new-ssh-key.sh))
@@ -149,10 +151,19 @@ in
         grep = "grep --color=auto";
         ncdu = "ncdu --color off";
       };
+      bashrcExtra = ''
+        export PATH="$HOME/.emacs.d/bin:$PATH"
+      '';
       initExtra = ''
         stty -ixon
         set enable-bracketed-paste on
       '';
+    };
+
+    programs.emacs = {
+      enable = true;
+      package = pkgs.emacsPgtk;
+      extraPackages = epkgs: [ epkgs.vterm ];
     };
 
     programs.firefox = {
@@ -164,6 +175,11 @@ in
     };
 
     home.file = {
+      doom = {
+        source = ./dot/doom;
+        target = ".config/doom";
+        recursive = true;
+      };
       gitconfig = {
         source = ./dot/gitconfig;
         target = ".config/git/config";
