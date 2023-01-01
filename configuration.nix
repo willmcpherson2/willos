@@ -2,7 +2,7 @@
 
 let
   home-manager = fetchTarball "https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz";
-  catppuccinAlacritty = fetchTarball "https://github.com/catppuccin/alacritty/archive/main.tar.gz";
+  doom = fetchTarball "https://github.com/nix-community/nix-doom-emacs/archive/master.tar.gz";
 in
 {
   nix = import ./nix.nix;
@@ -66,8 +66,6 @@ in
       # desktop
       gnomeExtensions.night-theme-switcher
       gnomeExtensions.emoji-selector
-      catppuccin-gtk
-      alacritty
       gimp
 
       # cli
@@ -85,8 +83,10 @@ in
       youtube-dl
       unzip
       appimage-run
-      pycritty
       heroku
+
+      (pkgs.callPackage doom { doomPrivateDir = ./doom.d; })
+      emacs-all-the-icons-fonts
 
       (writeShellScriptBin "audio-to-video" (builtins.readFile ./bin/audio-to-video.sh))
       (writeShellScriptBin "new-ssh-key" (builtins.readFile ./bin/new-ssh-key.sh))
@@ -99,9 +99,6 @@ in
 
       # bash
       nodePackages.bash-language-server
-
-      # lua
-      sumneko-lua-language-server
 
       # c
       gcc
@@ -150,25 +147,12 @@ in
       shellAliases = {
         diff = "git diff --no-index";
         grep = "grep --color=auto";
-        vi = "nvim";
-        vim = "nvim";
         ncdu = "ncdu --color off";
-      };
-      sessionVariables = {
-        EDITOR = "nvim";
-        PAGER = "page";
-        MANPAGER = "page -t man";
-        WINIT_UNIX_BACKEND = "x11";
       };
       initExtra = ''
         stty -ixon
         set enable-bracketed-paste on
       '';
-    };
-
-    programs.neovim = {
-      enable = true;
-      plugins = with pkgs.vimPlugins; [ packer-nvim ];
     };
 
     programs.firefox = {
@@ -180,22 +164,6 @@ in
     };
 
     home.file = {
-      alacritty = {
-        source = ./dot/alacritty.yml;
-        target = ".config/pycritty/saves/alacritty.yml";
-      };
-      alacrittyLatte = {
-        source = "${catppuccinAlacritty}/catppuccin-latte.yml";
-        target = ".config/pycritty/themes/latte.yml";
-      };
-      alacrittyFrappe = {
-        source = "${catppuccinAlacritty}/catppuccin-frappe.yml";
-        target = ".config/pycritty/themes/frappe.yml";
-      };
-      neovim = {
-        source = ./dot/init.lua;
-        target = ".config/nvim/init.lua";
-      };
       gitconfig = {
         source = ./dot/gitconfig;
         target = ".config/git/config";
@@ -203,6 +171,15 @@ in
       ghci = {
         source = ./dot/ghci;
         target = ".ghci";
+      };
+    };
+
+    xdg.desktopEntries = {
+      doom = {
+        name = "Doom Emacs";
+        genericName = "Editor";
+        exec = "doom run";
+        terminal = false;
       };
     };
 
@@ -244,11 +221,6 @@ in
       "org/gnome/shell/extensions/nightthemeswitcher/time" = {
         always-enable-ondemand = true;
         nightlight-follow-disable = true;
-      };
-      "org/gnome/shell/extensions/nightthemeswitcher/commands" = {
-        enabled = true;
-        sunrise = "pycritty load alacritty; pycritty -t latte";
-        sunset = "pycritty load alacritty; pycritty -t frappe";
       };
     };
   };
