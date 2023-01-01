@@ -1,18 +1,16 @@
 { config, pkgs, ... }:
 
 let
-  home-manager = fetchTarball "https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz";
-  emacs-overlay = fetchTarball "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
-in
-{
+  home-manager = fetchTarball
+    "https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz";
+  emacs-overlay = fetchTarball
+    "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
+in {
   nix = import ./nix.nix;
 
   system.stateVersion = "22.11";
 
-  imports = [
-    ./hardware-configuration.nix
-    "${home-manager}/nixos"
-  ];
+  imports = [ ./hardware-configuration.nix "${home-manager}/nixos" ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader.systemd-boot.enable = true;
@@ -49,22 +47,17 @@ in
   };
 
   fonts = {
-    fonts = with pkgs; [
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-    ];
+    fonts = with pkgs;
+      [ (nerdfonts.override { fonts = [ "JetBrainsMono" ]; }) ];
     fontconfig = {
-      defaultFonts = {
-        monospace = [ "JetBrainsMonoNL Nerd Font Mono" ];
-      };
+      defaultFonts = { monospace = [ "JetBrainsMonoNL Nerd Font Mono" ]; };
     };
   };
 
   home-manager.users.will = { pkgs, lib, ... }: {
     home.stateVersion = "22.11";
 
-    nixpkgs.overlays = [
-      (import emacs-overlay)
-    ];
+    nixpkgs.overlays = [ (import emacs-overlay) ];
 
     home.packages = with pkgs; [
       # desktop
@@ -90,14 +83,19 @@ in
       appimage-run
       heroku
 
-      (writeShellScriptBin "audio-to-video" (builtins.readFile ./bin/audio-to-video.sh))
-      (writeShellScriptBin "new-ssh-key" (builtins.readFile ./bin/new-ssh-key.sh))
-      (writeShellScriptBin "packer-sync" (builtins.readFile ./bin/packer-sync.sh))
-      (writeShellScriptBin "track-willos" (builtins.readFile ./bin/track-willos.sh))
+      (writeShellScriptBin "audio-to-video"
+        (builtins.readFile ./bin/audio-to-video.sh))
+      (writeShellScriptBin "new-ssh-key"
+        (builtins.readFile ./bin/new-ssh-key.sh))
+      (writeShellScriptBin "packer-sync"
+        (builtins.readFile ./bin/packer-sync.sh))
+      (writeShellScriptBin "track-willos"
+        (builtins.readFile ./bin/track-willos.sh))
       (writeShellScriptBin "ydl" (builtins.readFile ./bin/ydl.sh))
 
       # nix
       rnix-lsp
+      nixfmt
 
       # bash
       nodePackages.bash-language-server
@@ -110,16 +108,15 @@ in
       nodejs
       nodePackages.vscode-langservers-extracted
       nodePackages.typescript
-      (symlinkJoin
-        {
-          name = "typescript-language-server";
-          paths = [ nodePackages.typescript-language-server ];
-          buildInputs = [ makeWrapper ];
-          postBuild = ''
-            wrapProgram $out/bin/typescript-language-server \
-              --add-flags --tsserver-path=${nodePackages.typescript}/lib/node_modules/typescript/lib/
-          '';
-        })
+      (symlinkJoin {
+        name = "typescript-language-server";
+        paths = [ nodePackages.typescript-language-server ];
+        buildInputs = [ makeWrapper ];
+        postBuild = ''
+          wrapProgram $out/bin/typescript-language-server \
+            --add-flags --tsserver-path=${nodePackages.typescript}/lib/node_modules/typescript/lib/
+        '';
+      })
 
       # python
       python310
@@ -169,9 +166,7 @@ in
     programs.firefox = {
       enable = true;
       package = pkgs.firefox-wayland;
-      profiles.will = {
-        extraConfig = builtins.readFile ./dot/user.js;
-      };
+      profiles.will = { extraConfig = builtins.readFile ./dot/user.js; };
     };
 
     home.file = {
@@ -206,11 +201,13 @@ in
       };
       "org/gnome/desktop/peripherals/mouse" = {
         natural-scroll = true;
-        speed = -0.80;
+        speed = -0.8;
       };
       "org/gnome/desktop/background" = {
-        picture-uri = "file:///run/current-system/sw/share/backgrounds/gnome/dune-l.svg";
-        picture-uri-dark = "file:///run/current-system/sw/share/backgrounds/gnome/dune-d.svg";
+        picture-uri =
+          "file:///run/current-system/sw/share/backgrounds/gnome/dune-l.svg";
+        picture-uri-dark =
+          "file:///run/current-system/sw/share/backgrounds/gnome/dune-d.svg";
       };
       "org/gnome/desktop/session" = {
         idle-delay = lib.hm.gvariant.mkUint32 0;
@@ -227,9 +224,7 @@ in
       "org/gnome/settings-daemon/plugins/power" = {
         sleep-inactive-ac-type = "nothing";
       };
-      "org/gtk/settings/file-chooser" = {
-        clock-format = "12h";
-      };
+      "org/gtk/settings/file-chooser" = { clock-format = "12h"; };
 
       "org/gnome/shell/extensions/nightthemeswitcher/gtk-variants" = {
         enabled = true;
