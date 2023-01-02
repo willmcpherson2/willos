@@ -1,6 +1,6 @@
 (doom! :completion
        company
-       vertico
+       (vertico +icons)
 
        :ui
        doom
@@ -20,11 +20,13 @@
        (evil +everywhere)
        fold
        multiple-cursors
+       snippets
+       format
 
        :emacs
-       dired
+       (dired +icons)
        electric
-       ibuffer
+       (ibuffer +icons)
        undo
        vc
 
@@ -34,10 +36,10 @@
 
        :checkers
        syntax
-       (spell +everywhere)
+       (spell +aspell +everywhere)
 
        :tools
-       (eval +overlay)
+       eval
        lookup
        lsp
        magit
@@ -45,15 +47,15 @@
        :lang
        emacs-lisp
        (haskell +lsp)
-       json
-       javascript
-       markdown
+       (json +lsp)
+       (javascript +lsp)
+       (markdown +grip)
        nix
        org
-       rust
-       sh
+       (rust +lsp)
+       (sh +lsp)
        web
-       yaml
+       (yaml +lsp)
 
        :app
        everywhere

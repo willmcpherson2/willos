@@ -64,7 +64,11 @@ in {
       gnomeExtensions.night-theme-switcher
       gnomeExtensions.emoji-selector
       gimp
+
+      # emacs
       emacs-all-the-icons-fonts
+      (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
+      python39Packages.grip
 
       # cli
       git
