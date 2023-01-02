@@ -1,9 +1,5 @@
-(let ((font "JetBrainsMono Nerd Font 16"))
-  (setq doom-font font
-        doom-variable-pitch-font font
-        doom-serif-font font
-        doom-unicode-font font
-        doom-big-font font))
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16.0))
+(setq emojify-display-style 'unicode)
 
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
