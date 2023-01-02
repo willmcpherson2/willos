@@ -4,7 +4,7 @@ let
   home-manager = fetchTarball
     "https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz";
   emacs-overlay = fetchTarball
-    "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
+    "https://github.com/nix-community/emacs-overlay/archive/cd444d8f2d284c90a1e898bd102a40176e6dfcfa.tar.gz";
 in {
   nix = import ./nix.nix;
 
