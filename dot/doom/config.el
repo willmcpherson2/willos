@@ -3,6 +3,8 @@
 
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
+(menu-bar--display-line-numbers-mode-relative)
+
 (use-package! auto-dark
   :init
   (require 'dbus)
