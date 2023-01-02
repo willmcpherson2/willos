@@ -87,8 +87,6 @@ in {
         (builtins.readFile ./bin/audio-to-video.sh))
       (writeShellScriptBin "new-ssh-key"
         (builtins.readFile ./bin/new-ssh-key.sh))
-      (writeShellScriptBin "packer-sync"
-        (builtins.readFile ./bin/packer-sync.sh))
       (writeShellScriptBin "track-willos"
         (builtins.readFile ./bin/track-willos.sh))
       (writeShellScriptBin "ydl" (builtins.readFile ./bin/ydl.sh))
