@@ -200,6 +200,7 @@ in {
       "org/gnome/desktop/interface" = {
         clock-format = "12h";
         enable-animations = false;
+        text-scaling-factor = 1.25;
       };
       "org/gnome/desktop/peripherals/mouse" = {
         natural-scroll = true;
