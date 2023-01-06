@@ -95,7 +95,7 @@ in {
       ffmpeg
       youtube-dl
       unzip
-      appimage-run
+      qmk
       heroku
 
       (writeShellScriptBin "audio-to-video"
@@ -105,6 +105,8 @@ in {
       (writeShellScriptBin "track-willos"
         (builtins.readFile ./bin/track-willos.sh))
       (writeShellScriptBin "ydl" (builtins.readFile ./bin/ydl.sh))
+      (writeShellScriptBin "flash-willkbd"
+        (builtins.readFile ./bin/flash-willkbd.sh))
 
       # nix
       rnix-lsp
@@ -218,10 +220,7 @@ in {
         enable-animations = false;
         text-scaling-factor = 1.25;
       };
-      "org/gnome/desktop/peripherals/mouse" = {
-        natural-scroll = true;
-        speed = -0.8;
-      };
+      "org/gnome/desktop/peripherals/mouse" = { speed = -0.8; };
       "org/gnome/desktop/background" = {
         picture-uri =
           "file:///run/current-system/sw/share/backgrounds/gnome/dune-l.svg";
