@@ -80,6 +80,7 @@ in {
       gnomeExtensions.night-theme-switcher
       gnomeExtensions.emoji-selector
       gimp
+      emacs-all-the-icons-fonts
 
       # cli
       git
@@ -97,6 +98,8 @@ in {
       unzip
       qmk
       heroku
+      (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
+      python310Packages.grip
 
       (writeShellScriptBin "audio-to-video"
         (builtins.readFile ./bin/audio-to-video.sh))
@@ -190,11 +193,6 @@ in {
         }
       ];
       emacsPackage = pkgs.emacsPgtk;
-      extraPackages = with pkgs; [
-        emacs-all-the-icons-fonts
-        (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
-        python39Packages.grip
-      ];
     };
 
     programs.firefox = {
