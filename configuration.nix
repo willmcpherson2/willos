@@ -218,7 +218,10 @@ in {
         enable-animations = false;
         text-scaling-factor = 1.25;
       };
-      "org/gnome/desktop/peripherals/touchpad" = { tap-to-click = true; };
+      "org/gnome/desktop/peripherals/touchpad" = {
+        tap-to-click = true;
+        tap-and-drag = false;
+      };
       "org/gnome/desktop/background" = {
         picture-uri =
           "file:///run/current-system/sw/share/backgrounds/gnome/dune-l.svg";
