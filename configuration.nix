@@ -108,8 +108,6 @@ in {
       (writeShellScriptBin "track-willos"
         (builtins.readFile ./bin/track-willos.sh))
       (writeShellScriptBin "ydl" (builtins.readFile ./bin/ydl.sh))
-      (writeShellScriptBin "flash-willkbd"
-        (builtins.readFile ./bin/flash-willkbd.sh))
 
       # nix
       rnix-lsp
