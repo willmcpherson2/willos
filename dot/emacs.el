@@ -9,9 +9,12 @@
 (setq inhibit-startup-message t
       display-line-numbers-type 'relative
       ring-bell-function 'ignore
-      warning-minimum-level :error)
+      warning-minimum-level :error
+      enable-recursive-minibuffers t)
 
 (setq use-package-always-ensure t)
+
+(use-package no-littering)
 
 (use-package auto-dark
   :init
@@ -51,11 +54,15 @@
   :init
   (marginalia-mode))
 
-(use-package embark)
+(use-package embark
+  :custom
+  embark-prompter 'embark-completing-read-prompter)
 
 (use-package consult)
 
-(use-package embark-consult)
+(use-package embark-consult
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
 
 (use-package company
   :init
