@@ -5,9 +5,6 @@ let
     "https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz";
   emacs-overlay = fetchTarball
     "https://github.com/nix-community/emacs-overlay/archive/cd444d8f2d284c90a1e898bd102a40176e6dfcfa.tar.gz";
-  nix-doom-emacs = fetchTarball
-    "https://github.com/nix-community/nix-doom-emacs/archive/85a48dbec84e9c26785b58fecdefa1cfc580aea7.tar.gz";
-  doom-emacs = import "${nix-doom-emacs}/modules/home-manager.nix";
 in {
   nix = import ./nix.nix;
 
@@ -73,14 +70,19 @@ in {
 
     nixpkgs.overlays = [ (import emacs-overlay) ];
 
-    imports = [ (doom-emacs { self = nix-doom-emacs; }) ];
-
     home.packages = with pkgs; [
       # desktop
       gnomeExtensions.night-theme-switcher
       gnomeExtensions.emoji-selector
       gimp
       emacs-all-the-icons-fonts
+
+      (pkgs.emacsWithPackagesFromUsePackage {
+        config = ./dot/emacs.el;
+	defaultInitFile = true;
+        alwaysEnsure = true;
+        package = pkgs.emacsPgtk;
+      })
 
       # cli
       git
@@ -164,33 +166,10 @@ in {
         grep = "grep --color=auto";
         ncdu = "ncdu --color off";
       };
-      bashrcExtra = ''
-        export PATH="$HOME/.emacs.d/bin:$PATH"
-      '';
       initExtra = ''
         stty -ixon
         set enable-bracketed-paste on
       '';
-    };
-
-    programs.doom-emacs = {
-      enable = true;
-      doomPrivateDir = ./dot/doom;
-      doomPackageDir = pkgs.linkFarm "doom-packages-dir" [
-        {
-          name = "packages.el";
-          path = ./dot/doom/packages.el;
-        }
-        {
-          name = "init.el";
-          path = ./dot/doom/init.el;
-        }
-        {
-          name = "config.el";
-          path = pkgs.emptyFile;
-        }
-      ];
-      emacsPackage = pkgs.emacsPgtk;
     };
 
     programs.firefox = {
