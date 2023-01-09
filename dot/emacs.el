@@ -29,8 +29,8 @@
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
 (use-package evil
-  :init
-  (setq evil-want-C-u-scroll t)  
+  :custom
+  (evil-want-C-u-scroll t)  
   :config
   (evil-set-undo-system 'undo-tree)
   (evil-mode 1))
@@ -38,13 +38,14 @@
 (use-package vertico
   :init
   (vertico-mode)
-  (setq vertico-cycle t)
-  (setq completion-in-region-function 'consult-completion-in-region))
+  :custom
+  (vertico-cycle t)
+  (completion-in-region-function 'consult-completion-in-region))
 
 (use-package orderless
-  :init
-  (setq completion-styles '(orderless basic)
-	completion-category-overrides '((file (styles basic partial-completion)))))
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
 
 (use-package marginalia
   :init
@@ -58,5 +59,6 @@
 
 (use-package company
   :init
-  (setq company-selection-wrap-around t)
-  (global-company-mode))
+  (global-company-mode)
+  :custom
+  (company-selection-wrap-around t))
