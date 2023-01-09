@@ -79,7 +79,7 @@ in {
 
       (pkgs.emacsWithPackagesFromUsePackage {
         config = ./dot/emacs.el;
-	defaultInitFile = true;
+        defaultInitFile = true;
         alwaysEnsure = true;
         package = pkgs.emacsPgtk;
       })
