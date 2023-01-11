@@ -1,8 +1,6 @@
 [user]
 	email = willmcpherson2@gmail.com
 	name = William McPherson
-[core]
-	editor = nvim
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process

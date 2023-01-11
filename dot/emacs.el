@@ -11,21 +11,26 @@
 ;; need good shell/term solution (i want shell to be text buffer)
 ;; treesitter, lsp, language modes (flycheck?)
 
+(setq inhibit-x-resources t)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (tooltip-mode -1)
 (menu-bar-mode -1)
-(set-fringe-mode 4)
 (pixel-scroll-precision-mode 1)
+(set-face-attribute 'default nil :font "JetBrainsMono Nerd Font" :height 140)
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+
+(set-fringe-mode 4)
 (global-display-line-numbers-mode 1)
 (column-number-mode 1)
-(set-face-attribute 'default nil :font "JetBrainsMono Nerd Font" :height 160)
-(add-to-list 'initial-frame-alist '(fullscreen . maximized))
-(setq inhibit-startup-message t
-      display-line-numbers-type 'relative
-      ring-bell-function 'ignore
-      warning-minimum-level :error
-      enable-recursive-minibuffers t)
+(setq
+ display-line-numbers-type 'relative
+ ring-bell-function 'ignore
+ warning-minimum-level :error
+ enable-recursive-minibuffers t
+ pop-up-windows nil
+ display-buffer-base-action '((display-buffer-reuse-window display-buffer-same-window) (reusable-frames . t))
+ even-window-sizes nil)
 
 (setq use-package-always-ensure t)
 
@@ -46,6 +51,10 @@
   :init
   (all-the-icons-completion-mode))
 
+(use-package all-the-icons-ibuffer
+  :hook
+  (ibuffer-mode . all-the-icons-ibuffer-mode))
+
 (use-package doom-themes
   :config
   (load-theme 'doom-one t)
@@ -60,7 +69,6 @@
   (auto-dark-dark-theme 'doom-one)
   (auto-dark-light-theme 'doom-one-light)
   :init
-  (require 'dbus)
   (auto-dark-mode t))
 
 (use-package which-key
@@ -112,8 +120,24 @@
   :config
   (global-company-mode t))
 
+(use-package ibuf-ext)
+
+(use-package perspective
+  :custom
+  (persp-mode-prefix-key (kbd "C-x x"))
+  :init
+  (add-hook 'ibuffer-hook
+	    (lambda ()
+	      (persp-ibuffer-set-filter-groups)
+	      (unless (eq ibuffer-sorting-mode 'alphabetic)
+		(ibuffer-do-sort-by-alphabetic))))
+  (persp-mode))
+
 (use-package magit)
 
 (use-package diff-hl
   :init
-  (global-diff-hl-mode))
+  (global-diff-hl-mode)
+  (global-diff-hl-show-hunk-mouse-mode)
+  (diff-hl-dired-mode)
+  (diff-hl-flydiff-mode))
