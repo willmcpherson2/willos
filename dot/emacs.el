@@ -141,3 +141,14 @@
   (global-diff-hl-show-hunk-mouse-mode)
   (diff-hl-dired-mode)
   (diff-hl-flydiff-mode))
+
+(use-package lsp-mode
+  :custom
+  (lsp-keymap-prefix "C-c l")
+  :hook
+  ((nix-mode . lsp-deferred)
+   (lsp-mode . lsp-enable-which-key-integration))
+  :commands
+  (lsp lsp-deferred))
+
+(use-package nix-mode)
