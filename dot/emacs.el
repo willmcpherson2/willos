@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 ;; TODO
 ;; fix window placement and temporary buffer stuff
 ;; too many buffers on startup
