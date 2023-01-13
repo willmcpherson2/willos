@@ -154,6 +154,9 @@ in {
 
       # yaml
       nodePackages.yaml-language-server
+
+      # toml
+      taplo
     ];
 
     programs.bash = {
