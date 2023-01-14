@@ -1,17 +1,10 @@
 ;;; -*- lexical-binding: t -*-
 
 ;; TODO
-;; fix window placement and temporary buffer stuff
-;; too many buffers on startup
-;; projects
 ;; company not showing icons
 ;; add company backends
-;; evil mode feels anti-emacs -- try god mode, meow, etc.
-;; editing & pasting in any input (command input)
 ;; copying any text
-;; eventually start mapping keys
 ;; need good shell/term solution (i want shell to be text buffer)
-;; treesitter, lsp, language modes (flycheck?)
 
 (setq inhibit-x-resources t)
 (scroll-bar-mode -1)
