@@ -29,10 +29,7 @@
  display-line-numbers-type 'relative
  ring-bell-function 'ignore
  warning-minimum-level :error
- enable-recursive-minibuffers t
- pop-up-windows nil
- display-buffer-base-action '((display-buffer-reuse-window display-buffer-same-window) (reusable-frames . t))
- even-window-sizes nil)
+ enable-recursive-minibuffers t)
 
 (setq use-package-always-ensure t)
 
@@ -81,15 +78,6 @@
   :init
   (global-undo-tree-mode))
 
-(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
-
-(use-package evil
-  :custom
-  (evil-want-C-u-scroll t)  
-  :config
-  (evil-set-undo-system 'undo-tree)
-  (evil-mode 1))
-
 (use-package vertico
   :init
   (vertico-mode)
@@ -106,9 +94,7 @@
   :init
   (marginalia-mode))
 
-(use-package embark
-  :custom
-  embark-prompter 'embark-completing-read-prompter)
+(use-package embark)
 
 (use-package consult)
 
@@ -168,3 +154,36 @@
    (lsp-mode . lsp-enable-which-key-integration))
   :commands
   (lsp lsp-deferred))
+
+(use-package evil
+  :custom
+  (evil-want-minibuffer t)
+  (evil-want-C-u-scroll t)
+  (evil-search-module 'evil-search)
+  (evil-emacs-state-modes nil)
+  (evil-insert-state-modes nil)
+  (evil-motion-state-modes nil)
+  :config
+  (evil-set-undo-system 'undo-tree)
+  (evil-mode 1))
+
+(use-package general)
+
+(general-create-definer my-leader-def
+  :prefix "SPC")
+
+(my-leader-def 'normal 'override
+  "a" 'embark-act
+  "b" 'consult-buffer
+  "i" 'ibuffer
+  "k" 'kill-buffer-and-window
+  "w" 'save-buffer
+  "f" 'find-file
+  "d" 'dired
+  "/" 'consult-ripgrep
+  "s" 'shell
+  "pp" 'project-switch-project
+  "pb" 'consult-project-buffer
+  "pf" 'project-find-file
+  "pd" 'project-dired
+  "ps" 'project-shell)
