@@ -1,9 +1,6 @@
 ;;; -*- lexical-binding: t -*-
 
 ;; TODO
-;; company not showing icons
-;; add company backends
-;; copying any text
 ;; need good shell/term solution (i want shell to be text buffer)
 
 (setq inhibit-x-resources t)
@@ -49,7 +46,6 @@
 
 (use-package doom-themes
   :config
-  (load-theme 'doom-one t)
   (doom-themes-org-config))
 
 (use-package doom-modeline
@@ -152,13 +148,16 @@
   :custom
   (evil-want-minibuffer t)
   (evil-want-C-u-scroll t)
-  (evil-search-module 'evil-search)
   (evil-emacs-state-modes nil)
   (evil-insert-state-modes nil)
   (evil-motion-state-modes nil)
   :config
   (evil-set-undo-system 'undo-tree)
   (evil-mode 1))
+
+(use-package evil-mc
+  :init
+  (global-evil-mc-mode 1))
 
 (use-package general)
 
