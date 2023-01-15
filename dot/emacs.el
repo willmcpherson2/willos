@@ -99,17 +99,6 @@
 
 (use-package ibuf-ext)
 
-(use-package perspective
-  :custom
-  (persp-mode-prefix-key (kbd "C-x x"))
-  :init
-  (add-hook 'ibuffer-hook
-	    (lambda ()
-	      (persp-ibuffer-set-filter-groups)
-	      (unless (eq ibuffer-sorting-mode 'alphabetic)
-		(ibuffer-do-sort-by-alphabetic))))
-  (persp-mode))
-
 (use-package magit)
 
 (use-package diff-hl
@@ -166,16 +155,13 @@
 
 (my-leader-def 'normal 'override
   "a" 'embark-act
-  "b" 'consult-buffer
   "i" 'ibuffer
-  "k" 'kill-buffer-and-window
+  "k" 'kill-this-buffer
+  "q" 'evil-quit
   "w" 'save-buffer
-  "f" 'find-file
-  "d" 'dired
+  "b" 'consult-project-buffer
+  "f" 'project-find-file
+  "d" 'project-dired
   "/" 'consult-ripgrep
-  "s" 'shell
-  "pp" 'project-switch-project
-  "pb" 'consult-project-buffer
-  "pf" 'project-find-file
-  "pd" 'project-dired
-  "ps" 'project-shell)
+  "s" 'project-shell
+  "p" 'project-switch-project)
