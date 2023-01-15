@@ -1,8 +1,5 @@
 ;;; -*- lexical-binding: t -*-
 
-;; TODO
-;; need good shell/term solution (i want shell to be text buffer)
-
 (setq inhibit-x-resources t)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
@@ -105,6 +102,8 @@
   (global-diff-hl-show-hunk-mouse-mode)
   (diff-hl-dired-mode)
   (diff-hl-flydiff-mode))
+
+(use-package vterm)
 
 (use-package nix-mode)
 
