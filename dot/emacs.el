@@ -97,8 +97,6 @@
   :config
   (global-company-mode t))
 
-(use-package ibuf-ext)
-
 (use-package magit)
 
 (use-package diff-hl
