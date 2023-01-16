@@ -12,6 +12,7 @@
 (set-fringe-mode 4)
 (global-display-line-numbers-mode 1)
 (column-number-mode 1)
+(fset 'yes-or-no-p 'y-or-n-p)
 (setq
  display-line-numbers-type 'relative
  ring-bell-function 'ignore
