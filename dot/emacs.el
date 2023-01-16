@@ -16,7 +16,8 @@
  display-line-numbers-type 'relative
  ring-bell-function 'ignore
  warning-minimum-level :error
- enable-recursive-minibuffers t)
+ enable-recursive-minibuffers t
+ eldoc-echo-area-prefer-doc-buffer t)
 
 (setq use-package-always-ensure t)
 
