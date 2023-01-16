@@ -109,27 +109,6 @@
 
 (use-package haskell-mode)
 
-(use-package lsp-haskell)
-
-(use-package lsp-mode
-  :custom
-  (lsp-keymap-prefix "C-c l")
-  :hook
-  ((sh-mode . lsp-deferred)
-   (c-mode . lsp-deferred)
-   (yaml-ts-mode . lsp-deferred)
-   (conf-toml-mode . lsp-deferred)
-   (js-json-mode . lsp-deferred)
-   (js-mode . lsp-deferred)
-   (typescript-ts-mode . lsp-deferred)
-   (mhtml-mode . lsp-deferred)
-   (css-mode . lsp-deferred)
-   (nix-mode . lsp-deferred)
-   (haskell-mode . lsp-deferred)
-   (lsp-mode . lsp-enable-which-key-integration))
-  :commands
-  (lsp lsp-deferred))
-
 (use-package evil
   :custom
   (evil-want-keybinding nil)
