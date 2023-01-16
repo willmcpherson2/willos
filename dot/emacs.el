@@ -132,18 +132,24 @@
 
 (use-package evil
   :custom
+  (evil-want-keybinding nil)
   (evil-want-minibuffer t)
   (evil-want-C-u-scroll t)
-  (evil-emacs-state-modes nil)
-  (evil-insert-state-modes nil)
-  (evil-motion-state-modes nil)
   :config
   (evil-set-undo-system 'undo-tree)
   (evil-mode 1))
 
+(use-package evil-collection
+  :init
+  (evil-collection-init))
+
 (use-package evil-mc
   :init
   (global-evil-mc-mode 1))
+
+(use-package evil-surround
+  :config
+  (global-evil-surround-mode 1))
 
 (use-package general)
 
