@@ -46,7 +46,7 @@
   (marginalia all-the-icons)
   :hook
   (marginalia-mode . all-the-icons-completion-marginalia-setup)
-  :init
+  :config
   (all-the-icons-completion-mode))
 
 (use-package all-the-icons-ibuffer
@@ -60,26 +60,26 @@
 (use-package doom-modeline
   :custom
   (doom-modeline-buffer-file-name-style 'relative-from-project)
-  :init
+  :config
   (doom-modeline-mode 1))
 
 (use-package auto-dark
   :custom
   (auto-dark-dark-theme 'doom-one)
   (auto-dark-light-theme 'doom-one-light)
-  :init
+  :config
   (auto-dark-mode t))
 
 (use-package which-key
-  :init
+  :config
   (which-key-mode))
 
 (use-package undo-tree
-  :init
+  :config
   (global-undo-tree-mode))
 
 (use-package vertico
-  :init
+  :config
   (vertico-mode)
   :custom
   (vertico-cycle t)
@@ -91,7 +91,7 @@
   (completion-category-overrides '((file (styles basic partial-completion)))))
 
 (use-package marginalia
-  :init
+  :config
   (marginalia-mode))
 
 (use-package embark)
@@ -111,7 +111,7 @@
 (use-package magit)
 
 (use-package diff-hl
-  :init
+  :config
   (global-diff-hl-mode)
   (global-diff-hl-show-hunk-mouse-mode)
   (diff-hl-dired-mode)
@@ -133,11 +133,11 @@
   (evil-mode 1))
 
 (use-package evil-collection
-  :init
+  :config
   (evil-collection-init))
 
 (use-package evil-mc
-  :init
+  :config
   (global-evil-mc-mode 1))
 
 (use-package evil-surround
