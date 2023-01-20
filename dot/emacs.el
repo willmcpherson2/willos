@@ -10,11 +10,9 @@
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
 (set-fringe-mode 4)
-(global-display-line-numbers-mode 1)
 (column-number-mode 1)
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq
- display-line-numbers-type 'relative
  ring-bell-function 'ignore
  warning-minimum-level :error
  enable-recursive-minibuffers t
@@ -30,6 +28,9 @@
 		  (cons #'flymake-eldoc-function
 			(remove #'flymake-eldoc-function eldoc-documentation-functions)))
 	    (setq eldoc-documentation-strategy #'eldoc-documentation-compose)))
+(add-hook 'prog-mode-hook
+	  (lambda ()
+	    (setq display-line-numbers 'relative)))
 
 (setq use-package-always-ensure t)
 
@@ -38,9 +39,7 @@
   (auto-save-file-name-transforms
    `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 
-(use-package all-the-icons
-  :if
-  (display-graphic-p))
+(use-package all-the-icons)
 
 (use-package all-the-icons-completion
   :after
@@ -59,6 +58,8 @@
   (doom-themes-org-config))
 
 (use-package doom-modeline
+  :custom
+  (doom-modeline-buffer-file-name-style 'relative-from-project)
   :init
   (doom-modeline-mode 1))
 
@@ -159,4 +160,10 @@
   "d" 'project-dired
   "/" 'consult-ripgrep
   "s" 'project-shell
-  "p" 'project-switch-project)
+  "p" 'project-switch-project
+
+  "cs" 'eglot
+  "ca" 'eglot-code-actions
+  "cr" 'eglot-rename
+  "cf" 'eglot-format
+  "cd" 'flymake-show-buffer-diagnostics)
