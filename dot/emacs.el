@@ -1,6 +1,15 @@
 ;;; -*- lexical-binding: t -*-
 
-(setq inhibit-x-resources t)
+;; builtin settings
+
+(setq inhibit-x-resources t
+      ring-bell-function 'ignore
+      warning-minimum-level :error
+      enable-recursive-minibuffers t
+      eldoc-echo-area-prefer-doc-buffer t
+      project-switch-commands '((consult-project-buffer "buffer" "b")
+                                (project-find-file "file" "f")
+                                (project-shell "shell" "s")))
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (tooltip-mode -1)
@@ -8,23 +17,16 @@
 (pixel-scroll-precision-mode 1)
 (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font" :height 140)
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
-
 (set-fringe-mode 4)
 (column-number-mode 1)
 (fset 'yes-or-no-p 'y-or-n-p)
-(setq
- ring-bell-function 'ignore
- warning-minimum-level :error
- enable-recursive-minibuffers t
- eldoc-echo-area-prefer-doc-buffer t
- project-switch-commands '((consult-project-buffer "buffer" "b")
-			   (project-find-file "file" "f")
-			   (project-shell "shell" "s")))
+
+;; builtin hooks
 
 (defun errors-then-docs ()
   (setq eldoc-documentation-functions
-	(cons #'flymake-eldoc-function
-	      (remove #'flymake-eldoc-function eldoc-documentation-functions)))
+        (cons #'flymake-eldoc-function
+              (remove #'flymake-eldoc-function eldoc-documentation-functions)))
   (setq eldoc-documentation-strategy #'eldoc-documentation-compose))
 
 (defun relative-line-numbers ()
@@ -35,12 +37,18 @@
 (add-hook 'text-mode-hook 'relative-line-numbers)
 (add-hook 'prog-mode-hook 'relative-line-numbers)
 
+;; packages
+
 (setq use-package-always-ensure t)
+
+;; load first
 
 (use-package no-littering
   :custom
   (auto-save-file-name-transforms
    `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
+
+;; icons
 
 (use-package all-the-icons)
 
@@ -55,6 +63,8 @@
 (use-package all-the-icons-ibuffer
   :hook
   (ibuffer-mode . all-the-icons-ibuffer-mode))
+
+;; theme
 
 (use-package doom-themes
   :config
@@ -72,6 +82,8 @@
   (auto-dark-light-theme 'doom-one-light)
   :config
   (auto-dark-mode t))
+
+;; core
 
 (use-package which-key
   :config
@@ -111,6 +123,8 @@
   :config
   (global-company-mode t))
 
+;; applications
+
 (use-package magit)
 
 (use-package diff-hl
@@ -122,11 +136,15 @@
 
 (use-package vterm)
 
+;; languages
+
 (use-package markdown-mode)
 
 (use-package nix-mode)
 
 (use-package haskell-mode)
+
+;; editing
 
 (use-package evil
   :custom
@@ -148,6 +166,8 @@
 (use-package evil-surround
   :config
   (global-evil-surround-mode 1))
+
+;; keybindings
 
 (use-package general)
 
