@@ -79,11 +79,11 @@
   (global-undo-tree-mode))
 
 (use-package vertico
-  :config
-  (vertico-mode)
   :custom
   (vertico-cycle t)
-  (completion-in-region-function 'consult-completion-in-region))
+  (completion-in-region-function 'consult-completion-in-region)
+  :config
+  (vertico-mode))
 
 (use-package orderless
   :custom
