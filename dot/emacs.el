@@ -21,16 +21,19 @@
 			   (project-find-file "file" "f")
 			   (project-shell "shell" "s")))
 
+(defun errors-then-docs ()
+  (setq eldoc-documentation-functions
+	(cons #'flymake-eldoc-function
+	      (remove #'flymake-eldoc-function eldoc-documentation-functions)))
+  (setq eldoc-documentation-strategy #'eldoc-documentation-compose))
+
+(defun relative-line-numbers ()
+  (setq display-line-numbers 'relative))
+
 (add-hook 'emacs-lisp-mode-hook 'flymake-mode)
-(add-hook 'eglot-managed-mode-hook
-	  (lambda ()
-	    (setq eldoc-documentation-functions
-		  (cons #'flymake-eldoc-function
-			(remove #'flymake-eldoc-function eldoc-documentation-functions)))
-	    (setq eldoc-documentation-strategy #'eldoc-documentation-compose)))
-(add-hook 'prog-mode-hook
-	  (lambda ()
-	    (setq display-line-numbers 'relative)))
+(add-hook 'eglot-managed-mode-hook 'errors-then-docs)
+(add-hook 'text-mode-hook 'relative-line-numbers)
+(add-hook 'prog-mode-hook 'relative-line-numbers)
 
 (setq use-package-always-ensure t)
 
