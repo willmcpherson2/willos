@@ -18,7 +18,18 @@
  ring-bell-function 'ignore
  warning-minimum-level :error
  enable-recursive-minibuffers t
- eldoc-echo-area-prefer-doc-buffer t)
+ eldoc-echo-area-prefer-doc-buffer t
+ project-switch-commands '((consult-project-buffer "buffer" "b")
+			   (project-find-file "file" "f")
+			   (project-shell "shell" "s")))
+
+(add-hook 'emacs-lisp-mode-hook 'flymake-mode)
+(add-hook 'eglot-managed-mode-hook
+	  (lambda ()
+	    (setq eldoc-documentation-functions
+		  (cons #'flymake-eldoc-function
+			(remove #'flymake-eldoc-function eldoc-documentation-functions)))
+	    (setq eldoc-documentation-strategy #'eldoc-documentation-compose)))
 
 (setq use-package-always-ensure t)
 
