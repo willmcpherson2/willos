@@ -119,6 +119,8 @@
 
 (use-package vterm)
 
+(use-package markdown-mode)
+
 (use-package nix-mode)
 
 (use-package haskell-mode)
