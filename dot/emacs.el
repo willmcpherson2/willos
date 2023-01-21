@@ -37,6 +37,13 @@
 (add-hook 'text-mode-hook 'relative-line-numbers)
 (add-hook 'prog-mode-hook 'relative-line-numbers)
 
+;; eshell
+
+(defalias 'eshell/v 'eshell-exec-visual)
+
+(defun eshell/l (&rest args)
+  (apply #'eshell/ls (cons "-al" args)))
+
 ;; packages
 
 (setq use-package-always-ensure t)
@@ -136,6 +143,14 @@
 
 (use-package vterm)
 
+(use-package eshell-vterm
+  :config
+  (eshell-vterm-mode))
+
+(use-package eshell-syntax-highlighting
+  :config
+  (eshell-syntax-highlighting-global-mode +1))
+
 ;; languages
 
 (use-package markdown-mode)
@@ -174,6 +189,11 @@
 (general-create-definer my-leader-def
   :prefix "SPC")
 
+(defun insert-history ()
+  (interactive)
+  (evil-insert 0)
+  (consult-history))
+
 (my-leader-def 'normal 'override
   "a" 'embark-act
   "i" 'ibuffer
@@ -184,8 +204,10 @@
   "f" 'project-find-file
   "d" 'project-dired
   "/" 'consult-ripgrep
-  "s" 'project-eshell
   "p" 'project-switch-project
+
+  "ss" 'project-eshell
+  "sh" 'insert-history
 
   "cs" 'eglot
   "ca" 'eglot-code-actions
