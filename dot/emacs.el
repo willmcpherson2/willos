@@ -9,7 +9,7 @@
       eldoc-echo-area-prefer-doc-buffer t
       project-switch-commands '((consult-project-buffer "buffer" "b")
                                 (project-find-file "file" "f")
-                                (project-shell "shell" "s")))
+                                (project-eshell "shell" "s")))
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (tooltip-mode -1)
@@ -184,7 +184,7 @@
   "f" 'project-find-file
   "d" 'project-dired
   "/" 'consult-ripgrep
-  "s" 'project-shell
+  "s" 'project-eshell
   "p" 'project-switch-project
 
   "cs" 'eglot
