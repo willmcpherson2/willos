@@ -194,8 +194,10 @@ in {
     dconf.settings = {
       "org/gnome/desktop/interface" = {
         clock-format = "12h";
+        clock-show-weekday = true;
         enable-animations = false;
         text-scaling-factor = 1.25;
+        enable-hot-corners = false;
       };
       "org/gnome/desktop/peripherals/touchpad" = {
         tap-to-click = true;
