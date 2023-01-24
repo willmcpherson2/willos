@@ -130,11 +130,16 @@
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 
-(use-package company
+(use-package corfu
   :custom
-  (company-selection-wrap-around t)
-  :config
-  (global-company-mode t))
+  (corfu-auto t)
+  (corfu-cycle t)
+  (corfu-preselect-first nil)
+  (corfu-auto-delay 0)
+  (corfu-popupinfo-delay t)
+  :init
+  (global-corfu-mode)
+  (corfu-popupinfo-mode))
 
 ;; applications
 
