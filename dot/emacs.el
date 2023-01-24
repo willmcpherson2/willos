@@ -7,6 +7,7 @@
       warning-minimum-level :error
       enable-recursive-minibuffers t
       eldoc-echo-area-prefer-doc-buffer t
+      dired-listing-switches "-DAhl"
       project-switch-commands '((consult-project-buffer "buffer" "b")
                                 (project-find-file "file" "f")
                                 (project-eshell "shell" "s")))
@@ -47,7 +48,7 @@
 (defalias 'eshell/v 'eshell-exec-visual)
 
 (defun eshell/l (&rest args)
-  (apply #'eshell/ls (cons "-al" args)))
+  (apply #'eshell/ls (cons "-Ahl" args)))
 
 ;; packages
 
