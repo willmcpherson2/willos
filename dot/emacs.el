@@ -10,6 +10,9 @@
       project-switch-commands '((consult-project-buffer "buffer" "b")
                                 (project-find-file "file" "f")
                                 (project-eshell "shell" "s")))
+
+(setq-default indent-tabs-mode nil)
+
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (tooltip-mode -1)
@@ -32,12 +35,14 @@
 (defun relative-line-numbers ()
   (setq display-line-numbers 'relative))
 
-(add-hook 'emacs-lisp-mode-hook 'flymake-mode)
-(add-hook 'eglot-managed-mode-hook 'errors-then-docs)
+(add-hook 'prog-mode-hook 'flymake-mode)
+(add-hook 'eldoc-mode-hook 'errors-then-docs)
 (add-hook 'text-mode-hook 'relative-line-numbers)
 (add-hook 'prog-mode-hook 'relative-line-numbers)
 
 ;; eshell
+
+(defalias 'eshell/h 'consult-history)
 
 (defalias 'eshell/v 'eshell-exec-visual)
 
