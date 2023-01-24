@@ -95,12 +95,12 @@ in {
       htop
       ncdu
       ffmpeg
+      mpv
       youtube-dl
       unzip
       qmk
       heroku
       (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
-      python310Packages.grip
 
       (writeShellScriptBin "audio-to-video"
         (builtins.readFile ./bin/audio-to-video.sh))
@@ -188,6 +188,14 @@ in {
       ghci = {
         source = ./dot/ghci;
         target = ".ghci";
+      };
+    };
+
+    xdg.mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "image/png" = [ "firefox.desktop" ];
+        "application/pdf" = [ "firefox.desktop" ];
       };
     };
 
