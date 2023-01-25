@@ -43,8 +43,6 @@
 
 ;; eshell
 
-(defalias 'eshell/h 'consult-history)
-
 (defalias 'eshell/v 'eshell-exec-visual)
 
 (defun eshell/l (&rest args)
@@ -141,6 +139,8 @@
   (global-corfu-mode)
   (corfu-popupinfo-mode))
 
+(use-package cape)
+
 ;; applications
 
 (use-package magit)
@@ -195,33 +195,29 @@
 
 ;; keybindings
 
-(use-package general)
+(use-package general
+  :config
+  (general-define-key
+   :keymaps 'override
+   :states '(normal visual insert)
+   :prefix "SPC"
+   :non-normal-prefix "C-SPC"
 
-(general-create-definer my-leader-def
-  :prefix "SPC")
+   "a" 'embark-act
+   "i" 'ibuffer
+   "k" 'kill-this-buffer
+   "q" 'evil-quit
+   "w" 'save-buffer
+   "b" 'consult-project-buffer
+   "f" 'project-find-file
+   "d" 'project-dired
+   "/" 'consult-ripgrep
+   "p" 'project-switch-project
+   "s" 'project-eshell
+   "r" 'cape-history
 
-(defun insert-history ()
-  (interactive)
-  (evil-insert 0)
-  (consult-history))
-
-(my-leader-def 'normal 'override
-  "a" 'embark-act
-  "i" 'ibuffer
-  "k" 'kill-this-buffer
-  "q" 'evil-quit
-  "w" 'save-buffer
-  "b" 'consult-project-buffer
-  "f" 'project-find-file
-  "d" 'project-dired
-  "/" 'consult-ripgrep
-  "p" 'project-switch-project
-
-  "ss" 'project-eshell
-  "sh" 'insert-history
-
-  "cs" 'eglot
-  "ca" 'eglot-code-actions
-  "cr" 'eglot-rename
-  "cf" 'eglot-format
-  "cd" 'flymake-show-buffer-diagnostics)
+   "cs" 'eglot
+   "ca" 'eglot-code-actions
+   "cr" 'eglot-rename
+   "cf" 'eglot-format
+   "cd" 'flymake-show-buffer-diagnostics))
