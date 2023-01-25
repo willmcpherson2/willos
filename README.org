@@ -1,0 +1,25 @@
+* Will's OS
+
+This is my personal Nix config. You are encouraged to copy from it, but it's not intended for wholesale use (unless you also want to be ~will@will-lap~)
+
+From the NixOS live CD:
+
+#+BEGIN_SRC shell
+  sudo nix-shell https://github.com/willmcpherson2/willos/archive/main.tar.gz
+#+END_SRC
+
+Rebuild:
+
+#+BEGIN_SRC shell
+  sudo nixos-rebuild switch
+#+END_SRC
+
+** Emacs
+
+I'm using Emacs 30.0.50 with pgtk (for Wayland), via [[https://github.com/nix-community/emacs-overlay][emacs-overlay]].
+
+The overlay provides ~emacsWithPackagesFromUsePackage~, which reads my [[./dot/emacs.el][emacs.el]]. Because I've enabled ~alwaysEnsure~ in Nix and ~use-package-always-ensure~ in Emacs, my config is declarative but will auto-install on other systems![fn:untested] If you add packages you must ~nixos-rebuild~, but otherwise, you can just ~M-x eval-buffer~.
+
+Read more about it [[https://github.com/nix-community/emacs-overlay#extra-library-functionality][here]]
+
+[fn:untested] I haven't tested this yet...
