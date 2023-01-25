@@ -135,7 +135,7 @@
   (corfu-preselect-first nil)
   (corfu-auto-delay 0)
   (corfu-popupinfo-delay t)
-  :init
+  :config
   (global-corfu-mode)
   (corfu-popupinfo-mode))
 
