@@ -207,6 +207,9 @@ in {
         text-scaling-factor = 1.25;
         enable-hot-corners = false;
       };
+      "org/gnome/desktop/input-sources" = {
+        xkb-options = [ "compose:rwin" ];
+      };
       "org/gnome/desktop/peripherals/touchpad" = {
         tap-to-click = true;
         tap-and-drag = false;
