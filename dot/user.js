@@ -13,3 +13,4 @@ user_pref("browser.aboutConfig.showWarning", false);
 user_pref("browser.zoom.full", false);
 user_pref("reader.content_width", 8);
 user_pref("extensions.pocket.enabled", false);
+user_pref("browser.tabs.closeWindowWithLastTab", false);
