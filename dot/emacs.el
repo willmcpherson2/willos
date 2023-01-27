@@ -193,6 +193,10 @@
   :config
   (global-evil-surround-mode 1))
 
+(use-package evil-org
+  :hook
+  (org-mode . evil-org-mode))
+
 ;; keybindings
 
 (use-package general
