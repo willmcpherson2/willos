@@ -207,6 +207,9 @@ in {
         text-scaling-factor = 1.25;
         enable-hot-corners = false;
       };
+      "org/gnome/system/location" = {
+        enabled = true;
+      };
       "org/gnome/desktop/input-sources" = {
         xkb-options = [ "compose:rwin" ];
       };
@@ -243,6 +246,7 @@ in {
       "org/gnome/shell/extensions/nightthemeswitcher/time" = {
         always-enable-ondemand = true;
         nightlight-follow-disable = true;
+        manual-schedule = false;
       };
     };
   };
