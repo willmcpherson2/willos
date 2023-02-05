@@ -8,6 +8,9 @@
       enable-recursive-minibuffers t
       eldoc-echo-area-prefer-doc-buffer t
       dired-listing-switches "-DAhl"
+      project-find-functions '(project-try-vc
+                               (lambda (dir)
+                                 (cons 'transient (expand-file-name dir))))
       project-switch-commands '((consult-project-buffer "buffer" "b")
                                 (project-find-file "file" "f")
                                 (project-eshell "shell" "s")))
