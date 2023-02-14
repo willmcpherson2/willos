@@ -8,6 +8,8 @@
       enable-recursive-minibuffers t
       eldoc-echo-area-prefer-doc-buffer t
       dired-listing-switches "-DAhl"
+      global-auto-revert-non-file-buffers t
+      flymake-fringe-indicator-position nil
       project-find-functions '(project-try-vc
                                (lambda (dir)
                                  (cons 'transient (expand-file-name dir))))
@@ -27,6 +29,7 @@
 (set-fringe-mode 4)
 (column-number-mode 1)
 (fset 'yes-or-no-p 'y-or-n-p)
+(global-auto-revert-mode 1)
 
 ;; builtin hooks
 
@@ -181,10 +184,13 @@
 
 (use-package evil
   :custom
+  (evil-search-module 'evil-search)
   (evil-want-keybinding nil)
   (evil-want-minibuffer t)
   (evil-want-C-u-scroll t)
+  (evil-want-Y-yank-to-eol t)
   :config
+  (evil-select-search-module 'evil-search-module 'evil-search)
   (evil-set-undo-system 'undo-tree)
   (evil-mode 1))
 
@@ -215,6 +221,7 @@
    :non-normal-prefix "C-SPC"
 
    "a" 'embark-act
+   "e" 'embark-export
    "i" 'ibuffer
    "k" 'kill-this-buffer
    "q" 'evil-quit
