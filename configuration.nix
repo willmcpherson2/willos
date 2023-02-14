@@ -145,6 +145,7 @@ in {
       cabal-install
       haskell-language-server
       haskellPackages.hoogle
+      ormolu
 
       # rust
       rustc
