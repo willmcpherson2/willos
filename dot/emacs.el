@@ -78,6 +78,10 @@
   :hook
   (ibuffer-mode . all-the-icons-ibuffer-mode))
 
+(use-package all-the-icons-dired
+  :hook
+  (dired-mode . all-the-icons-dired-mode))
+
 ;; theme
 
 (use-package doom-themes
