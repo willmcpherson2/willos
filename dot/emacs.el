@@ -10,6 +10,7 @@
       dired-listing-switches "-DAhl"
       global-auto-revert-non-file-buffers t
       flymake-fringe-indicator-position nil
+      initial-scratch-message ""
       project-find-functions '(project-try-vc
                                (lambda (dir)
                                  (cons 'transient (expand-file-name dir))))
