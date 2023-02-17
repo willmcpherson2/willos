@@ -47,6 +47,7 @@
 (add-hook 'eldoc-mode-hook 'errors-then-docs)
 (add-hook 'text-mode-hook 'relative-line-numbers)
 (add-hook 'prog-mode-hook 'relative-line-numbers)
+(add-hook 'org-mode-hook 'org-indent-mode)
 
 ;; eshell
 
