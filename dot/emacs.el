@@ -16,7 +16,8 @@
                                  (cons 'transient (expand-file-name dir))))
       project-switch-commands '((consult-project-buffer "buffer" "b")
                                 (project-find-file "file" "f")
-                                (project-eshell "shell" "s")))
+                                (project-eshell "shell" "s")
+                                (project-dired "dired" "d")))
 
 (setq-default indent-tabs-mode nil)
 
