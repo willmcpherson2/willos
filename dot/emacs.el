@@ -238,6 +238,7 @@
    "p" 'project-switch-project
    "s" 'project-eshell
    "r" 'cape-history
+   "n" 'evil-ex-nohighlight
 
    "cs" 'eglot
    "ca" 'eglot-code-actions
