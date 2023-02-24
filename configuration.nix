@@ -147,6 +147,11 @@ in {
       haskellPackages.hoogle
       ormolu
 
+      # clojure
+      clojure
+      leiningen
+      clojure-lsp
+
       # rust
       rustc
       cargo

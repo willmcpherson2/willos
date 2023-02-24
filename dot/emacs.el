@@ -182,6 +182,8 @@
 
 (use-package haskell-mode)
 
+(use-package cider)
+
 ;; editing
 
 (use-package evil
