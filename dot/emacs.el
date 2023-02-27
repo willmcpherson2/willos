@@ -11,6 +11,8 @@
       global-auto-revert-non-file-buffers t
       flymake-fringe-indicator-position nil
       initial-scratch-message ""
+      org-latex-compiler "lualatex"
+      org-preview-latex-default-process 'dvisvgm
       project-find-functions '(project-try-vc
                                (lambda (dir)
                                  (cons 'transient (expand-file-name dir))))

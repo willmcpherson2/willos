@@ -102,6 +102,10 @@ in {
       heroku
       rclone
       (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
+      (texlive.combine {
+        inherit (texlive) scheme-basic
+          wrapfig amsmath ulem hyperref capt-of;
+      })
 
       (writeShellScriptBin "audio-to-video"
         (builtins.readFile ./bin/audio-to-video.sh))
