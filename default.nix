@@ -1,7 +1,8 @@
 { pkgs ? import <nixpkgs> { } }:
 
 let willos = ./.;
-in pkgs.mkShell {
+in
+pkgs.mkShell {
   shellHook = ''
     set -euxo pipefail
 

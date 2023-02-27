@@ -5,7 +5,8 @@ let
     "https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz";
   emacs-overlay = fetchTarball
     "https://github.com/nix-community/emacs-overlay/archive/4a14e8f79e91636cdfc4cecc3f12cdc4cfe57a60.tar.gz";
-in {
+in
+{
   nix = import ./nix.nix;
 
   system.stateVersion = "22.11";
