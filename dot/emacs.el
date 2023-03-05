@@ -183,7 +183,9 @@
 
 (use-package nix-mode)
 
-(use-package haskell-mode)
+(use-package haskell-mode
+  :custom
+  (haskell-hoogle-command "hoogle -l"))
 
 (use-package cider)
 
