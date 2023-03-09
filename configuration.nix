@@ -66,6 +66,9 @@ in
     };
   };
 
+  nixpkgs.config.allowUnfree = true;
+  programs.steam.enable = true;
+
   home-manager.users.will = { pkgs, lib, ... }: {
     home.stateVersion = "22.11";
 
@@ -76,13 +79,19 @@ in
       gnomeExtensions.night-theme-switcher
       gnomeExtensions.emoji-selector
       gimp
-      emacs-all-the-icons-fonts
 
+      # emacs
       (pkgs.emacsWithPackagesFromUsePackage {
         config = ./dot/emacs.el;
         defaultInitFile = true;
         alwaysEnsure = true;
         package = pkgs.emacsPgtk;
+      })
+      emacs-all-the-icons-fonts
+      (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
+      (texlive.combine {
+        inherit (texlive) scheme-basic
+          wrapfig amsmath ulem hyperref capt-of;
       })
 
       # cli
@@ -102,11 +111,6 @@ in
       qmk
       heroku
       rclone
-      (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
-      (texlive.combine {
-        inherit (texlive) scheme-basic
-          wrapfig amsmath ulem hyperref capt-of;
-      })
 
       (writeShellScriptBin "audio-to-video"
         (builtins.readFile ./bin/audio-to-video.sh))
