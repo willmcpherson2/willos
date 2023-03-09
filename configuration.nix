@@ -161,6 +161,10 @@ in
       leiningen
       clojure-lsp
 
+      # scala
+      sbt
+      metals
+
       # rust
       rustc
       cargo

@@ -189,6 +189,8 @@
 
 (use-package cider)
 
+(use-package scala-mode)
+
 ;; editing
 
 (use-package evil
