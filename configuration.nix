@@ -5,6 +5,10 @@ let
     "https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz";
   emacs-overlay = fetchTarball
     "https://github.com/nix-community/emacs-overlay/archive/4a14e8f79e91636cdfc4cecc3f12cdc4cfe57a60.tar.gz";
+  rust = import
+    (fetchTarball
+      "https://github.com/NixOS/nixpkgs/archive/f06b91b301c16aef906e4e6fe7379d801aad99c3.tar.gz")
+    { };
 in
 {
   nix = import ./nix.nix;
@@ -165,10 +169,10 @@ in
       metals
 
       # rust
-      rustc
-      cargo
-      rustfmt
-      rust-analyzer
+      rust.pkgs.rustc
+      rust.pkgs.cargo
+      rust.pkgs.rustfmt
+      rust.pkgs.rust-analyzer
 
       # yaml
       nodePackages.yaml-language-server
