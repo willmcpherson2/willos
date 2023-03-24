@@ -189,7 +189,9 @@
 
 (use-package cider)
 
-(use-package scala-mode)
+(use-package scala-mode
+  :interpreter
+  ("scala" . scala-mode))
 
 ;; editing
 

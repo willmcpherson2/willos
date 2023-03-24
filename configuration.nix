@@ -157,7 +157,6 @@ in
       ormolu
 
       # clojure
-      clojure
       leiningen
       clojure-lsp
 
