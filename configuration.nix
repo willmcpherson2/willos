@@ -5,10 +5,10 @@ let
     "https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz";
   emacs-overlay = fetchTarball
     "https://github.com/nix-community/emacs-overlay/archive/4a14e8f79e91636cdfc4cecc3f12cdc4cfe57a60.tar.gz";
-  rust = import
-    (fetchTarball
-      "https://github.com/NixOS/nixpkgs/archive/f06b91b301c16aef906e4e6fe7379d801aad99c3.tar.gz")
-    { };
+  rust-overlay = fetchTarball
+    "https://github.com/oxalica/rust-overlay/archive/afbdcf305fd6f05f708fe76d52f24d37d066c251.tar.gz";
+  wasm-bindgen = fetchTarball
+    "https://github.com/NixOS/nixpkgs/archive/8f40f2f90b9c9032d1b824442cfbbe0dbabd0dbd.tar.gz";
 in
 {
   nix = import ./nix.nix;
@@ -76,7 +76,10 @@ in
   home-manager.users.will = { pkgs, lib, ... }: {
     home.stateVersion = "22.11";
 
-    nixpkgs.overlays = [ (import emacs-overlay) ];
+    nixpkgs.overlays = [
+      (import emacs-overlay)
+      (import rust-overlay)
+    ];
 
     home.packages = with pkgs; [
       # desktop
@@ -169,10 +172,11 @@ in
       metals
 
       # rust
-      rust.pkgs.rustc
-      rust.pkgs.cargo
-      rust.pkgs.rustfmt
-      rust.pkgs.rust-analyzer
+      (rust-bin.stable."1.67.1".default.override {
+        targets = [ "wasm32-unknown-unknown" ];
+        extensions = [ "rust-src" "rust-analyzer-preview" ];
+      })
+      (import wasm-bindgen {}).pkgs.wasm-bindgen-cli
 
       # yaml
       nodePackages.yaml-language-server
