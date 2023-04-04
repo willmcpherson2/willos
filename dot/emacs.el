@@ -18,7 +18,7 @@
                                  (cons 'transient (expand-file-name dir))))
       project-switch-commands '((consult-project-buffer "buffer" "b")
                                 (project-find-file "file" "f")
-                                (project-eshell "shell" "s")
+                                (project-shell "shell" "s")
                                 (project-dired "dired" "d")))
 
 (setq-default indent-tabs-mode nil)
@@ -51,13 +51,6 @@
 (add-hook 'text-mode-hook 'relative-line-numbers)
 (add-hook 'prog-mode-hook 'relative-line-numbers)
 (add-hook 'org-mode-hook 'org-indent-mode)
-
-;; eshell
-
-(defalias 'eshell/v 'eshell-exec-visual)
-
-(defun eshell/l (&rest args)
-  (apply #'eshell/ls (cons "-Ahl" args)))
 
 ;; packages
 
@@ -169,14 +162,6 @@
 
 (use-package vterm)
 
-(use-package eshell-vterm
-  :config
-  (eshell-vterm-mode))
-
-(use-package eshell-syntax-highlighting
-  :config
-  (eshell-syntax-highlighting-global-mode +1))
-
 ;; languages
 
 (use-package markdown-mode)
@@ -244,7 +229,7 @@
    "d" 'project-dired
    "/" 'consult-ripgrep
    "p" 'project-switch-project
-   "s" 'project-eshell
+   "s" 'project-shell
    "r" 'cape-history
    "n" 'evil-ex-nohighlight
 
