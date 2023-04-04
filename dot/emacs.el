@@ -178,6 +178,8 @@
   :interpreter
   ("scala" . scala-mode))
 
+(use-package jinja2-mode)
+
 ;; editing
 
 (use-package evil
