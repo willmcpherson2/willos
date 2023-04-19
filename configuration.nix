@@ -238,7 +238,7 @@ in
         enabled = true;
       };
       "org/gnome/desktop/input-sources" = {
-        xkb-options = [ "compose:rwin" ];
+        xkb-options = ["compose:rctrl" "lv3:ralt_switch"];
       };
       "org/gnome/desktop/peripherals/touchpad" = {
         tap-to-click = true;
