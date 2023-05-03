@@ -76,6 +76,8 @@ in
   home-manager.users.will = { pkgs, lib, ... }: {
     home.stateVersion = "22.11";
 
+    nixpkgs.config = { allowUnfree = true; };
+
     nixpkgs.overlays = [
       (import emacs-overlay)
       (import rust-overlay)
@@ -86,6 +88,7 @@ in
       gnomeExtensions.night-theme-switcher
       gnomeExtensions.emoji-selector
       gimp
+      zoom-us
 
       # emacs
       (pkgs.emacsWithPackagesFromUsePackage {
