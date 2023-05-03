@@ -151,6 +151,7 @@ in
             --add-flags --tsserver-path=${nodePackages.typescript}/lib/node_modules/typescript/lib/
         '';
       })
+      nodePackages.prettier
 
       # python
       python310
