@@ -143,6 +143,7 @@ in
 
       # web
       nodejs
+      yarn
       nodePackages.vscode-langservers-extracted
       nodePackages.typescript
       (symlinkJoin {
