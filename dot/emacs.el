@@ -1,43 +1,5 @@
 ;;; -*- lexical-binding: t -*-
 
-;; builtin settings
-
-(setq inhibit-x-resources t
-      ring-bell-function 'ignore
-      warning-minimum-level :error
-      enable-recursive-minibuffers t
-      eldoc-echo-area-prefer-doc-buffer t
-      dired-listing-switches "-DAhl"
-      global-auto-revert-non-file-buffers t
-      flymake-fringe-indicator-position nil
-      initial-scratch-message ""
-      org-latex-compiler "lualatex"
-      org-preview-latex-default-process 'dvisvgm
-      project-find-functions '(project-try-vc
-                               (lambda (dir)
-                                 (cons 'transient (expand-file-name dir))))
-      project-switch-commands '((consult-project-buffer "buffer" "b")
-                                (project-find-file "file" "f")
-                                (project-shell "shell" "s")
-                                (project-dired "dired" "d")))
-
-(setq-default indent-tabs-mode nil
-              tab-width 2)
-
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
-(tooltip-mode -1)
-(menu-bar-mode -1)
-(pixel-scroll-precision-mode 1)
-(set-face-attribute 'default nil :font "JetBrainsMono Nerd Font" :height 140)
-(add-to-list 'initial-frame-alist '(fullscreen . maximized))
-(set-fringe-mode 4)
-(column-number-mode 1)
-(fset 'yes-or-no-p 'y-or-n-p)
-(global-auto-revert-mode 1)
-
-;; builtin hooks
-
 (defun errors-then-docs ()
   (setq eldoc-documentation-functions
         (cons #'flymake-eldoc-function
@@ -50,16 +12,46 @@
 (defun fixed-indent ()
   (local-set-key (kbd "TAB") 'self-insert-command))
 
-(add-hook 'prog-mode-hook 'flymake-mode)
-(add-hook 'eldoc-mode-hook 'errors-then-docs)
-(add-hook 'text-mode-hook 'relative-line-numbers)
-(add-hook 'text-mode-hook 'fixed-indent)
-(add-hook 'prog-mode-hook 'relative-line-numbers)
-(add-hook 'org-mode-hook 'org-indent-mode)
+(defun make-transient-project (dir)
+  (cons 'transient (expand-file-name dir)))
 
-;; packages
+(setq use-package-always-ensure t
+      project-find-functions '(project-try-vc make-transient-project))
 
-(setq use-package-always-ensure t)
+(use-package emacs
+  :custom
+  (inhibit-x-resources t)
+  (ring-bell-function 'ignore)
+  (warning-minimum-level :error)
+  (enable-recursive-minibuffers t)
+  (eldoc-echo-area-prefer-doc-buffer t)
+  (dired-listing-switches "-DAhl")
+  (global-auto-revert-non-file-buffers t)
+  (flymake-fringe-indicator-position nil)
+  (initial-scratch-message "")
+  (org-latex-compiler "lualatex")
+  (org-preview-latex-default-process 'dvisvgm)
+  (indent-tabs-mode nil)
+  (tab-width 2)
+  :hook
+  (prog-mode . flymake-mode)
+  (prog-mode . relative-line-numbers)
+  (text-mode . fixed-indent)
+  (text-mode . relative-line-numbers)
+  (eldoc-mode . errors-then-docs)
+  (org-mode . org-indent-mode)
+  :config
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1)
+  (tooltip-mode -1)
+  (menu-bar-mode -1)
+  (pixel-scroll-precision-mode 1)
+  (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font" :height 140)
+  (add-to-list 'initial-frame-alist '(fullscreen . maximized))
+  (set-fringe-mode 4)
+  (column-number-mode 1)
+  (fset 'yes-or-no-p 'y-or-n-p)
+  (global-auto-revert-mode 1))
 
 ;; load first
 
@@ -88,7 +80,7 @@
   :hook
   (dired-mode . all-the-icons-dired-mode))
 
-;; theme
+;; ui
 
 (use-package doom-themes
   :config
@@ -107,7 +99,14 @@
   :config
   (auto-dark-mode t))
 
-;; core
+;; misc
+
+(use-package project
+  :custom
+  (project-switch-commands '((consult-project-buffer "buffer" "b")
+                             (project-find-file "file" "f")
+                             (project-shell "shell" "s")
+                             (project-dired "dired" "d"))))
 
 (use-package which-key
   :config
@@ -154,8 +153,6 @@
 
 (use-package cape)
 
-;; applications
-
 (use-package magit)
 
 (use-package diff-hl
@@ -185,7 +182,7 @@
 
 (use-package jinja2-mode)
 
-;; editing
+;; evil
 
 (use-package evil
   :custom
@@ -215,7 +212,7 @@
   :hook
   (org-mode . evil-org-mode))
 
-;; keybindings
+;; leader key
 
 (use-package general
   :config
