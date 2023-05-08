@@ -21,7 +21,8 @@
                                 (project-shell "shell" "s")
                                 (project-dired "dired" "d")))
 
-(setq-default indent-tabs-mode nil)
+(setq-default indent-tabs-mode nil
+              tab-width 2)
 
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
@@ -46,9 +47,13 @@
 (defun relative-line-numbers ()
   (setq display-line-numbers 'relative))
 
+(defun fixed-indent ()
+  (local-set-key (kbd "TAB") 'self-insert-command))
+
 (add-hook 'prog-mode-hook 'flymake-mode)
 (add-hook 'eldoc-mode-hook 'errors-then-docs)
 (add-hook 'text-mode-hook 'relative-line-numbers)
+(add-hook 'text-mode-hook 'fixed-indent)
 (add-hook 'prog-mode-hook 'relative-line-numbers)
 (add-hook 'org-mode-hook 'org-indent-mode)
 
