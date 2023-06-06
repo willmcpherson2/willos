@@ -145,8 +145,6 @@
   (corfu-auto t)
   (corfu-cycle t)
   (corfu-preselect-first nil)
-  (corfu-auto-delay 0)
-  (corfu-popupinfo-delay t)
   :config
   (global-corfu-mode)
   (corfu-popupinfo-mode))
