@@ -166,6 +166,10 @@
 
 (use-package markdown-mode)
 
+(use-package css-mode
+  :custom
+  (css-indent-offset 2))
+
 (use-package nix-mode)
 
 (use-package haskell-mode
