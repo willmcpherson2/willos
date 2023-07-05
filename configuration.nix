@@ -32,8 +32,8 @@ in
     displayManager.gdm.enable = true;
   };
   services.gnome.core-utilities.enable = false;
-
   services.openssh.enable = true;
+  services.ratbagd.enable = true;
 
   virtualisation.docker = {
     enable = true;
@@ -89,6 +89,8 @@ in
       gnomeExtensions.emoji-selector
       gimp
       zoom-us
+      libratbag
+      piper
 
       # emacs
       (pkgs.emacsWithPackagesFromUsePackage {
