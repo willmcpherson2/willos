@@ -166,6 +166,10 @@
 
 (use-package markdown-mode)
 
+(use-package js
+  :custom
+  (js-indent-level 2))
+
 (use-package css-mode
   :custom
   (css-indent-offset 2))
