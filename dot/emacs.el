@@ -164,6 +164,10 @@
 
 ;; languages
 
+(use-package eglot
+  :custom
+  (eglot-confirm-server-initiated-edits nil))
+
 (use-package markdown-mode)
 
 (use-package js
