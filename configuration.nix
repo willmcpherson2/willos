@@ -85,6 +85,8 @@ in
 
     home.packages = with pkgs; [
       # desktop
+      gnome.gnome-system-monitor
+      gnome.nautilus
       gnomeExtensions.night-theme-switcher
       gnomeExtensions.emoji-selector
       gimp
@@ -114,7 +116,6 @@ in
       ripgrep
       wl-clipboard
       fd
-      htop
       ncdu
       ffmpeg
       mpv
