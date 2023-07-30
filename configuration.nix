@@ -123,6 +123,7 @@ in
       unzip
       qmk
       heroku
+      google-cloud-sdk
       rclone
 
       (writeShellScriptBin "audio-to-video"
