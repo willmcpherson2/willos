@@ -9,6 +9,14 @@ let
     "https://github.com/oxalica/rust-overlay/archive/afbdcf305fd6f05f708fe76d52f24d37d066c251.tar.gz";
   wasm-bindgen = fetchTarball
     "https://github.com/NixOS/nixpkgs/archive/8f40f2f90b9c9032d1b824442cfbbe0dbabd0dbd.tar.gz";
+  bitwig = import
+    (fetchTarball
+      "https://github.com/NixOS/nixpkgs/archive/59524a3c6065e1a8d218fa6e60abb54178dbadba.tar.gz")
+    {
+      config = config.nixpkgs.config // {
+        allowUnfree = true;
+      };
+    };
 in
 {
   nix = import ./nix.nix;
@@ -93,6 +101,7 @@ in
       zoom-us
       libratbag
       piper
+      bitwig.pkgs.bitwig-studio
 
       # emacs
       (pkgs.emacsWithPackagesFromUsePackage {
