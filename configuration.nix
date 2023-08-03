@@ -1,14 +1,17 @@
 { config, pkgs, ... }:
-
 let
   home-manager = fetchTarball
     "https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz";
-  emacs-overlay = fetchTarball
-    "https://github.com/nix-community/emacs-overlay/archive/4a14e8f79e91636cdfc4cecc3f12cdc4cfe57a60.tar.gz";
-  rust-overlay = fetchTarball
-    "https://github.com/oxalica/rust-overlay/archive/afbdcf305fd6f05f708fe76d52f24d37d066c251.tar.gz";
-  wasm-bindgen = fetchTarball
-    "https://github.com/NixOS/nixpkgs/archive/8f40f2f90b9c9032d1b824442cfbbe0dbabd0dbd.tar.gz";
+  emacs-overlay = import
+    (fetchTarball
+      "https://github.com/nix-community/emacs-overlay/archive/4a14e8f79e91636cdfc4cecc3f12cdc4cfe57a60.tar.gz");
+  rust-overlay = import
+    (fetchTarball
+      "https://github.com/oxalica/rust-overlay/archive/afbdcf305fd6f05f708fe76d52f24d37d066c251.tar.gz");
+  wasm-bindgen = import
+    (fetchTarball
+      "https://github.com/NixOS/nixpkgs/archive/8f40f2f90b9c9032d1b824442cfbbe0dbabd0dbd.tar.gz")
+    { };
   bitwig = import
     (fetchTarball
       "https://github.com/NixOS/nixpkgs/archive/59524a3c6065e1a8d218fa6e60abb54178dbadba.tar.gz")
@@ -87,8 +90,8 @@ in
     nixpkgs.config = { allowUnfree = true; };
 
     nixpkgs.overlays = [
-      (import emacs-overlay)
-      (import rust-overlay)
+      emacs-overlay
+      rust-overlay
     ];
 
     home.packages = with pkgs; [
@@ -194,7 +197,7 @@ in
         targets = [ "wasm32-unknown-unknown" ];
         extensions = [ "rust-src" "rust-analyzer-preview" ];
       })
-      (import wasm-bindgen {}).pkgs.wasm-bindgen-cli
+      wasm-bindgen.pkgs.wasm-bindgen-cli
 
       # yaml
       nodePackages.yaml-language-server
@@ -256,7 +259,7 @@ in
         enabled = true;
       };
       "org/gnome/desktop/input-sources" = {
-        xkb-options = ["compose:rctrl" "lv3:ralt_switch"];
+        xkb-options = [ "compose:rctrl" "lv3:ralt_switch" ];
       };
       "org/gnome/desktop/peripherals/touchpad" = {
         tap-to-click = true;
