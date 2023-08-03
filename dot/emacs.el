@@ -24,6 +24,7 @@
   (ring-bell-function 'ignore)
   (warning-minimum-level :error)
   (enable-recursive-minibuffers t)
+  (eglot-confirm-server-initiated-edits nil)
   (eldoc-echo-area-prefer-doc-buffer t)
   (dired-listing-switches "-DAhl")
   (global-auto-revert-non-file-buffers t)
@@ -163,10 +164,6 @@
 (use-package vterm)
 
 ;; languages
-
-(use-package eglot
-  :custom
-  (eglot-confirm-server-initiated-edits nil))
 
 (use-package markdown-mode)
 
