@@ -109,6 +109,8 @@ in
       libratbag
       piper
       bitwig.pkgs.bitwig-studio
+      chromium
+      epiphany
 
       # emacs
       (pkgs.emacsWithPackagesFromUsePackage {
