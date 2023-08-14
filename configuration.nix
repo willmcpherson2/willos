@@ -12,6 +12,10 @@ let
     (fetchTarball
       "https://github.com/NixOS/nixpkgs/archive/8f40f2f90b9c9032d1b824442cfbbe0dbabd0dbd.tar.gz")
     { };
+  typescript = import
+    (fetchTarball
+      "https://github.com/NixOS/nixpkgs/archive/e42cdd6768759367b53aba71902580b61cb63242.tar.gz")
+    { };
   bitwig = import
     (fetchTarball
       "https://github.com/NixOS/nixpkgs/archive/59524a3c6065e1a8d218fa6e60abb54178dbadba.tar.gz")
@@ -158,20 +162,18 @@ in
       clang-tools
 
       # web
-      nodejs
-      yarn
-      nodePackages.vscode-langservers-extracted
-      nodePackages.typescript
+      typescript.nodejs
+      typescript.nodePackages.vscode-langservers-extracted
+      typescript.nodePackages.typescript
       (symlinkJoin {
         name = "typescript-language-server";
-        paths = [ nodePackages.typescript-language-server ];
+        paths = [ typescript.nodePackages.typescript-language-server ];
         buildInputs = [ makeWrapper ];
         postBuild = ''
           wrapProgram $out/bin/typescript-language-server \
-            --add-flags --tsserver-path=${nodePackages.typescript}/lib/node_modules/typescript/lib/
+            --add-flags --tsserver-path=${typescript.nodePackages.typescript}/lib/node_modules/typescript/lib/
         '';
       })
-      nodePackages.prettier
 
       # python
       python310
