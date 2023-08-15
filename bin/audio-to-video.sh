@@ -3,7 +3,7 @@
 # $3 = video output path
 #
 # e.g.
-# audio-to-video.sh ff.png ff.wav ~/Desktop/ff.mkv
+# audio-to-video foo.png foo.wav foo.mkv
 #
 # https://trac.ffmpeg.org/wiki/Encode/YouTube
 # https://superuser.com/questions/547296/resizing-videos-with-ffmpeg-avconv-to-fit-into-static-sized-player/1136305#1136305
@@ -15,7 +15,7 @@ ffmpeg \
   -framerate 2 \
   -i "$1" \
   -i "$2" \
-  -vf "pad='max(1080,iw)':'max(1080,ih)':-1:-1:color=black" \
+  -s 1080x1080 \
   -c:v libx264 \
   -preset medium \
   -tune stillimage \
