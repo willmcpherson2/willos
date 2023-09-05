@@ -111,6 +111,7 @@ in
       bitwig.pkgs.bitwig-studio
       chromium
       epiphany
+      obs-studio
 
       # emacs
       (pkgs.emacsWithPackagesFromUsePackage {
