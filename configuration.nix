@@ -112,6 +112,7 @@ in
       chromium
       epiphany
       obs-studio
+      discord
 
       # emacs
       (pkgs.emacsWithPackagesFromUsePackage {
@@ -241,6 +242,10 @@ in
       ghci = {
         source = ./dot/ghci;
         target = ".ghci";
+      };
+      discord = {
+        source = ./dot/discord.json;
+        target = ".config/discord/settings.json";
       };
     };
 
