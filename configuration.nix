@@ -190,6 +190,9 @@ in
       haskellPackages.hoogle
       ormolu
 
+      # coq
+      coq
+
       # clojure
       leiningen
       clojure-lsp

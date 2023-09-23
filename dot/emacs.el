@@ -189,6 +189,8 @@
 
 (use-package jinja2-mode)
 
+(use-package proof-general)
+
 ;; evil
 
 (use-package evil
