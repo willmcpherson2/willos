@@ -113,6 +113,7 @@ in
       chromium
       epiphany
       obs-studio
+      screenkey
       discord
 
       # emacs
