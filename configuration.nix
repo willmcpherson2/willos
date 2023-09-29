@@ -310,8 +310,9 @@ in
       "org/gnome/settings-daemon/plugins/power" = {
         sleep-inactive-ac-type = "nothing";
       };
-      "org/gtk/settings/file-chooser" = { clock-format = "12h"; };
-
+      "org/gtk/settings/file-chooser" = {
+        clock-format = "12h";
+      };
       "org/gnome/shell/extensions/nightthemeswitcher/gtk-variants" = {
         enabled = true;
       };
