@@ -45,6 +45,7 @@ in
     enable = true;
     desktopManager.gnome.enable = true;
     displayManager.gdm.enable = true;
+    displayManager.defaultSession = "gnome-xorg";
   };
   services.gnome.core-utilities.enable = false;
   services.openssh.enable = true;
@@ -119,7 +120,7 @@ in
         config = ./dot/emacs.el;
         defaultInitFile = true;
         alwaysEnsure = true;
-        package = pkgs.emacsPgtk;
+        package = pkgs.emacsGit;
       })
       emacs-all-the-icons-fonts
       (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
@@ -134,7 +135,6 @@ in
       tree
       cloc
       ripgrep
-      wl-clipboard
       fd
       ncdu
       ffmpeg
@@ -233,7 +233,6 @@ in
 
     programs.firefox = {
       enable = true;
-      package = pkgs.firefox-wayland;
       profiles.will = { extraConfig = builtins.readFile ./dot/user.js; };
     };
 

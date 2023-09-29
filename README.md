@@ -16,7 +16,7 @@ sudo nixos-rebuild switch
 
 ## Emacs
 
-I'm using Emacs 30.0.50 with pgtk (for Wayland), via [emacs-overlay](https://github.com/nix-community/emacs-overlay).
+I'm using Emacs 30.0.50 via [emacs-overlay](https://github.com/nix-community/emacs-overlay).
 
 The overlay provides `emacsWithPackagesFromUsePackage`, which reads my [emacs.el](dot/emacs.el). Because I've enabled `alwaysEnsure` in Nix and `use-package-always-ensure` in Emacs, my config is declarative but will auto-install on other systems![1] If you add packages you must `nixos-rebuild`, but otherwise, you can just `M-x eval-buffer`.
 
