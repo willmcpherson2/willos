@@ -24,6 +24,10 @@ let
         allowUnfree = true;
       };
     };
+  screenkey = import
+    (fetchTarball
+      "https://github.com/NixOS/nixpkgs/archive/59524a3c6065e1a8d218fa6e60abb54178dbadba.tar.gz")
+    { };
 in
 {
   nix = import ./nix.nix;
@@ -113,7 +117,7 @@ in
       chromium
       epiphany
       obs-studio
-      screenkey
+      screenkey.screenkey
       discord
 
       # emacs
