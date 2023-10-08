@@ -114,11 +114,15 @@ in
       libratbag
       piper
       bitwig.pkgs.bitwig-studio
+      jack2
+      cadence
       chromium
       epiphany
       obs-studio
       screenkey.screenkey
       discord
+      blender
+      kdenlive
 
       # emacs
       (pkgs.emacsWithPackagesFromUsePackage {
