@@ -20,7 +20,6 @@
 
 (use-package emacs
   :custom
-  (inhibit-x-resources t)
   (ring-bell-function 'ignore)
   (warning-minimum-level :error)
   (enable-recursive-minibuffers t)
@@ -47,8 +46,8 @@
   (tooltip-mode -1)
   (menu-bar-mode -1)
   (pixel-scroll-precision-mode 1)
-  (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font" :height 140)
-  (add-to-list 'initial-frame-alist '(fullscreen . maximized))
+  (add-to-list 'default-frame-alist '(fullscreen . maximized))
+  (add-to-list 'default-frame-alist '(font . "JetBrainsMono Nerd Font-14"))
   (set-fringe-mode 4)
   (column-number-mode 1)
   (fset 'yes-or-no-p 'y-or-n-p)
