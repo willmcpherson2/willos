@@ -103,10 +103,7 @@
 
 (use-package project
   :custom
-  (project-switch-commands '((consult-project-buffer "buffer" "b")
-                             (project-find-file "file" "f")
-                             (project-shell "shell" "s")
-                             (project-dired "dired" "d"))))
+  (project-switch-commands 'project-dired))
 
 (use-package which-key
   :config
