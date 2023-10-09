@@ -55,6 +55,13 @@ in
   services.openssh.enable = true;
   services.ratbagd.enable = true;
 
+  services.jack = {
+    jackd.enable = true;
+    alsa.enable = false;
+    loopback.enable = true;
+  };
+  users.extraUsers.will.extraGroups = [ "jackaudio" ];
+
   virtualisation.docker = {
     enable = true;
     rootless = {
@@ -114,8 +121,6 @@ in
       libratbag
       piper
       bitwig.pkgs.bitwig-studio
-      jack2
-      cadence
       chromium
       epiphany
       obs-studio
