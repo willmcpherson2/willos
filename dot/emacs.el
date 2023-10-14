@@ -28,6 +28,7 @@
   (dired-listing-switches "-DAhl")
   (global-auto-revert-non-file-buffers t)
   (flymake-fringe-indicator-position nil)
+  (initial-major-mode 'text-mode)
   (initial-scratch-message "")
   (org-latex-compiler "lualatex")
   (org-preview-latex-default-process 'dvisvgm)
