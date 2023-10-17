@@ -128,6 +128,7 @@ in
       discord
       blender
       kdenlive
+      prismlauncher
 
       # emacs
       (pkgs.emacsWithPackagesFromUsePackage {
@@ -144,6 +145,7 @@ in
       })
 
       # cli
+      jdk17
       git
       file
       tree
