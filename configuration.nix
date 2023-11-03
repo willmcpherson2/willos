@@ -129,6 +129,8 @@ in
       blender
       kdenlive
       prismlauncher
+      flatpak
+      lutris
 
       # emacs
       (pkgs.emacsWithPackagesFromUsePackage {
