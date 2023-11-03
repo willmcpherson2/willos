@@ -286,6 +286,7 @@ in
         "x-scheme-handler/https" = "firefox.desktop";
       };
     };
+    xdg.configFile."mimeapps.list".force = true;
 
     dconf.settings = {
       "org/gnome/desktop/interface" = {
