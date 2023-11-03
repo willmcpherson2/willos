@@ -28,6 +28,14 @@ let
     (fetchTarball
       "https://github.com/NixOS/nixpkgs/archive/59524a3c6065e1a8d218fa6e60abb54178dbadba.tar.gz")
     { };
+  discord = import
+    (fetchTarball
+      "https://github.com/NixOS/nixpkgs/archive/59524a3c6065e1a8d218fa6e60abb54178dbadba.tar.gz")
+    {
+      config = config.nixpkgs.config // {
+        allowUnfree = true;
+      };
+    };
 in
 {
   nix = import ./nix.nix;
@@ -125,7 +133,7 @@ in
       epiphany
       obs-studio
       screenkey.screenkey
-      discord
+      discord.discord
       blender
       kdenlive
       prismlauncher
