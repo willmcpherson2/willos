@@ -150,7 +150,7 @@ in
       emacs-all-the-icons-fonts
       (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
       (texlive.combine {
-        inherit (texlive) scheme-basic
+        inherit (texlive) scheme-full
           wrapfig amsmath ulem hyperref capt-of;
       })
 
