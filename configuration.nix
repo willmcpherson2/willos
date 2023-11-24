@@ -179,6 +179,7 @@ in
       (writeShellScriptBin "track-willos"
         (builtins.readFile ./bin/track-willos.sh))
       (writeShellScriptBin "ydl" (builtins.readFile ./bin/ydl.sh))
+      (writeShellScriptBin "drive" (builtins.readFile ./bin/drive.sh))
 
       # nix
       rnix-lsp
