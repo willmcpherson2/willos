@@ -1,46 +1,19 @@
 { config, pkgs, ... }:
 let
+  version = "23.05";
   home-manager = fetchTarball
-    "https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz";
+    "https://github.com/nix-community/home-manager/archive/release-${version}.tar.gz";
   emacs-overlay = import
     (fetchTarball
       "https://github.com/nix-community/emacs-overlay/archive/4a14e8f79e91636cdfc4cecc3f12cdc4cfe57a60.tar.gz");
   rust-overlay = import
     (fetchTarball
-      "https://github.com/oxalica/rust-overlay/archive/afbdcf305fd6f05f708fe76d52f24d37d066c251.tar.gz");
-  wasm-bindgen = import
-    (fetchTarball
-      "https://github.com/NixOS/nixpkgs/archive/8f40f2f90b9c9032d1b824442cfbbe0dbabd0dbd.tar.gz")
-    { };
-  typescript = import
-    (fetchTarball
-      "https://github.com/NixOS/nixpkgs/archive/e42cdd6768759367b53aba71902580b61cb63242.tar.gz")
-    { };
-  bitwig = import
-    (fetchTarball
-      "https://github.com/NixOS/nixpkgs/archive/59524a3c6065e1a8d218fa6e60abb54178dbadba.tar.gz")
-    {
-      config = config.nixpkgs.config // {
-        allowUnfree = true;
-      };
-    };
-  screenkey = import
-    (fetchTarball
-      "https://github.com/NixOS/nixpkgs/archive/59524a3c6065e1a8d218fa6e60abb54178dbadba.tar.gz")
-    { };
-  discord = import
-    (fetchTarball
-      "https://github.com/NixOS/nixpkgs/archive/59524a3c6065e1a8d218fa6e60abb54178dbadba.tar.gz")
-    {
-      config = config.nixpkgs.config // {
-        allowUnfree = true;
-      };
-    };
+      "https://github.com/oxalica/rust-overlay/archive/9dd940c967502f844eacea52a61e9596268d4f70.tar.gz");
 in
 {
   nix = import ./nix.nix;
 
-  system.stateVersion = "22.11";
+  system.stateVersion = version;
 
   imports = [ ./hardware-configuration.nix "${home-manager}/nixos" ];
 
@@ -115,7 +88,7 @@ in
   programs.steam.enable = true;
 
   home-manager.users.will = { pkgs, lib, ... }: {
-    home.stateVersion = "22.11";
+    home.stateVersion = version;
 
     nixpkgs.config = { allowUnfree = true; };
 
@@ -134,12 +107,12 @@ in
       zoom-us
       libratbag
       piper
-      bitwig.pkgs.bitwig-studio
+      bitwig-studio
       chromium
       epiphany
       obs-studio
-      screenkey.screenkey
-      discord.discord
+      screenkey
+      discord
       blender
       kdenlive
       prismlauncher
@@ -205,16 +178,16 @@ in
       clang-tools
 
       # web
-      typescript.nodejs
-      typescript.nodePackages.vscode-langservers-extracted
-      typescript.nodePackages.typescript
+      nodejs
+      nodePackages.vscode-langservers-extracted
+      nodePackages.typescript
       (symlinkJoin {
         name = "typescript-language-server";
-        paths = [ typescript.nodePackages.typescript-language-server ];
+        paths = [ nodePackages.typescript-language-server ];
         buildInputs = [ makeWrapper ];
         postBuild = ''
           wrapProgram $out/bin/typescript-language-server \
-            --add-flags --tsserver-path=${typescript.nodePackages.typescript}/lib/node_modules/typescript/lib/
+            --add-flags --tsserver-path=${nodePackages.typescript}/lib/node_modules/typescript/lib/
         '';
       })
 
@@ -245,7 +218,7 @@ in
         targets = [ "wasm32-unknown-unknown" ];
         extensions = [ "rust-src" "rust-analyzer-preview" ];
       })
-      wasm-bindgen.pkgs.wasm-bindgen-cli
+      wasm-bindgen-cli
 
       # yaml
       nodePackages.yaml-language-server
