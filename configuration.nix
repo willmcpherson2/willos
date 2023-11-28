@@ -77,13 +77,19 @@ in
       setSocketVariable = true;
     };
   };
+  virtualisation.vmVariant = {
+    virtualisation = {
+      memorySize = 4096;
+      cores = 8;
+    };
+  };
 
   users.mutableUsers = false;
   users.users.root.hashedPassword = "!";
   users.users.will = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
-    passwordFile = "/etc/passwordFile-will";
+    hashedPassword = "$y$j9T$NSQIU.lIfojqrEcsuBjFn0$kBar4ZM7y40HXQgwMJnV58a8yW32Znpszu69yW0TH79";
   };
 
   fonts = {

@@ -28,9 +28,6 @@ pkgs.mkShell {
     nixos-generate-config --root /mnt
     cp -r ${willos}/* /mnt/etc/nixos
 
-    mkpasswd --method=sha-512 "$PASSWORD" > /mnt/etc/passwordFile-will
-    chmod 600 /mnt/etc/passwordFile-will
-
     nixos-install --no-root-passwd
   '';
 }
