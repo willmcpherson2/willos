@@ -140,6 +140,12 @@ in
       flatpak
       lutris
 
+      (wineWowPackages.full.override {
+        wineRelease = "staging";
+        mingwSupport = true;
+      })
+      winetricks
+
       # emacs
       (pkgs.emacsWithPackagesFromUsePackage {
         config = ./dot/emacs.el;
