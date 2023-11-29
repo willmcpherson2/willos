@@ -1,4 +1,3 @@
-hardware-configuration.nix
 nix.nix
 result
 *.qcow2

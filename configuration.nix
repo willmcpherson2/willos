@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 let
   version = "23.05";
+  nixos-hardware = fetchTarball
+    "https://github.com/NixOS/nixos-hardware/archive/b006ec52fce23b1d57f6ab4a42d7400732e9a0a2.tar.gz";
   home-manager = fetchTarball
     "https://github.com/nix-community/home-manager/archive/release-${version}.tar.gz";
   emacs-overlay = import
@@ -17,6 +19,7 @@ in
 
   imports = [
     ./hardware-configuration.nix
+    "${nixos-hardware}/lenovo/thinkpad/l14/amd"
     "${home-manager}/nixos"
   ];
 
