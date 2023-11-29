@@ -1,5 +1,4 @@
 { pkgs ? import <nixpkgs> { } }:
-
 let willos = ./.;
 in
 pkgs.mkShell {

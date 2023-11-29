@@ -15,59 +15,75 @@ in
 
   system.stateVersion = version;
 
-  imports = [ ./hardware-configuration.nix "${home-manager}/nixos" ];
+  imports = [
+    ./hardware-configuration.nix
+    "${home-manager}/nixos"
+  ];
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+  };
 
   networking.hostName = "will-lap";
-
   time.timeZone = "Australia/Melbourne";
   i18n.defaultLocale = "en_AU.UTF-8";
 
-  services.xserver = {
-    enable = true;
-    desktopManager.gnome.enable = true;
-    displayManager.gdm.enable = true;
-    displayManager.defaultSession = "gnome-xorg";
-  };
-  services.gnome.core-utilities.enable = false;
-  services.openssh.enable = true;
-  services.ratbagd.enable = true;
-
-  services.jack = {
-    jackd.enable = true;
-    alsa.enable = false;
-    loopback.enable = true;
-  };
-  users.extraUsers.will.extraGroups = [ "jackaudio" ];
-
-  virtualisation.docker = {
-    enable = true;
-    rootless = {
+  services = {
+    xserver = {
       enable = true;
-      setSocketVariable = true;
+      desktopManager.gnome.enable = true;
+      displayManager = {
+        gdm.enable = true;
+        defaultSession = "gnome-xorg";
+      };
     };
-  };
-  virtualisation.vmVariant = {
-    virtualisation = {
-      memorySize = 4096;
-      cores = 8;
+    gnome.core-utilities.enable = false;
+    openssh.enable = true;
+    ratbagd.enable = true;
+    jack = {
+      jackd.enable = true;
+      alsa.enable = false;
+      loopback.enable = true;
     };
   };
 
-  users.mutableUsers = false;
-  users.users.root.hashedPassword = "!";
-  users.users.will = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ];
-    hashedPassword = "$y$j9T$NSQIU.lIfojqrEcsuBjFn0$kBar4ZM7y40HXQgwMJnV58a8yW32Znpszu69yW0TH79";
+  virtualisation = {
+    docker = {
+      enable = true;
+      rootless = {
+        enable = true;
+        setSocketVariable = true;
+      };
+    };
+    vmVariant = {
+      virtualisation = {
+        memorySize = 4096;
+        cores = 8;
+      };
+    };
+  };
+
+  users = {
+    mutableUsers = false;
+    users = {
+      root.hashedPassword = "!";
+      will = {
+        isNormalUser = true;
+        extraGroups = [
+          "wheel"
+          "jackaudio"
+        ];
+        hashedPassword = "$y$j9T$NSQIU.lIfojqrEcsuBjFn0$kBar4ZM7y40HXQgwMJnV58a8yW32Znpszu69yW0TH79";
+      };
+    };
   };
 
   fonts = {
-    fonts = with pkgs;
-      [ (nerdfonts.override { fonts = [ "JetBrainsMono" ]; }) ];
+    fonts = [ (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; }) ];
     fontconfig = {
       defaultFonts = { monospace = [ "JetBrainsMonoNL Nerd Font Mono" ]; };
       localConf = ''
@@ -85,202 +101,218 @@ in
   };
 
   home-manager.users.will = { pkgs, lib, ... }: {
-    home.stateVersion = version;
+    nixpkgs = {
+      config = { allowUnfree = true; };
+      overlays = [
+        emacs-overlay
+        rust-overlay
+      ];
+    };
 
-    nixpkgs.config = { allowUnfree = true; };
+    home = {
+      stateVersion = version;
 
-    nixpkgs.overlays = [
-      emacs-overlay
-      rust-overlay
-    ];
+      packages = with pkgs; [
+        # gnome
+        gnome.gnome-system-monitor
+        gnome.nautilus
+        gnomeExtensions.night-theme-switcher
+        gnomeExtensions.emoji-selector
 
-    home.packages = with pkgs; [
-      # desktop
-      gnome.gnome-system-monitor
-      gnome.nautilus
-      gnomeExtensions.night-theme-switcher
-      gnomeExtensions.emoji-selector
-      gimp
-      zoom-us
-      libratbag
-      piper
-      bitwig-studio
-      chromium
-      epiphany
-      obs-studio
-      screenkey
-      discord
-      blender
-      kdenlive
-      steam
-      prismlauncher
-      flatpak
-      lutris
+        # media
+        ffmpeg
+        youtube-dl
+        mpv
+        screenkey
+        gimp
+        obs-studio
+        bitwig-studio
+        blender
+        kdenlive
 
-      (wineWowPackages.full.override {
-        wineRelease = "staging";
-        mingwSupport = true;
-      })
-      winetricks
+        # extra browsers
+        chromium
+        epiphany
 
-      # emacs
-      (pkgs.emacsWithPackagesFromUsePackage {
-        config = ./dot/emacs.el;
-        defaultInitFile = true;
-        alwaysEnsure = true;
-        package = pkgs.emacsGit;
-      })
-      emacs-all-the-icons-fonts
-      (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
-      (texlive.combine {
-        inherit (texlive) scheme-full
-          wrapfig amsmath ulem hyperref capt-of;
-      })
+        # voip
+        zoom-us
+        discord
 
-      # cli
-      jdk17
-      git
-      file
-      tree
-      cloc
-      ripgrep
-      fd
-      ncdu
-      ffmpeg
-      mpv
-      youtube-dl
-      unzip
-      qmk
-      heroku
-      google-cloud-sdk
-      rclone
+        # peripherals
+        libratbag
+        piper
+        qmk
 
-      (writeShellScriptBin "audio-to-video"
-        (builtins.readFile ./bin/audio-to-video.sh))
-      (writeShellScriptBin "new-ssh-key"
-        (builtins.readFile ./bin/new-ssh-key.sh))
-      (writeShellScriptBin "track-willos"
-        (builtins.readFile ./bin/track-willos.sh))
-      (writeShellScriptBin "ydl" (builtins.readFile ./bin/ydl.sh))
-      (writeShellScriptBin "drive" (builtins.readFile ./bin/drive.sh))
+        # gaming
+        steam
+        prismlauncher
+        flatpak
+        lutris
+        winetricks
+        (wineWowPackages.full.override {
+          wineRelease = "staging";
+          mingwSupport = true;
+        })
 
-      # nix
-      rnix-lsp
-      nixfmt
+        # emacs
+        (emacsWithPackagesFromUsePackage {
+          config = ./dot/emacs.el;
+          defaultInitFile = true;
+          alwaysEnsure = true;
+          package = emacsGit;
+        })
+        emacs-all-the-icons-fonts
+        (aspellWithDicts (dicts: with dicts; [
+          en
+          en-computers
+          en-science
+        ]))
+        (texlive.combine {
+          inherit (texlive)
+            scheme-full
+            wrapfig
+            amsmath
+            ulem
+            hyperref
+            capt-of;
+        })
 
-      # bash
-      nodePackages.bash-language-server
+        # cli
+        git
+        file
+        tree
+        cloc
+        ripgrep
+        fd
+        ncdu
+        unzip
+        google-cloud-sdk
+        rclone
 
-      # c
-      gcc
-      clang-tools
+        # nix
+        rnix-lsp
+        nixfmt
 
-      # web
-      nodejs
-      nodePackages.vscode-langservers-extracted
-      nodePackages.typescript
-      (symlinkJoin {
-        name = "typescript-language-server";
-        paths = [ nodePackages.typescript-language-server ];
-        buildInputs = [ makeWrapper ];
-        postBuild = ''
-          wrapProgram $out/bin/typescript-language-server \
-            --add-flags --tsserver-path=${nodePackages.typescript}/lib/node_modules/typescript/lib/
+        # bash
+        nodePackages.bash-language-server
+
+        # c
+        gcc
+        clang-tools
+
+        # web
+        nodejs
+        nodePackages.vscode-langservers-extracted
+        nodePackages.typescript
+        (symlinkJoin {
+          name = "typescript-language-server";
+          paths = [ nodePackages.typescript-language-server ];
+          buildInputs = [ makeWrapper ];
+          postBuild = ''
+            wrapProgram $out/bin/typescript-language-server \
+              --add-flags --tsserver-path=${nodePackages.typescript}/lib/node_modules/typescript/lib/
+          '';
+        })
+
+        # python
+        python310
+        python310Packages.python-lsp-server
+
+        # haskell
+        ghc
+        cabal-install
+        haskell-language-server
+        haskellPackages.hoogle
+        ormolu
+
+        # coq
+        coq
+
+        # java
+        jdk17
+
+        # clojure
+        leiningen
+        clojure-lsp
+
+        # scala
+        sbt
+        metals
+
+        # rust
+        (rust-bin.stable."1.67.1".default.override {
+          targets = [ "wasm32-unknown-unknown" ];
+          extensions = [ "rust-src" "rust-analyzer-preview" ];
+        })
+        wasm-bindgen-cli
+
+        # yaml
+        nodePackages.yaml-language-server
+
+        # toml
+        taplo
+
+        (writeShellScriptBin "audio-to-video" (builtins.readFile ./bin/audio-to-video.sh))
+        (writeShellScriptBin "new-ssh-key" (builtins.readFile ./bin/new-ssh-key.sh))
+        (writeShellScriptBin "track-willos" (builtins.readFile ./bin/track-willos.sh))
+        (writeShellScriptBin "ydl" (builtins.readFile ./bin/ydl.sh))
+        (writeShellScriptBin "drive" (builtins.readFile ./bin/drive.sh))
+      ];
+      file = {
+        gitconfig = {
+          source = ./dot/gitconfig;
+          target = ".config/git/config";
+        };
+        ghci = {
+          source = ./dot/ghci;
+          target = ".ghci";
+        };
+        discord = {
+          source = ./dot/discord.json;
+          target = ".config/discord/settings.json";
+        };
+      };
+    };
+
+    programs = {
+      bash = {
+        enable = true;
+        historySize = -1;
+        historyFileSize = -1;
+        historyControl = [ "ignoredups" ];
+        initExtra = ''
+          stty -ixon
+          set enable-bracketed-paste on
         '';
-      })
-
-      # python
-      python310
-      python310Packages.python-lsp-server
-
-      # haskell
-      ghc
-      cabal-install
-      haskell-language-server
-      haskellPackages.hoogle
-      ormolu
-
-      # coq
-      coq
-
-      # clojure
-      leiningen
-      clojure-lsp
-
-      # scala
-      sbt
-      metals
-
-      # rust
-      (rust-bin.stable."1.67.1".default.override {
-        targets = [ "wasm32-unknown-unknown" ];
-        extensions = [ "rust-src" "rust-analyzer-preview" ];
-      })
-      wasm-bindgen-cli
-
-      # yaml
-      nodePackages.yaml-language-server
-
-      # toml
-      taplo
-    ];
-
-    programs.bash = {
-      enable = true;
-      historySize = -1;
-      historyFileSize = -1;
-      historyControl = [ "ignoredups" ];
-      shellAliases = {
-        diff = "git diff --no-index";
-        grep = "grep --color=auto";
-        ncdu = "ncdu --color off";
       };
-      initExtra = ''
-        stty -ixon
-        set enable-bracketed-paste on
-      '';
-    };
-
-    programs.firefox = {
-      enable = true;
-      profiles.will = { extraConfig = builtins.readFile ./dot/user.js; };
-    };
-
-    home.file = {
-      gitconfig = {
-        source = ./dot/gitconfig;
-        target = ".config/git/config";
-      };
-      ghci = {
-        source = ./dot/ghci;
-        target = ".ghci";
-      };
-      discord = {
-        source = ./dot/discord.json;
-        target = ".config/discord/settings.json";
+      firefox = {
+        enable = true;
+        profiles.will = { extraConfig = builtins.readFile ./dot/user.js; };
       };
     };
 
-    xdg.mimeApps = {
-      enable = true;
-      defaultApplications = {
-        "application/pdf" = "firefox.desktop";
-        "application/x-extension-htm" = "firefox.desktop";
-        "application/x-extension-html" = "firefox.desktop";
-        "application/x-extension-shtml" = "firefox.desktop";
-        "application/x-extension-xht" = "firefox.desktop";
-        "application/x-extension-xhtml" = "firefox.desktop";
-        "application/xhtml+xml" = "firefox.desktop";
-        "image/jpeg" = "firefox.desktop";
-        "image/png" = "firefox.desktop";
-        "text/html" = "firefox.desktop";
-        "text/uri-list" = "firefox.desktop";
-        "x-scheme-handler/chrome" = "firefox.desktop";
-        "x-scheme-handler/http" = "firefox.desktop";
-        "x-scheme-handler/https" = "firefox.desktop";
+    xdg = {
+      mimeApps = {
+        enable = true;
+        defaultApplications = {
+          "application/pdf" = "firefox.desktop";
+          "application/x-extension-htm" = "firefox.desktop";
+          "application/x-extension-html" = "firefox.desktop";
+          "application/x-extension-shtml" = "firefox.desktop";
+          "application/x-extension-xht" = "firefox.desktop";
+          "application/x-extension-xhtml" = "firefox.desktop";
+          "application/xhtml+xml" = "firefox.desktop";
+          "image/jpeg" = "firefox.desktop";
+          "image/png" = "firefox.desktop";
+          "text/html" = "firefox.desktop";
+          "text/uri-list" = "firefox.desktop";
+          "x-scheme-handler/chrome" = "firefox.desktop";
+          "x-scheme-handler/http" = "firefox.desktop";
+          "x-scheme-handler/https" = "firefox.desktop";
+        };
       };
+      configFile."mimeapps.list".force = true;
     };
-    xdg.configFile."mimeapps.list".force = true;
 
     dconf.settings = {
       "org/gnome/desktop/interface" = {
