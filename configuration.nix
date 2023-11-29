@@ -84,9 +84,6 @@ in
     };
   };
 
-  nixpkgs.config.allowUnfree = true;
-  programs.steam.enable = true;
-
   home-manager.users.will = { pkgs, lib, ... }: {
     home.stateVersion = version;
 
@@ -115,6 +112,7 @@ in
       discord
       blender
       kdenlive
+      steam
       prismlauncher
       flatpak
       lutris
