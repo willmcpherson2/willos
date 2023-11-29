@@ -77,21 +77,6 @@ in
     };
   };
 
-  users = {
-    mutableUsers = false;
-    users = {
-      root.hashedPassword = "!";
-      will = {
-        isNormalUser = true;
-        extraGroups = [
-          "wheel"
-          "jackaudio"
-        ];
-        hashedPassword = "$y$j9T$NSQIU.lIfojqrEcsuBjFn0$kBar4ZM7y40HXQgwMJnV58a8yW32Znpszu69yW0TH79";
-      };
-    };
-  };
-
   fonts = {
     fonts = [ (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; }) ];
     fontconfig = {
@@ -107,6 +92,21 @@ in
           </rejectfont>
         </selectfont>
       '';
+    };
+  };
+
+  users = {
+    mutableUsers = false;
+    users = {
+      root.hashedPassword = "!";
+      will = {
+        isNormalUser = true;
+        extraGroups = [
+          "wheel"
+          "jackaudio"
+        ];
+        hashedPassword = "$y$j9T$NSQIU.lIfojqrEcsuBjFn0$kBar4ZM7y40HXQgwMJnV58a8yW32Znpszu69yW0TH79";
+      };
     };
   };
 
