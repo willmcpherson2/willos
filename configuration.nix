@@ -110,5 +110,5 @@ in
     };
   };
 
-  home-manager.users.will = (import ./will) version;
+  home-manager.users.will = import ./will version;
 }
