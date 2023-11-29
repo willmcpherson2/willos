@@ -97,5 +97,5 @@ in
     };
   };
 
-  home-manager.users.will = (import ./will.nix) version;
+  home-manager.users.will = (import ./will) version;
 }
