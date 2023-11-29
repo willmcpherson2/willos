@@ -190,8 +190,7 @@ in
         rclone
 
         # nix
-        rnix-lsp
-        nixfmt
+        nil
 
         # bash
         nodePackages.bash-language-server
