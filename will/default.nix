@@ -230,6 +230,11 @@ in
       tap-to-click = true;
       tap-and-drag = false;
     };
+    "org/gnome/desktop/peripherals/mouse" = {
+      natural-scroll = true;
+      accel-profile = "flat";
+      speed = 0.5;
+    };
     "org/gnome/desktop/background" = {
       picture-uri =
         "file:///run/current-system/sw/share/backgrounds/gnome/dune-l.svg";
