@@ -14,6 +14,13 @@ Rebuild:
 sudo nixos-rebuild switch
 ```
 
+Build VM:
+
+```sh
+nixos-rebuild build-vm
+./result/bin/run-will-lap-vm
+```
+
 ## Emacs
 
 I'm using Emacs 30.0.50 via [emacs-overlay](https://github.com/nix-community/emacs-overlay).
