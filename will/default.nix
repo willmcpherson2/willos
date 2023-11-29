@@ -220,6 +220,9 @@ in
       text-scaling-factor = 1.25;
       enable-hot-corners = false;
     };
+    "org/gnome/gnome-system-monitor" = {
+      show-dependencies = true;
+    };
     "org/gnome/system/location" = {
       enabled = true;
     };
