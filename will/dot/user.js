@@ -8,6 +8,8 @@ user_pref("font.default.x-western", "sans-serif");
 user_pref("font.name.sans-serif.x-western", "sans-serif");
 user_pref("font.name.serif.x-western", "serif");
 user_pref("font.name.monospace.x-western", "monospace");
+user_pref("font.size.variable.x-western", 18);
+user_pref("font.size.monospace.x-western", 14);
 user_pref("findbar.highlightAll", true);
 user_pref("browser.aboutConfig.showWarning", false);
 user_pref("browser.zoom.full", false);
