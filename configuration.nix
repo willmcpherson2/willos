@@ -55,12 +55,17 @@ in
     gnome.core-utilities.enable = false;
     openssh.enable = true;
     ratbagd.enable = true;
-    jack = {
-      jackd.enable = true;
-      alsa.enable = false;
-      loopback.enable = true;
+    pipewire = {
+      enable = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
+      pulse.enable = true;
     };
   };
+  hardware.pulseaudio.enable = false;
+  security.rtkit.enable = true;
 
   virtualisation = {
     docker = {
