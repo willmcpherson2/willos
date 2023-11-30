@@ -21,10 +21,10 @@ declare -a folders=(
 
 if [ "$1" == "push" ]; then
     for folder in ${folders[@]}; do
-        rclone sync --interactive --create-empty-src-dirs "$folder" "drive-willmcpherson2:$folder"
+        rclone sync --create-empty-src-dirs "$folder" "drive-willmcpherson2:$folder"
     done
 elif [ "$1" == "pull" ]; then
     for folder in ${folders[@]}; do
-        rclone sync --interactive --create-empty-src-dirs "drive-willmcpherson2:$folder" "$folder"
+        rclone sync --create-empty-src-dirs "drive-willmcpherson2:$folder" "$folder"
     done
 fi
