@@ -37,6 +37,7 @@ in
       efi.canTouchEfiVariables = true;
     };
   };
+  powerManagement.cpuFreqGovernor = "performance";
 
   networking.hostName = "will-lap";
   time.timeZone = "Australia/Melbourne";
