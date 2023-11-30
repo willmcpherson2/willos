@@ -116,6 +116,10 @@ in
       python310
       python310Packages.python-lsp-server
 
+      # ruby
+      ruby
+      rubyPackages.solargraph
+
       # haskell
       ghc
       cabal-install
