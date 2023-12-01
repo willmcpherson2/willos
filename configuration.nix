@@ -107,10 +107,7 @@ in
       root.hashedPassword = "!";
       will = {
         isNormalUser = true;
-        extraGroups = [
-          "wheel"
-          "jackaudio"
-        ];
+        extraGroups = [ "wheel" ];
         hashedPassword = "$y$j9T$NSQIU.lIfojqrEcsuBjFn0$kBar4ZM7y40HXQgwMJnV58a8yW32Znpszu69yW0TH79";
       };
     };
