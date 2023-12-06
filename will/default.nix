@@ -266,6 +266,9 @@ in
     "org/gtk/settings/file-chooser" = {
       clock-format = "12h";
     };
+    "org/gnome/desktop/sound" = {
+      event-sounds = false;
+    };
     "org/gnome/shell/extensions/nightthemeswitcher/gtk-variants" = {
       enabled = true;
     };
