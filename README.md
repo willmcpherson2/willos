@@ -23,10 +23,4 @@ nixos-rebuild build-vm
 
 ## Emacs
 
-I'm using Emacs 30.0.50 via [emacs-overlay](https://github.com/nix-community/emacs-overlay).
-
-The overlay provides `emacsWithPackagesFromUsePackage`, which reads my [emacs.el](will/dot/emacs.el). Because I've enabled `alwaysEnsure` in Nix and `use-package-always-ensure` in Emacs, my config is declarative but will auto-install on other systems![1] If you add packages you must `nixos-rebuild`, but otherwise, you can just `M-x eval-buffer`.
-
-Read more about it [here](https://github.com/nix-community/emacs-overlay#extra-library-functionality)
-
-[1] I haven't tested this yet...
+[init.el](will/dot/init.el) and [early-init.el](will/dot/early-init.el) bootstrap [straight.el](https://github.com/radian-software/straight.el), so they can be used outside of Nix.
