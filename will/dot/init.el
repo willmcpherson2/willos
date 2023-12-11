@@ -33,6 +33,7 @@
   (load bootstrap-file nil 'nomessage))
 
 (straight-use-package 'use-package)
+(setq straight-use-package-by-default t)
 
 (use-package emacs
   :custom
@@ -71,7 +72,6 @@
 
 ;; load first
 
-(straight-use-package 'no-littering)
 (use-package no-littering
   :demand t
   :custom
@@ -82,10 +82,8 @@
 
 ;; icons
 
-(straight-use-package 'all-the-icons)
 (use-package all-the-icons)
 
-(straight-use-package 'all-the-icons-completion)
 (use-package all-the-icons-completion
   :after
   (marginalia all-the-icons)
@@ -94,31 +92,26 @@
   :config
   (all-the-icons-completion-mode))
 
-(straight-use-package 'all-the-icons-ibuffer)
 (use-package all-the-icons-ibuffer
   :hook
   (ibuffer-mode . all-the-icons-ibuffer-mode))
 
-(straight-use-package 'all-the-icons-dired)
 (use-package all-the-icons-dired
   :hook
   (dired-mode . all-the-icons-dired-mode))
 
 ;; ui
 
-(straight-use-package 'doom-themes)
 (use-package doom-themes
   :config
   (doom-themes-org-config))
 
-(straight-use-package 'doom-modeline)
 (use-package doom-modeline
   :custom
   (doom-modeline-buffer-file-name-style 'relative-from-project)
   :config
   (doom-modeline-mode 1))
 
-(straight-use-package 'auto-dark)
 (use-package auto-dark
   :custom
   (auto-dark-dark-theme 'doom-one)
@@ -134,17 +127,14 @@
   :config
   (setq project-find-functions '(project-try-vc make-transient-project)))
 
-(straight-use-package 'which-key)
 (use-package which-key
   :config
   (which-key-mode))
 
-(straight-use-package 'undo-tree)
 (use-package undo-tree
   :config
   (global-undo-tree-mode))
 
-(straight-use-package 'vertico)
 (use-package vertico
   :custom
   (vertico-cycle t)
@@ -152,29 +142,23 @@
   :config
   (vertico-mode))
 
-(straight-use-package 'orderless)
 (use-package orderless
   :custom
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
 
-(straight-use-package 'marginalia)
 (use-package marginalia
   :config
   (marginalia-mode))
 
-(straight-use-package 'embark)
 (use-package embark)
 
-(straight-use-package 'consult)
 (use-package consult)
 
-(straight-use-package 'embark-consult)
 (use-package embark-consult
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 
-(straight-use-package 'corfu)
 (use-package corfu
   :custom
   (corfu-auto t)
@@ -184,13 +168,10 @@
   (global-corfu-mode)
   (corfu-popupinfo-mode))
 
-(straight-use-package 'cape)
 (use-package cape)
 
-(straight-use-package 'magit)
 (use-package magit)
 
-(straight-use-package 'diff-hl)
 (use-package diff-hl
   :config
   (global-diff-hl-mode)
@@ -202,8 +183,9 @@
   :hook
   (eshell-mode . eat-eshell-mode))
 
-(straight-use-package
- '(eat :type git
+(use-package eat
+  :straight
+  (eat :type git
        :host codeberg
        :repo "akib/emacs-eat"
        :files ("*.el" ("term" "term/*.el") "*.texi"
@@ -211,11 +193,9 @@
                ("terminfo/65" "terminfo/65/*")
                ("integration" "integration/*")
                (:exclude ".dir-locals.el" "*-tests.el"))))
-(use-package eat)
 
 ;; languages
 
-(straight-use-package 'treesit-auto)
 (use-package treesit-auto
   :custom
   (treesit-auto-install t)
@@ -223,7 +203,6 @@
   (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode))
 
-(straight-use-package 'markdown-mode)
 (use-package markdown-mode)
 
 (use-package js
@@ -234,31 +213,24 @@
   :custom
   (css-indent-offset 2))
 
-(straight-use-package 'nix-mode)
 (use-package nix-mode)
 
-(straight-use-package 'haskell-mode)
 (use-package haskell-mode
   :custom
   (haskell-hoogle-command "hoogle -l"))
 
-(straight-use-package 'cider)
 (use-package cider)
 
-(straight-use-package 'scala-mode)
 (use-package scala-mode
   :interpreter
   ("scala" . scala-mode))
 
-(straight-use-package 'jinja2-mode)
 (use-package jinja2-mode)
 
-(straight-use-package 'proof-general)
 (use-package proof-general)
 
 ;; evil
 
-(straight-use-package 'evil)
 (use-package evil
   :custom
   (evil-search-module 'evil-search)
@@ -271,19 +243,16 @@
   (evil-set-undo-system 'undo-tree)
   (evil-mode 1))
 
-(straight-use-package 'evil-collection)
 (use-package evil-collection
   :config
   (evil-collection-init))
 
-(straight-use-package 'evil-org)
 (use-package evil-org
   :hook
   (org-mode . evil-org-mode))
 
 ;; leader key
 
-(straight-use-package 'general)
 (use-package general
   :config
   (general-define-key
