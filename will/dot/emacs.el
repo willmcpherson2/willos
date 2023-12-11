@@ -206,14 +206,6 @@
   :config
   (evil-collection-init))
 
-(use-package evil-mc
-  :config
-  (global-evil-mc-mode 1))
-
-(use-package evil-surround
-  :config
-  (global-evil-surround-mode 1))
-
 (use-package evil-org
   :hook
   (org-mode . evil-org-mode))
