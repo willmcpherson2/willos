@@ -216,8 +216,13 @@
 
 ;; languages
 
-(straight-use-package 'eglot)
-(use-package eglot)
+(straight-use-package 'treesit-auto)
+(use-package treesit-auto
+  :custom
+  (treesit-auto-install t)
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode))
 
 (straight-use-package 'markdown-mode)
 (use-package markdown-mode)

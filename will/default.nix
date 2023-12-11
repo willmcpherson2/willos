@@ -58,7 +58,7 @@ in
       })
 
       # emacs
-      emacs
+      emacs29
       emacs-all-the-icons-fonts
       (aspellWithDicts (dicts: with dicts; [
         en
