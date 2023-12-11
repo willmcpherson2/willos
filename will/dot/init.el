@@ -216,6 +216,9 @@
 
 ;; languages
 
+(straight-use-package 'eglot)
+(use-package eglot)
+
 (straight-use-package 'markdown-mode)
 (use-package markdown-mode)
 
