@@ -1,8 +1,5 @@
 version: { pkgs, lib, ... }:
 let
-  emacs-overlay = import
-    (fetchTarball
-      "https://github.com/nix-community/emacs-overlay/archive/4a14e8f79e91636cdfc4cecc3f12cdc4cfe57a60.tar.gz");
   rust-overlay = import
     (fetchTarball
       "https://github.com/oxalica/rust-overlay/archive/9dd940c967502f844eacea52a61e9596268d4f70.tar.gz");
@@ -11,7 +8,6 @@ in
   nixpkgs = {
     config = { allowUnfree = true; };
     overlays = [
-      emacs-overlay
       rust-overlay
     ];
   };
@@ -62,12 +58,7 @@ in
       })
 
       # emacs
-      (emacsWithPackagesFromUsePackage {
-        config = ./dot/emacs.el;
-        defaultInitFile = true;
-        alwaysEnsure = true;
-        package = emacsGit;
-      })
+      emacs
       emacs-all-the-icons-fonts
       (aspellWithDicts (dicts: with dicts; [
         en
@@ -165,6 +156,14 @@ in
         source = ./dot/gitconfig;
         target = ".config/git/config";
       };
+      emacs = {
+        source = ./dot/emacs.el;
+        target = ".emacs.d/init.el";
+      };
+      early = {
+        source = ./dot/early-init.el;
+        target = ".emacs.d/early-init.el";
+      };
       ghci = {
         source = ./dot/ghci;
         target = ".ghci";
@@ -185,6 +184,7 @@ in
       initExtra = ''
         stty -ixon
         set enable-bracketed-paste on
+        [ -n "$EAT_SHELL_INTEGRATION_DIR" ] && source "$EAT_SHELL_INTEGRATION_DIR/bash"
       '';
     };
     firefox = {
