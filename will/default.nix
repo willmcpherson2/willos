@@ -156,11 +156,11 @@ in
         source = ./dot/gitconfig;
         target = ".config/git/config";
       };
-      emacs = {
-        source = ./dot/emacs.el;
+      init-el = {
+        source = ./dot/init.el;
         target = ".emacs.d/init.el";
       };
-      early = {
+      early-init-el = {
         source = ./dot/early-init.el;
         target = ".emacs.d/early-init.el";
       };
