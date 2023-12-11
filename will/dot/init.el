@@ -34,8 +34,6 @@
 
 (straight-use-package 'use-package)
 
-(setq project-find-functions '(project-try-vc make-transient-project))
-
 (use-package emacs
   :custom
   (ring-bell-function 'ignore)
@@ -130,10 +128,11 @@
 
 ;; misc
 
-(straight-use-package 'project)
 (use-package project
   :custom
-  (project-switch-commands 'project-dired))
+  (project-switch-commands 'project-dired)
+  :config
+  (setq project-find-functions '(project-try-vc make-transient-project)))
 
 (straight-use-package 'which-key)
 (use-package which-key
