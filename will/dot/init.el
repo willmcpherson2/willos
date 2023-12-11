@@ -203,6 +203,12 @@
   (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode))
 
+(use-package copilot
+  :straight
+  (copilot :host github
+           :repo "zerolfx/copilot.el"
+           :files ("dist" "*.el")))
+
 (use-package markdown-mode)
 
 (use-package js
@@ -276,7 +282,9 @@
    "r" 'cape-history
    "n" 'evil-ex-nohighlight
 
+   "<return>" 'copilot-accept-completion
    "cs" 'eglot
+   "cg" 'copilot-mode
    "ca" 'eglot-code-actions
    "cr" 'eglot-rename
    "cf" 'eglot-format
