@@ -180,6 +180,9 @@
   (diff-hl-flydiff-mode))
 
 (use-package eshell
+  :custom
+  (eshell-history-size nil)
+  (eshell-hist-ignoredups t)
   :hook
   (eshell-mode . eat-eshell-mode))
 
