@@ -186,7 +186,6 @@ in
       initExtra = ''
         stty -ixon
         set enable-bracketed-paste on
-        [ -n "$EAT_SHELL_INTEGRATION_DIR" ] && source "$EAT_SHELL_INTEGRATION_DIR/bash"
       '';
     };
     firefox = {

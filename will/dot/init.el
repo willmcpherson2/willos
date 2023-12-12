@@ -179,23 +179,9 @@
   (diff-hl-dired-mode)
   (diff-hl-flydiff-mode))
 
-(use-package eshell
-  :custom
-  (eshell-history-size nil)
-  (eshell-hist-ignoredups t)
-  :hook
-  (eshell-mode . eat-eshell-mode))
-
-(use-package eat
-  :straight
-  (eat :type git
-       :host codeberg
-       :repo "akib/emacs-eat"
-       :files ("*.el" ("term" "term/*.el") "*.texi"
-               "*.ti" ("terminfo/e" "terminfo/e/*")
-               ("terminfo/65" "terminfo/65/*")
-               ("integration" "integration/*")
-               (:exclude ".dir-locals.el" "*-tests.el"))))
+(use-package coterm
+  :config
+  (coterm-mode))
 
 ;; languages
 
@@ -281,7 +267,7 @@
    "d" 'project-dired
    "/" 'consult-ripgrep
    "p" 'project-switch-project
-   "s" 'project-eshell
+   "s" 'project-shell
    "r" 'cape-history
    "n" 'evil-ex-nohighlight
 
