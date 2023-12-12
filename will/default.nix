@@ -77,6 +77,8 @@ in
 
       # cli
       git
+      gh
+      xclip
       file
       tree
       cloc
