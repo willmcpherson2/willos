@@ -16,3 +16,4 @@ user_pref("browser.zoom.full", false);
 user_pref("reader.content_width", 8);
 user_pref("extensions.pocket.enabled", false);
 user_pref("browser.tabs.closeWindowWithLastTab", false);
+user_pref("browser.newtabpage.activity-stream.feeds.section.highlights", false);
