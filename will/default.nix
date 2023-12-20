@@ -1,5 +1,9 @@
 version: { pkgs, lib, ... }:
 let
+  r2modman = import
+    (fetchTarball
+      "https://github.com/NixOS/nixpkgs/archive/3c2891e4e4fe7e13d56d9399239b5f5d55055128.tar.gz")
+    { };
   rust-overlay = import
     (fetchTarball
       "https://github.com/oxalica/rust-overlay/archive/9dd940c967502f844eacea52a61e9596268d4f70.tar.gz");
@@ -56,6 +60,7 @@ in
         wineRelease = "staging";
         mingwSupport = true;
       })
+      r2modman.r2modman
 
       # emacs
       emacs29
