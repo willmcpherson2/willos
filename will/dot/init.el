@@ -62,8 +62,8 @@
 
 (use-package auto-dark
   :custom
-  (auto-dark-dark-theme 'modus-vivendi)
-  (auto-dark-light-theme 'modus-operandi)
+  (auto-dark-dark-theme 'modus-vivendi-tinted)
+  (auto-dark-light-theme 'modus-operandi-tinted)
   :config
   (auto-dark-mode t))
 
