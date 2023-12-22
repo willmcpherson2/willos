@@ -23,25 +23,14 @@
 
 ;; emacs
 
-(defun relative-line-numbers ()
-  (setq display-line-numbers 'relative))
-
-(defun fixed-indent ()
-  (local-set-key (kbd "TAB") 'self-insert-command))
-
 (use-package emacs
   :custom
   (ring-bell-function 'ignore)
   (enable-recursive-minibuffers t)
-  (dired-listing-switches "-DAhl")
   (initial-major-mode 'text-mode)
   (initial-scratch-message "")
   (indent-tabs-mode nil)
   (tab-width 2)
-  :hook
-  (prog-mode . relative-line-numbers)
-  (text-mode . fixed-indent)
-  (text-mode . relative-line-numbers)
   :config
   (scroll-bar-mode -1)
   (tool-bar-mode -1)
@@ -63,42 +52,18 @@
   :config
   (no-littering-theme-backups))
 
-;; icons
-
-(use-package all-the-icons)
-
-(use-package all-the-icons-completion
-  :after
-  (marginalia all-the-icons)
-  :hook
-  (marginalia-mode . all-the-icons-completion-marginalia-setup)
-  :config
-  (all-the-icons-completion-mode))
-
-(use-package all-the-icons-ibuffer
-  :hook
-  (ibuffer-mode . all-the-icons-ibuffer-mode))
-
-(use-package all-the-icons-dired
-  :hook
-  (dired-mode . all-the-icons-dired-mode))
-
 ;; ui
 
-(use-package doom-themes
-  :config
-  (doom-themes-org-config))
+(use-package modus-themes)
 
-(use-package doom-modeline
-  :custom
-  (doom-modeline-buffer-file-name-style 'relative-from-project)
+(use-package mood-line
   :config
-  (doom-modeline-mode 1))
+  (mood-line-mode))
 
 (use-package auto-dark
   :custom
-  (auto-dark-dark-theme 'doom-one)
-  (auto-dark-light-theme 'doom-one-light)
+  (auto-dark-dark-theme 'modus-vivendi)
+  (auto-dark-light-theme 'modus-operandi)
   :config
   (auto-dark-mode t))
 
@@ -119,8 +84,7 @@
 (use-package project
   :custom
   (project-switch-commands 'project-dired)
-  :config
-  (setq project-find-functions '(project-try-vc make-transient-project)))
+  (project-find-functions '(project-try-vc make-transient-project)))
 
 (use-package which-key
   :config
@@ -167,12 +131,13 @@
 
 (use-package magit)
 
-(use-package diff-hl
+(use-package git-gutter
+  :custom
+  (git-gutter:modified-sign " ")
+  (git-gutter:added-sign " ")
+  (git-gutter:deleted-sign " ")
   :config
-  (global-diff-hl-mode)
-  (global-diff-hl-show-hunk-mouse-mode)
-  (diff-hl-dired-mode)
-  (diff-hl-flydiff-mode))
+  (global-git-gutter-mode +1))
 
 (use-package coterm
   :config
@@ -180,17 +145,9 @@
 
 ;; languages
 
-(defun errors-then-docs ()
-  (setq eldoc-documentation-functions
-        (cons #'flymake-eldoc-function
-              (remove #'flymake-eldoc-function eldoc-documentation-functions)))
-  (setq eldoc-documentation-strategy #'eldoc-documentation-compose))
-
 (use-package eldoc
   :custom
-  (eldoc-echo-area-prefer-doc-buffer t)
-  :hook
-  (eldoc-mode . errors-then-docs))
+  (eldoc-echo-area-prefer-doc-buffer t))
 
 (use-package flymake
   :custom
