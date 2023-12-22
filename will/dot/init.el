@@ -38,26 +38,16 @@
 (use-package emacs
   :custom
   (ring-bell-function 'ignore)
-  (warning-minimum-level :error)
   (enable-recursive-minibuffers t)
-  (eglot-confirm-server-initiated-edits nil)
-  (eldoc-echo-area-prefer-doc-buffer t)
   (dired-listing-switches "-DAhl")
-  (global-auto-revert-non-file-buffers t)
-  (flymake-fringe-indicator-position nil)
   (initial-major-mode 'text-mode)
   (initial-scratch-message "")
-  (org-latex-compiler "lualatex")
-  (org-preview-latex-default-process 'dvisvgm)
   (indent-tabs-mode nil)
   (tab-width 2)
   :hook
-  (prog-mode . flymake-mode)
   (prog-mode . relative-line-numbers)
   (text-mode . fixed-indent)
   (text-mode . relative-line-numbers)
-  (eldoc-mode . errors-then-docs)
-  (org-mode . org-indent-mode)
   :config
   (scroll-bar-mode -1)
   (tool-bar-mode -1)
@@ -67,8 +57,7 @@
   (add-to-list 'default-frame-alist '(font . "JetBrainsMono Nerd Font-14"))
   (set-fringe-mode 4)
   (column-number-mode 1)
-  (fset 'yes-or-no-p 'y-or-n-p)
-  (global-auto-revert-mode 1))
+  (fset 'yes-or-no-p 'y-or-n-p))
 
 ;; load first
 
@@ -120,6 +109,15 @@
   (auto-dark-mode t))
 
 ;; misc
+
+(use-package warnings
+  :custom
+  (warning-minimum-level :error))
+
+(use-package autorevert
+  :custom
+  (global-auto-revert-non-file-buffers t)
+  (global-auto-revert-mode 1))
 
 (use-package project
   :custom
@@ -185,6 +183,18 @@
 
 ;; languages
 
+(use-package eldoc
+  :custom
+  (eldoc-echo-area-prefer-doc-buffer t)
+  :hook
+  (eldoc-mode . errors-then-docs))
+
+(use-package flymake
+  :custom
+  (flymake-fringe-indicator-position nil)
+  :hook
+  (prog-mode . flymake-mode))
+
 (use-package treesit-auto
   :custom
   (treesit-auto-install t)
@@ -197,6 +207,13 @@
   (copilot :host github
            :repo "zerolfx/copilot.el"
            :files ("dist" "*.el")))
+
+(use-package org
+  :custom
+  (org-latex-compiler "lualatex")
+  (org-preview-latex-default-process 'dvisvgm)
+  :hook
+  (org-mode . org-indent-mode))
 
 (use-package markdown-mode)
 
