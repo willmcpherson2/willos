@@ -84,7 +84,8 @@
 (use-package project
   :custom
   (project-switch-commands 'project-dired)
-  (project-find-functions '(project-try-vc make-transient-project)))
+  :config
+  (setq project-find-functions '(project-try-vc make-transient-project)))
 
 (use-package which-key
   :config
