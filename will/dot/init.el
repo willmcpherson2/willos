@@ -1,21 +1,7 @@
 ;;; -*- lexical-binding: t -*-
 
-(defun errors-then-docs ()
-  (setq eldoc-documentation-functions
-        (cons #'flymake-eldoc-function
-              (remove #'flymake-eldoc-function eldoc-documentation-functions)))
-  (setq eldoc-documentation-strategy #'eldoc-documentation-compose))
+;; straight
 
-(defun relative-line-numbers ()
-  (setq display-line-numbers 'relative))
-
-(defun fixed-indent ()
-  (local-set-key (kbd "TAB") 'self-insert-command))
-
-(defun make-transient-project (dir)
-  (cons 'transient (expand-file-name dir)))
-
-;; straight.el boostrap
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name
@@ -34,6 +20,14 @@
 
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t)
+
+;; emacs
+
+(defun relative-line-numbers ()
+  (setq display-line-numbers 'relative))
+
+(defun fixed-indent ()
+  (local-set-key (kbd "TAB") 'self-insert-command))
 
 (use-package emacs
   :custom
@@ -119,6 +113,9 @@
   (global-auto-revert-non-file-buffers t)
   (global-auto-revert-mode 1))
 
+(defun make-transient-project (dir)
+  (cons 'transient (expand-file-name dir)))
+
 (use-package project
   :custom
   (project-switch-commands 'project-dired)
@@ -182,6 +179,12 @@
   (coterm-mode))
 
 ;; languages
+
+(defun errors-then-docs ()
+  (setq eldoc-documentation-functions
+        (cons #'flymake-eldoc-function
+              (remove #'flymake-eldoc-function eldoc-documentation-functions)))
+  (setq eldoc-documentation-strategy #'eldoc-documentation-compose))
 
 (use-package eldoc
   :custom
