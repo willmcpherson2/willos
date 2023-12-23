@@ -128,8 +128,6 @@
   (global-corfu-mode)
   (corfu-popupinfo-mode))
 
-(use-package cape)
-
 (use-package magit)
 
 (use-package git-gutter
@@ -234,22 +232,31 @@
    :prefix "SPC"
    :non-normal-prefix "C-SPC"
 
+   "i" 'ibuffer
+   "w" 'save-buffer
+   "k" 'kill-this-buffer
    "a" 'embark-act
    "e" 'embark-export
-   "i" 'ibuffer
-   "k" 'kill-this-buffer
    "q" 'evil-quit
-   "w" 'save-buffer
+   "n" 'evil-ex-nohighlight
+   "r" 'consult-history
+   "y" 'consult-yank-from-kill-ring
+   "g" 'magit-status
+   "l" 'consult-line
+   "/" 'consult-ripgrep
+   "<return>" 'copilot-accept-completion
+
+   "p" 'project-switch-project
+   "d" 'project-dired
+   "s" 'project-shell
    "b" 'consult-project-buffer
    "f" 'project-find-file
-   "d" 'project-dired
-   "/" 'consult-ripgrep
-   "p" 'project-switch-project
-   "s" 'project-shell
-   "r" 'cape-history
-   "n" 'evil-ex-nohighlight
 
-   "<return>" 'copilot-accept-completion
+   "td" 'dired
+   "ts" 'shell
+   "tb" 'consult-buffer
+   "tf" 'find-file
+
    "cs" 'eglot
    "cg" 'copilot-mode
    "ca" 'eglot-code-actions
