@@ -78,6 +78,12 @@
   (global-auto-revert-non-file-buffers t)
   (global-auto-revert-mode 1))
 
+(use-package display-line-numbers
+  :custom
+  (display-line-numbers-type 'relative)
+  :config
+  (global-display-line-numbers-mode))
+
 (defun make-transient-project (dir)
   (cons 'transient (expand-file-name dir)))
 
