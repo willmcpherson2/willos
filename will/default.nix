@@ -1,5 +1,9 @@
 version: { pkgs, lib, ... }:
 let
+  nixos-23-11 = import
+    (fetchTarball
+      "https://github.com/NixOS/nixpkgs/archive/nixos-23.11.tar.gz")
+    { };
   r2modman = import
     (fetchTarball
       "https://github.com/NixOS/nixpkgs/archive/3c2891e4e4fe7e13d56d9399239b5f5d55055128.tar.gz")
@@ -119,11 +123,11 @@ in
       rubyPackages.solargraph
 
       # haskell
-      ghc
-      cabal-install
-      haskell-language-server
-      haskellPackages.hoogle
-      ormolu
+      nixos-23-11.haskell.compiler.ghc96
+      nixos-23-11.cabal-install
+      (nixos-23-11.haskell-language-server.override { supportedGhcVersions = [ "96" ]; })
+      nixos-23-11.haskellPackages.hoogle
+      nixos-23-11.ormolu
 
       # coq
       coq
