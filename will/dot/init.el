@@ -38,8 +38,6 @@
   (menu-bar-mode -1)
   (add-to-list 'default-frame-alist '(fullscreen . maximized))
   (add-to-list 'default-frame-alist '(font . "JetBrainsMono Nerd Font-14"))
-  (set-fringe-mode 4)
-  (column-number-mode 1)
   (fset 'yes-or-no-p 'y-or-n-p))
 
 ;; load first
