@@ -204,6 +204,8 @@
 
 (use-package proof-general)
 
+(use-package glsl-mode)
+
 ;; evil
 
 (use-package evil
