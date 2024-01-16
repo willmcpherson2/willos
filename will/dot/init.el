@@ -31,6 +31,7 @@
   (initial-scratch-message "")
   (indent-tabs-mode nil)
   (tab-width 2)
+  (fill-column 80)
   :config
   (scroll-bar-mode -1)
   (tool-bar-mode -1)
