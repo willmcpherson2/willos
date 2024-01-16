@@ -86,6 +86,7 @@ in
 
       # cli
       git
+      git-lfs
       gh
       xclip
       file
