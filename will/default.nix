@@ -10,7 +10,7 @@ let
     { };
   rust-overlay = import
     (fetchTarball
-      "https://github.com/oxalica/rust-overlay/archive/9dd940c967502f844eacea52a61e9596268d4f70.tar.gz");
+      "https://github.com/oxalica/rust-overlay/archive/e36f66bb10b09f5189dc3b1706948eaeb9a1c555.tar.gz");
 in
 {
   nixpkgs = {
@@ -145,11 +145,10 @@ in
       metals
 
       # rust
-      (rust-bin.stable."1.67.1".default.override {
+      (rust-bin.stable."1.75.0".default.override {
         targets = [ "wasm32-unknown-unknown" ];
         extensions = [ "rust-src" "rust-analyzer-preview" ];
       })
-      wasm-bindgen-cli
 
       # yaml
       nodePackages.yaml-language-server
