@@ -147,6 +147,10 @@
   :config
   (coterm-mode))
 
+(use-package envrc
+  :config
+  (envrc-global-mode))
+
 ;; languages
 
 (use-package eldoc

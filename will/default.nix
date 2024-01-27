@@ -197,6 +197,11 @@ in
         set enable-bracketed-paste on
       '';
     };
+    direnv = {
+      enable = true;
+      enableBashIntegration = true;
+      nix-direnv.enable = true;
+    };
     firefox = {
       enable = true;
       profiles.will = { extraConfig = builtins.readFile ./dot/user.js; };
