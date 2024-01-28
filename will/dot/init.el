@@ -135,14 +135,6 @@
 
 (use-package magit)
 
-(use-package git-gutter
-  :custom
-  (git-gutter:modified-sign " ")
-  (git-gutter:added-sign " ")
-  (git-gutter:deleted-sign " ")
-  :config
-  (global-git-gutter-mode +1))
-
 (use-package coterm
   :config
   (coterm-mode))
