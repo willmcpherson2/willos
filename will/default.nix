@@ -60,15 +60,10 @@ in
       flatpak
       lutris
       winetricks
-      (wineWowPackages.full.override {
-        wineRelease = "staging";
-        mingwSupport = true;
-      })
       r2modman.r2modman
 
       # emacs
       emacs29
-      emacs-all-the-icons-fonts
       (aspellWithDicts (dicts: with dicts; [
         en
         en-computers
