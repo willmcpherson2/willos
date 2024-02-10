@@ -78,6 +78,8 @@ in
           hyperref
           capt-of;
       })
+      libvterm
+      emacsPackages.vterm
 
       # cli
       git

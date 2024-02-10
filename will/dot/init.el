@@ -135,9 +135,7 @@
 
 (use-package magit)
 
-(use-package coterm
-  :config
-  (coterm-mode))
+(use-package vterm)
 
 (use-package envrc
   :config
@@ -257,6 +255,7 @@
 
    "td" 'dired
    "ts" 'shell
+   "tv" 'vterm
    "tb" 'consult-buffer
    "tf" 'find-file
 
