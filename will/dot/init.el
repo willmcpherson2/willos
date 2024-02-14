@@ -195,6 +195,14 @@
   :interpreter
   ("scala" . scala-mode))
 
+(use-package robe
+  :hook
+  (ruby-ts-mode . robe-mode))
+
+(use-package inf-ruby
+  :hook
+  (ruby-ts-mode . inf-ruby-minor-mode))
+
 (use-package jinja2-mode)
 
 (use-package proof-general)
