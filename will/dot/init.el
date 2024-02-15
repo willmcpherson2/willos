@@ -166,6 +166,15 @@
            :repo "zerolfx/copilot.el"
            :files ("dist" "*.el")))
 
+(use-package async-await)
+(use-package websocket)
+(use-package aichat
+  :straight
+  (:type git :host github :repo "xhcoding/emacs-aichat" :files ("*"))
+  :custom
+  (aichat-bingai-cookies-file "~/.bingai-cookie.json")
+  (aichat-bingai-conversation-style 'precise))
+
 (use-package org
   :custom
   (org-latex-compiler "lualatex")
