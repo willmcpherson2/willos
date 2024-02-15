@@ -63,23 +63,13 @@ in
       r2modman.r2modman
 
       # emacs
-      emacs29
-      (aspellWithDicts (dicts: with dicts; [
-        en
-        en-computers
-        en-science
-      ]))
-      (texlive.combine {
-        inherit (texlive)
-          scheme-full
-          wrapfig
-          amsmath
-          ulem
-          hyperref
-          capt-of;
-      })
-      libvterm
+      nixos-23-11.emacs29
+      emacs-all-the-icons-fonts
       emacsPackages.vterm
+      hunspell
+      languagetool
+      pandoc
+      python310Packages.grip
 
       # cli
       git
@@ -111,6 +101,9 @@ in
       nodePackages.vscode-langservers-extracted
       nodePackages.typescript
       nodePackages.typescript-language-server
+
+      # docker
+      nodePackages.dockerfile-language-server-nodejs
 
       # python
       python310
@@ -164,13 +157,9 @@ in
         source = ./dot/gitconfig;
         target = ".config/git/config";
       };
-      init-el = {
-        source = ./dot/init.el;
-        target = ".emacs.d/init.el";
-      };
-      early-init-el = {
-        source = ./dot/early-init.el;
-        target = ".emacs.d/early-init.el";
+      doom = {
+        source = ./dot/doom;
+        target = ".config/doom";
       };
       ghci = {
         source = ./dot/ghci;
@@ -192,6 +181,7 @@ in
       initExtra = ''
         stty -ixon
         set enable-bracketed-paste on
+        export PATH="$HOME/.config/emacs/bin:$PATH"
       '';
     };
     direnv = {

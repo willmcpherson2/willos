@@ -23,4 +23,4 @@ nixos-rebuild build-vm
 
 ## Emacs
 
-[init.el](will/dot/init.el) and [early-init.el](will/dot/early-init.el) bootstrap [straight.el](https://github.com/radian-software/straight.el), so they can be used outside of Nix.
+I [install](https://github.com/doomemacs/doomemacs#install) Doom Emacs imperatively. All configuration files and system dependencies are installed declaratively.
