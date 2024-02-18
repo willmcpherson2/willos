@@ -7,7 +7,7 @@
 
 (setq-default tab-width 2)
 (setq display-line-numbers-type 'relative
-      doom-font (font-spec :family "JetBrains Mono" :size 24))
+      doom-font (font-spec :family "JetBrains Mono" :size 22))
 
 (setq aichat-bingai-cookies-file "~/.bingai-cookie.json"
       aichat-bingai-conversation-style 'precise)
