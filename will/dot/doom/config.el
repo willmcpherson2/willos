@@ -1,8 +1,13 @@
 ;;; -*- lexical-binding: t; -*-
 
+(if (featurep :system 'macos)
+    (setq mac-command-modifier 'control
+          mac-control-modifier 'meta
+          auto-dark-allow-osascript t))
+
 (setq-default tab-width 2)
 (setq display-line-numbers-type 'relative
-      doom-font (font-spec :family "JetBrainsMonoNL Nerd Font" :size 24))
+      doom-font (font-spec :family "JetBrains Mono" :size 24))
 
 (setq aichat-bingai-cookies-file "~/.bingai-cookie.json"
       aichat-bingai-conversation-style 'precise)
