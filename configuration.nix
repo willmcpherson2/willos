@@ -83,23 +83,7 @@ in
     };
   };
 
-  fonts = {
-    fonts = [ (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; }) ];
-    fontconfig = {
-      defaultFonts = { monospace = [ "JetBrainsMonoNL Nerd Font Mono" ]; };
-      localConf = ''
-        <selectfont>
-          <rejectfont>
-            <pattern>
-              <patelt name="family">
-                <string>TeX Gyre Heros</string>
-              </patelt>
-            </pattern>
-          </rejectfont>
-        </selectfont>
-      '';
-    };
-  };
+  fonts.fonts = [ pkgs.jetbrains-mono ];
 
   users = {
     mutableUsers = false;
