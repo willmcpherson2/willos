@@ -11,7 +11,8 @@
       auto-dark-light-theme 'doom-one-light)
 (auto-dark-mode 1)
 
-(setq evil-want-minibuffer t)
+(setq evil-want-minibuffer t
+      evil-goggles-duration 0.5)
 
 (setq doom-leader-alt-key "C-SPC")
 (map! :leader

@@ -6,7 +6,10 @@
 
        :ui
        doom
+       indent-guides
        modeline
+       ophints
+       vc-gutter
 
        :editor
        (evil +everywhere)
