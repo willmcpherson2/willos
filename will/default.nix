@@ -2,7 +2,7 @@ version: { pkgs, lib, ... }:
 let
   nixos-23-11 = import
     (fetchTarball
-      "https://github.com/NixOS/nixpkgs/archive/nixos-23.11.tar.gz")
+      "https://github.com/NixOS/nixpkgs/archive/23.11.tar.gz")
     { };
   r2modman = import
     (fetchTarball
