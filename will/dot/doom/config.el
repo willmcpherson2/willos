@@ -19,6 +19,12 @@
 (setq evil-want-minibuffer t
       evil-goggles-duration 0.5)
 
+(setq js-indent-level 2)
+
+(setq projectile-switch-project-action #'projectile-dired)
+
+(remove-hook 'doom-first-buffer-hook #'smartparens-global-mode)
+
 (setq doom-leader-alt-key "C-SPC")
 (map! :leader
       :desc "Open project shell"
