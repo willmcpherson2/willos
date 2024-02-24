@@ -27,13 +27,10 @@
 
 (setq doom-leader-alt-key "C-SPC")
 (map! :leader
-      :desc "Open project shell"
       "p s" #'project-shell
-      :desc "Open project vterm"
       "p v" #'projectile-run-vterm
-      :desc "Search command history"
       "r" #'consult-history
-      :desc "Toggle copilot mode"
+      "c d" #'consult-lsp-diagnostics
       "c c" #'copilot-mode
-      :desc "Accept copilot completion"
+      "TAB" #'completion-at-point
       "RET" #'copilot-accept-completion)

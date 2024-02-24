@@ -1,12 +1,10 @@
 ;;; -*- lexical-binding: t; -*-
 
 (doom! :completion
-       company
        (vertico +icons)
 
        :ui
        doom
-       indent-guides
        modeline
        ophints
        vc-gutter
