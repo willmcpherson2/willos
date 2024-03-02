@@ -1,34 +1,23 @@
-version: { pkgs, lib, ... }:
-let
-  nixos-23-11 = import
-    (fetchTarball
-      "https://github.com/NixOS/nixpkgs/archive/23.11.tar.gz")
-    { };
-  r2modman = import
-    (fetchTarball
-      "https://github.com/NixOS/nixpkgs/archive/3c2891e4e4fe7e13d56d9399239b5f5d55055128.tar.gz")
-    { };
-  rust-overlay = import
-    (fetchTarball
-      "https://github.com/oxalica/rust-overlay/archive/e36f66bb10b09f5189dc3b1706948eaeb9a1c555.tar.gz");
-in
 {
+  inputs,
+  lib,
+  pkgs,
+  ...
+}: {
   nixpkgs = {
-    config = { allowUnfree = true; };
-    overlays = [
-      rust-overlay
-    ];
+    config.allowUnfree = true;
+    overlays = [ inputs.rust-overlay.overlays.default ];
   };
 
   home = {
-    stateVersion = version;
+    stateVersion = "23.05";
 
     packages = with pkgs; [
       # gnome
       gnome.gnome-system-monitor
       gnome.nautilus
       gnomeExtensions.night-theme-switcher
-      gnomeExtensions.emoji-selector
+      gnomeExtensions.emoji-copy
 
       # media
       ffmpeg
@@ -60,16 +49,15 @@ in
       flatpak
       lutris
       winetricks
-      r2modman.r2modman
 
       # emacs
-      nixos-23-11.emacs29
+      emacs29
       emacs-all-the-icons-fonts
       emacsPackages.vterm
       hunspell
       languagetool
       pandoc
-      python310Packages.grip
+      python311Packages.grip
 
       # cli
       git
@@ -106,22 +94,18 @@ in
       nodePackages.dockerfile-language-server-nodejs
 
       # python
-      python310
-      python310Packages.python-lsp-server
+      python3
 
       # ruby
       ruby
       rubyPackages.solargraph
 
       # haskell
-      nixos-23-11.haskell.compiler.ghc96
-      nixos-23-11.cabal-install
-      (nixos-23-11.haskell-language-server.override { supportedGhcVersions = [ "96" ]; })
-      nixos-23-11.haskellPackages.hoogle
-      nixos-23-11.ormolu
-
-      # coq
-      coq
+      haskell.compiler.ghc96
+      cabal-install
+      (haskell-language-server.override { supportedGhcVersions = [ "96" ]; })
+      haskellPackages.hoogle
+      ormolu
 
       # java
       jdk17
@@ -130,12 +114,8 @@ in
       leiningen
       clojure-lsp
 
-      # scala
-      sbt
-      metals
-
       # rust
-      (rust-bin.stable."1.75.0".default.override {
+      (rust-bin.stable.latest.default.override {
         targets = [ "wasm32-unknown-unknown" ];
         extensions = [ "rust-src" "rust-analyzer-preview" ];
       })
@@ -256,7 +236,7 @@ in
     "org/gnome/shell" = {
       enabled-extensions = [
         "nightthemeswitcher@romainvigier.fr"
-        "emoji-selector@maestroschan.fr"
+        "emoji-copy@felipeftn"
       ];
     };
     "org/gnome/settings-daemon/plugins/color" = {

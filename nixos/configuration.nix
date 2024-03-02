@@ -1,13 +1,29 @@
-{ config, pkgs, ... }:
-let
-  version = "23.05";
-  nixos-hardware = fetchTarball
-    "https://github.com/NixOS/nixos-hardware/archive/b006ec52fce23b1d57f6ab4a42d7400732e9a0a2.tar.gz";
-  home-manager = fetchTarball
-    "https://github.com/nix-community/home-manager/archive/release-${version}.tar.gz";
-in
 {
+  inputs,
+  lib,
+  pkgs,
+  config,
+  ...
+}: {
+  system.stateVersion = "23.05";
+
+  imports = [
+    ./hardware-configuration.nix
+    inputs.nixos-hardware.nixosModules.lenovo-thinkpad-l14-amd
+  ];
+
+  nix.registry = (lib.mapAttrs (_: flake: { inherit flake; })) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
+  nix.nixPath = ["/etc/nix/path"];
+  environment.etc =
+    lib.mapAttrs'
+    (name: value: {
+      name = "nix/path/${name}";
+      value.source = value.flake;
+    })
+    config.nix.registry;
+
   nix.settings = {
+    auto-optimise-store = true;
     experimental-features = [
       "nix-command"
       "flakes"
@@ -21,14 +37,6 @@ in
       "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI="
     ];
   };
-
-  system.stateVersion = version;
-
-  imports = [
-    ./hardware-configuration.nix
-    "${nixos-hardware}/lenovo/thinkpad/l14/amd"
-    "${home-manager}/nixos"
-  ];
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
@@ -83,7 +91,7 @@ in
     };
   };
 
-  fonts.fonts = [ pkgs.jetbrains-mono ];
+  fonts.packages = [ pkgs.jetbrains-mono ];
 
   users = {
     mutableUsers = false;
@@ -96,6 +104,4 @@ in
       };
     };
   };
-
-  home-manager.users.will = import ./will version;
 }
