@@ -226,9 +226,9 @@
     };
     "org/gnome/desktop/background" = {
       picture-uri =
-        "file:///run/current-system/sw/share/backgrounds/gnome/dune-l.svg";
+        "file:///run/current-system/sw/share/backgrounds/gnome/morphogenesis-l.svg";
       picture-uri-dark =
-        "file:///run/current-system/sw/share/backgrounds/gnome/dune-d.svg";
+        "file:///run/current-system/sw/share/backgrounds/gnome/morphogenesis-d.svg";
     };
     "org/gnome/desktop/session" = {
       idle-delay = lib.hm.gvariant.mkUint32 0;
