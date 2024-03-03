@@ -72,7 +72,10 @@
       pulse.enable = true;
     };
   };
-  hardware.pulseaudio.enable = false;
+  hardware = {
+    pulseaudio.enable = false;
+    i2c.enable = true;
+  };
   security.rtkit.enable = true;
 
   virtualisation = {
@@ -99,7 +102,7 @@
       root.hashedPassword = "!";
       will = {
         isNormalUser = true;
-        extraGroups = [ "wheel" ];
+        extraGroups = [ "wheel" "i2c" ];
         hashedPassword = "$y$j9T$NSQIU.lIfojqrEcsuBjFn0$kBar4ZM7y40HXQgwMJnV58a8yW32Znpszu69yW0TH79";
       };
     };

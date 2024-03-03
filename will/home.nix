@@ -18,6 +18,7 @@
       gnome.nautilus
       gnomeExtensions.night-theme-switcher
       gnomeExtensions.emoji-copy
+      gnomeExtensions.brightness-control-using-ddcutil
 
       # media
       ffmpeg
@@ -42,6 +43,7 @@
       libratbag
       piper
       qmk
+      ddcutil
 
       # gaming
       steam
@@ -237,6 +239,7 @@
       enabled-extensions = [
         "nightthemeswitcher@romainvigier.fr"
         "emoji-copy@felipeftn"
+        "display-brightness-ddcutil@themightydeity.github.com"
       ];
     };
     "org/gnome/settings-daemon/plugins/color" = {
@@ -258,6 +261,10 @@
       always-enable-ondemand = true;
       nightlight-follow-disable = true;
       manual-schedule = false;
+    };
+    "org/gnome/shell/extensions/display-brightness-ddcutil" = {
+      ddcutil-binary-path = "/etc/profiles/per-user/will/bin/ddcutil";
+      show-value-label = true;
     };
   };
 }
