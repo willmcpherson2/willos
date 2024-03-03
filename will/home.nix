@@ -201,6 +201,25 @@
   };
 
   dconf.settings = {
+    "org/gnome/shell" = {
+      enabled-extensions = [
+        "nightthemeswitcher@romainvigier.fr"
+        "emoji-copy@felipeftn"
+        "display-brightness-ddcutil@themightydeity.github.com"
+      ];
+    };
+    "org/gnome/shell/extensions/nightthemeswitcher/gtk-variants" = {
+      enabled = true;
+    };
+    "org/gnome/shell/extensions/nightthemeswitcher/time" = {
+      always-enable-ondemand = true;
+      nightlight-follow-disable = true;
+      manual-schedule = false;
+    };
+    "org/gnome/shell/extensions/display-brightness-ddcutil" = {
+      ddcutil-binary-path = "/etc/profiles/per-user/will/bin/ddcutil";
+      show-value-label = true;
+    };
     "org/gnome/desktop/interface" = {
       clock-format = "12h";
       clock-show-weekday = true;
@@ -235,13 +254,6 @@
     "org/gnome/desktop/session" = {
       idle-delay = lib.hm.gvariant.mkUint32 0;
     };
-    "org/gnome/shell" = {
-      enabled-extensions = [
-        "nightthemeswitcher@romainvigier.fr"
-        "emoji-copy@felipeftn"
-        "display-brightness-ddcutil@themightydeity.github.com"
-      ];
-    };
     "org/gnome/settings-daemon/plugins/color" = {
       night-light-enabled = true;
     };
@@ -253,18 +265,6 @@
     };
     "org/gnome/desktop/sound" = {
       event-sounds = false;
-    };
-    "org/gnome/shell/extensions/nightthemeswitcher/gtk-variants" = {
-      enabled = true;
-    };
-    "org/gnome/shell/extensions/nightthemeswitcher/time" = {
-      always-enable-ondemand = true;
-      nightlight-follow-disable = true;
-      manual-schedule = false;
-    };
-    "org/gnome/shell/extensions/display-brightness-ddcutil" = {
-      ddcutil-binary-path = "/etc/profiles/per-user/will/bin/ddcutil";
-      show-value-label = true;
     };
   };
 }
