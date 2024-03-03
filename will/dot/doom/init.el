@@ -51,7 +51,7 @@
        (json +lsp)
        (javascript +lsp)
        (markdown +grip)
-       nix
+       (nix +lsp)
        (org +pandoc)
        (ruby +lsp +rails)
        (rust +lsp)
