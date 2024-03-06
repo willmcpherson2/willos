@@ -37,6 +37,7 @@
        lsp
        magit
        pdf
+       (terraform +lsp)
        tree-sitter
 
        :os
