@@ -48,6 +48,7 @@
        (clojure +lsp)
        data
        emacs-lisp
+       (gdscript +lsp)
        (haskell +lsp)
        (json +lsp)
        (javascript +lsp)

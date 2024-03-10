@@ -122,6 +122,9 @@
         extensions = [ "rust-src" "rust-analyzer-preview" ];
       })
 
+      # godot
+      godot_4
+
       # yaml
       nodePackages.yaml-language-server
 
