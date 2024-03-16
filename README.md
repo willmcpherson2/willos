@@ -5,14 +5,7 @@ This is my personal Nix config. You are encouraged to copy from it, but it's not
 Rebuild:
 
 ```sh
-sudo nixos-rebuild switch
-```
-
-Build VM:
-
-```sh
-nixos-rebuild build-vm
-./result/bin/run-will-pc-vm
+sudo nixos-rebuild switch --flake .#will-pc
 ```
 
 ## Emacs
