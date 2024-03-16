@@ -1,6 +1,6 @@
 # Will's OS
 
-This is my personal Nix config. You are encouraged to copy from it, but it's not intended for wholesale use (unless you also want to be `will@will-lap`)
+This is my personal Nix config. You are encouraged to copy from it, but it's not intended for wholesale use (unless you also want to be `will@will-pc`)
 
 Rebuild:
 
@@ -12,7 +12,7 @@ Build VM:
 
 ```sh
 nixos-rebuild build-vm
-./result/bin/run-will-lap-vm
+./result/bin/run-will-pc-vm
 ```
 
 ## Emacs

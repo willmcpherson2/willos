@@ -17,7 +17,7 @@
     ...
   }: {
     nixosConfigurations = {
-      will-lap = nixpkgs.lib.nixosSystem {
+      will-pc = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
         modules = [
           ./nixos/configuration.nix

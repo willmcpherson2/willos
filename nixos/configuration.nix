@@ -5,11 +5,10 @@
   config,
   ...
 }: {
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
 
   imports = [
     ./hardware-configuration.nix
-    inputs.nixos-hardware.nixosModules.lenovo-thinkpad-l14-amd
   ];
 
   nix.registry = (lib.mapAttrs (_: flake: { inherit flake; })) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
@@ -47,7 +46,7 @@
   };
   powerManagement.cpuFreqGovernor = "performance";
 
-  networking.hostName = "will-lap";
+  networking.hostName = "will-pc";
   time.timeZone = "Australia/Melbourne";
   i18n.defaultLocale = "en_AU.UTF-8";
 
