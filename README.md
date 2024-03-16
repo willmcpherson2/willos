@@ -2,12 +2,6 @@
 
 This is my personal Nix config. You are encouraged to copy from it, but it's not intended for wholesale use (unless you also want to be `will@will-lap`)
 
-From the NixOS live CD:
-
-```sh
-sudo nix-shell https://github.com/willmcpherson2/willos/archive/main.tar.gz
-```
-
 Rebuild:
 
 ```sh
