@@ -21,6 +21,8 @@
     })
     config.nix.registry;
 
+  nixpkgs.config.allowUnfree = true;
+
   nix.settings = {
     auto-optimise-store = true;
     experimental-features = [
@@ -39,6 +41,7 @@
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
+    kernelModules = [ "amdgpu" ];
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
@@ -58,6 +61,7 @@
         gdm.enable = true;
         defaultSession = "gnome-xorg";
       };
+      videoDrivers = [ "amdgpu" ];
     };
     gnome.core-utilities.enable = false;
     openssh.enable = true;
@@ -106,4 +110,6 @@
       };
     };
   };
+
+  programs.steam.enable = true;
 }

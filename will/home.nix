@@ -46,7 +46,6 @@
       ddcutil
 
       # gaming
-      steam
       prismlauncher
       flatpak
       lutris
