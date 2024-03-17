@@ -203,6 +203,7 @@
 
   dconf.settings = {
     "org/gnome/shell" = {
+      disable-user-extensions = false;
       enabled-extensions = [
         "nightthemeswitcher@romainvigier.fr"
         "emoji-copy@felipeftn"
