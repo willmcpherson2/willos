@@ -274,5 +274,8 @@
     "org/gnome/desktop/sound" = {
       event-sounds = false;
     };
+    "org/gnome/desktop/a11y" = {
+      always-show-universal-access-status = true;
+    };
   };
 }
