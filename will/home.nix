@@ -28,7 +28,7 @@
       gimp
       obs-studio
       bitwig-studio
-      blender
+      blender-hip
       kdenlive
 
       # extra browsers
