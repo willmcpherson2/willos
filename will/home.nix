@@ -262,8 +262,14 @@
     "org/gnome/settings-daemon/plugins/power" = {
       sleep-inactive-ac-type = "nothing";
     };
+    "org/gtk/gtk4/settings/file-chooser" = {
+      show-hidden = true;
+    };
     "org/gtk/settings/file-chooser" = {
       clock-format = "12h";
+    };
+    "org/gnome/nautilus/preferences" = {
+      default-folder-viewer = "list-view";
     };
     "org/gnome/desktop/sound" = {
       event-sounds = false;
