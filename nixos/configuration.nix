@@ -9,6 +9,10 @@
 
   imports = [
     ./hardware-configuration.nix
+    inputs.nixos-hardware.nixosModules.common-cpu-intel-cpu-only
+    inputs.nixos-hardware.nixosModules.common-gpu-amd
+    inputs.nixos-hardware.nixosModules.common-pc
+    inputs.nixos-hardware.nixosModules.common-pc-ssd
   ];
 
   nix.registry = (lib.mapAttrs (_: flake: { inherit flake; })) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
@@ -41,7 +45,6 @@
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
-    kernelModules = [ "amdgpu" ];
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
@@ -61,7 +64,6 @@
         gdm.enable = true;
         defaultSession = "gnome-xorg";
       };
-      videoDrivers = [ "amdgpu" ];
     };
     gnome.core-utilities.enable = false;
     openssh.enable = true;
