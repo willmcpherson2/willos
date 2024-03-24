@@ -50,7 +50,6 @@
       efi.canTouchEfiVariables = true;
     };
   };
-  powerManagement.cpuFreqGovernor = "performance";
 
   networking.hostName = "will-pc";
   time.timeZone = "Australia/Melbourne";
