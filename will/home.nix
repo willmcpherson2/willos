@@ -50,6 +50,7 @@
       flatpak
       lutris
       winetricks
+      openmw
 
       # emacs
       emacs29
