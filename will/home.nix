@@ -78,6 +78,7 @@
 
       # nix
       nil
+      nixfmt
 
       # bash
       nodePackages.bash-language-server
