@@ -22,7 +22,7 @@
 
       # media
       ffmpeg
-      youtube-dl
+      yt-dlp
       mpv
       screenkey
       gimp
