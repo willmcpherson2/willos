@@ -12,6 +12,7 @@ declare -a folders=(
     "doc"
     "photos"
     "masters"
+    "stems"
     "samples"
     "bitwig"
     "blender"
