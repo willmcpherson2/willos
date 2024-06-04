@@ -70,11 +70,9 @@
     xserver = {
       enable = true;
       desktopManager.gnome.enable = true;
-      displayManager = {
-        gdm.enable = true;
-        defaultSession = "gnome-xorg";
-      };
+      displayManager.gdm.enable = true;
     };
+    displayManager.defaultSession = "gnome-xorg";
     gnome.core-utilities.enable = false;
     openssh.enable = true;
     ratbagd.enable = true;

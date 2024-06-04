@@ -2,13 +2,13 @@
   description = "Will's OS";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
+      url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-hardware.url = "github:nixos/nixos-hardware/b006ec52fce23b1d57f6ab4a42d7400732e9a0a2";
-    rust-overlay.url = "github:oxalica/rust-overlay/e36f66bb10b09f5189dc3b1706948eaeb9a1c555";
+    nixos-hardware.url = "github:nixos/nixos-hardware/7b49d3967613d9aacac5b340ef158d493906ba79";
+    rust-overlay.url = "github:oxalica/rust-overlay/260ff391290a2b23958d04db0d3e7015c8417401";
   };
 
   outputs = inputs@{

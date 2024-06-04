@@ -53,7 +53,7 @@
       openmw
 
       # emacs
-      emacs29
+      emacs-gtk
       emacs-all-the-icons-fonts
       emacsPackages.vterm
       hunspell
@@ -78,7 +78,7 @@
 
       # nix
       nil
-      nixfmt
+      nixfmt-rfc-style
 
       # bash
       nodePackages.bash-language-server
@@ -104,9 +104,9 @@
       rubyPackages.solargraph
 
       # haskell
-      haskell.compiler.ghc96
+      haskell.compiler.ghc98
       cabal-install
-      (haskell-language-server.override { supportedGhcVersions = [ "96" ]; })
+      (haskell-language-server.override { supportedGhcVersions = [ "98" ]; })
       haskellPackages.hoogle
       ormolu
 
