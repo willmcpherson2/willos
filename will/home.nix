@@ -123,6 +123,10 @@
         extensions = [ "rust-src" "rust-analyzer-preview" ];
       })
 
+      # terraform
+      terraform
+      terraform-ls
+
       # godot
       godot_4
 
