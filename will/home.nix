@@ -170,7 +170,9 @@
       initExtra = ''
         stty -ixon
         set enable-bracketed-paste on
+        alias l="ls -Alh"
         export PATH="$HOME/.config/emacs/bin:$PATH"
+        export PS1='\n\[\e[96;1m\]\u\[\e[0m\] \[\e[94;1m\]\W\[\e[0m\] \[\e[91;1m\]$?\[\e[0m\] \[\e[95;1m\]\t\[\e[0m\] \[\e[92;1m\]\\$\[\e[0m\] '
       '';
     };
     direnv = {
