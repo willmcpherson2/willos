@@ -16,6 +16,7 @@
       # gnome
       gnome.gnome-system-monitor
       gnome.nautilus
+      gnome.baobab
       gnomeExtensions.night-theme-switcher
       gnomeExtensions.emoji-copy
       gnomeExtensions.brightness-control-using-ddcutil
@@ -62,6 +63,7 @@
       python311Packages.grip
 
       # cli
+      wget
       git
       git-lfs
       gh
