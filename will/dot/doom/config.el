@@ -18,6 +18,8 @@
 
 (setq js-indent-level 2)
 
+(setq lsp-restart 'ignore)
+
 (setq projectile-switch-project-action #'projectile-dired)
 
 (remove-hook 'doom-first-buffer-hook #'smartparens-global-mode)
