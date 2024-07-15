@@ -74,7 +74,6 @@
     };
     displayManager.defaultSession = "gnome-xorg";
     gnome.core-utilities.enable = false;
-    openssh.enable = true;
     ratbagd.enable = true;
     pipewire = {
       enable = true;
