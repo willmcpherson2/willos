@@ -27,9 +27,8 @@
 
 (setq doom-leader-alt-key "C-SPC")
 (map! :leader
-      "p s" #'project-shell
+      "v" #'+vterm/here
       "p v" #'projectile-run-vterm
-      "r" #'consult-history
       "c d" #'consult-lsp-diagnostics
       "c c" #'copilot-mode
       "TAB" #'completion-at-point
