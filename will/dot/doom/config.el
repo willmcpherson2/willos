@@ -9,9 +9,6 @@
 (setq display-line-numbers-type 'relative
       doom-font (font-spec :family "JetBrains Mono" :size 22))
 
-(setq aichat-bingai-cookies-file "~/.bingai-cookie.json"
-      aichat-bingai-conversation-style 'precise)
-
 (setq auto-dark-dark-theme 'doom-one
       auto-dark-light-theme 'doom-one-light)
 (auto-dark-mode 1)
