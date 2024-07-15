@@ -57,8 +57,7 @@
       emacs-gtk
       emacs-all-the-icons-fonts
       emacsPackages.vterm
-      hunspell
-      languagetool
+      (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
       pandoc
       python311Packages.grip
 

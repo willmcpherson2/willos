@@ -26,7 +26,7 @@
 
        :checkers
        syntax
-       (spell +hunspell)
+       (spell +aspell +flyspell)
        grammar
 
        :tools
