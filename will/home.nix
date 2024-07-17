@@ -9,6 +9,8 @@
     overlays = [ inputs.rust-overlay.overlays.default ];
   };
 
+  imports = [ inputs.nix-doom-emacs-unstraightened.hmModule ];
+
   home = {
     stateVersion = "23.11";
 
@@ -54,9 +56,6 @@
       openmw
 
       # emacs
-      emacs-gtk
-      emacs-all-the-icons-fonts
-      emacsPackages.vterm
       (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
       pandoc
       python311Packages.grip
@@ -147,10 +146,6 @@
         source = ./dot/gitconfig;
         target = ".config/git/config";
       };
-      doom = {
-        source = ./dot/doom;
-        target = ".config/doom";
-      };
       ghci = {
         source = ./dot/ghci;
         target = ".ghci";
@@ -172,9 +167,12 @@
         stty -ixon
         set enable-bracketed-paste on
         alias l="ls -Alh"
-        export PATH="$HOME/.config/emacs/bin:$PATH"
         export PS1='\n\[\e[94;1m\]\W\[\e[0m\] \[\e[91;1m\]$?\[\e[0m\] \[\e[95;1m\]\t\[\e[0m\] \[\e[92;1m\]\\$\[\e[0m\] '
       '';
+    };
+    doom-emacs = {
+      enable = true;
+      doomDir = ./dot/doom;
     };
     direnv = {
       enable = true;
