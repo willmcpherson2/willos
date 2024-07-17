@@ -26,6 +26,7 @@
 
 (setq doom-leader-alt-key "C-SPC")
 (map! :leader
+      "x" #'scratch-buffer
       "v" #'+vterm/here
       "p v" #'projectile-run-vterm
       "c d" #'consult-lsp-diagnostics
