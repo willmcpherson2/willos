@@ -22,6 +22,8 @@
 
 (setq projectile-switch-project-action #'projectile-dired)
 
+(setq markdown-gfm-use-electric-backquote nil)
+
 (remove-hook 'doom-first-buffer-hook #'smartparens-global-mode)
 
 (setq doom-leader-alt-key "C-SPC")
