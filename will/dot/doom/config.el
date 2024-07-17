@@ -18,7 +18,9 @@
       js-indent-level 2
       lsp-restart 'ignore
       projectile-switch-project-action #'projectile-dired
-      markdown-gfm-use-electric-backquote nil)
+      markdown-gfm-use-electric-backquote nil
+      initial-scratch-message nil
+      initial-major-mode #'text-mode)
 
 (remove-hook 'doom-first-buffer-hook #'smartparens-global-mode)
 
