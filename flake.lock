@@ -130,8 +130,8 @@
       },
       "original": {
         "owner": "nixos",
+        "ref": "7b49d39",
         "repo": "nixos-hardware",
-        "rev": "7b49d3967613d9aacac5b340ef158d493906ba79",
         "type": "github"
       }
     },
@@ -205,8 +205,8 @@
       },
       "original": {
         "owner": "oxalica",
+        "ref": "260ff39",
         "repo": "rust-overlay",
-        "rev": "260ff391290a2b23958d04db0d3e7015c8417401",
         "type": "github"
       }
     },
