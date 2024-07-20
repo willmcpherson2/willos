@@ -29,6 +29,7 @@
       "x" #'scratch-buffer
       "v" #'+vterm/here
       "p v" #'projectile-run-vterm
+      "c f" #'lsp-format-buffer
       "c d" #'consult-lsp-diagnostics
       "c c" #'copilot-mode
       "TAB" #'completion-at-point
