@@ -118,7 +118,7 @@
       clojure-lsp
 
       # rust
-      (rust-bin.stable.latest.default.override {
+      (rust-bin.stable."1.79.0".default.override {
         targets = [ "wasm32-unknown-unknown" ];
         extensions = [ "rust-src" "rust-analyzer-preview" ];
       })

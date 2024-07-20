@@ -8,7 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:nixos/nixos-hardware/7b49d39";
-    rust-overlay.url = "github:oxalica/rust-overlay/260ff39";
+    rust-overlay.url = "github:oxalica/rust-overlay/b799607";
     nix-doom-emacs-unstraightened.url = "github:marienz/nix-doom-emacs-unstraightened/379dbd4";
   };
 
