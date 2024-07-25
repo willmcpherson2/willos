@@ -17,3 +17,5 @@ vterm_prompt_end() {
 }
 
 PS1=$PS1'\[$(vterm_prompt_end)\]'
+
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }"'echo -ne "\033]0;$(basename $PWD)\007"'

@@ -20,7 +20,8 @@
       projectile-switch-project-action #'projectile-dired
       markdown-gfm-use-electric-backquote nil
       initial-scratch-message nil
-      initial-major-mode #'text-mode)
+      initial-major-mode #'text-mode
+      vterm-buffer-name-string "*vterm %s*")
 
 (remove-hook 'doom-first-buffer-hook #'smartparens-global-mode)
 
