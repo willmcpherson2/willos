@@ -143,15 +143,15 @@
     ];
     file = {
       gitconfig = {
-        source = ./dot/gitconfig;
+        source = ./dot/.gitconfig;
         target = ".config/git/config";
       };
       ghci = {
-        source = ./dot/ghci;
+        source = ./dot/.ghci;
         target = ".ghci";
       };
       discord = {
-        source = ./dot/discord.json;
+        source = ./dot/settings.json;
         target = ".config/discord/settings.json";
       };
     };
@@ -163,7 +163,7 @@
       historySize = -1;
       historyFileSize = -1;
       historyControl = [ "ignoredups" ];
-      initExtra = builtins.readFile ./dot/init.sh;
+      initExtra = builtins.readFile ./dot/.bashrc;
     };
     doom-emacs = {
       enable = true;
