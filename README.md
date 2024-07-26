@@ -5,5 +5,5 @@ This is my personal Nix config. You are encouraged to copy from it, but it's not
 Rebuild:
 
 ```sh
-sudo nixos-rebuild switch --flake .#will-pc
+sudo nixos-rebuild switch -L --flake .#will-pc
 ```
