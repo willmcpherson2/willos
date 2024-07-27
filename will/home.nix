@@ -130,6 +130,10 @@
       # godot
       godot_4
 
+      # go
+      go
+      gopls
+
       # yaml
       nodePackages.yaml-language-server
 

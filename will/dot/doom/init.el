@@ -49,6 +49,7 @@
        data
        emacs-lisp
        (gdscript +lsp)
+       (go +lsp)
        (haskell +lsp)
        (json +lsp)
        (javascript +lsp)
