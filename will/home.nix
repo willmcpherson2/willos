@@ -180,7 +180,6 @@
     };
     firefox = {
       enable = true;
-      package = pkgs.firefox-beta;
       profiles.will = { extraConfig = builtins.readFile ./dot/user.js; };
     };
   };

@@ -3,11 +3,11 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixos-hardware.url = "github:nixos/nixos-hardware/14c3331";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-hardware.url = "github:nixos/nixos-hardware/7b49d39";
     rust-overlay = {
       url = "github:oxalica/rust-overlay/b799607";
       inputs.nixpkgs.follows = "nixpkgs";
