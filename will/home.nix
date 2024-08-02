@@ -77,7 +77,7 @@
       rclone
 
       # nix
-      nil
+      nixd
       nixfmt-rfc-style
 
       # bash
