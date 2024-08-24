@@ -5,9 +5,12 @@
           mac-control-modifier 'meta
           auto-dark-allow-osascript t))
 
-(setq auto-dark-dark-theme 'doom-one
-      auto-dark-light-theme 'doom-one-light)
-(auto-dark-mode 1)
+(after! doom-ui
+  (setq! auto-dark-dark-theme 'doom-one
+         auto-dark-light-theme 'doom-one-light)
+  (auto-dark-mode 1))
+
+(add-hook 'server-after-make-frame-hook #'doom/reload-theme)
 
 (setq-default tab-width 2)
 
