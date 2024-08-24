@@ -80,6 +80,9 @@
       nixd
       nixfmt-rfc-style
 
+      # just
+      just
+
       # bash
       nodePackages.bash-language-server
 
