@@ -30,6 +30,7 @@
       screenkey
       gimp
       obs-studio
+      gpu-screen-recorder-gtk
       bitwig-studio
       blender-hip
       kdenlive
