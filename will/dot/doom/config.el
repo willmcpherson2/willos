@@ -6,11 +6,10 @@
           auto-dark-allow-osascript t))
 
 (after! doom-ui
-  (setq! auto-dark-dark-theme 'doom-one
+  (setq! custom-safe-themes t
+         auto-dark-dark-theme 'doom-one
          auto-dark-light-theme 'doom-one-light)
   (auto-dark-mode 1))
-
-(add-hook 'server-after-make-frame-hook #'doom/reload-theme)
 
 (setq-default tab-width 2)
 
