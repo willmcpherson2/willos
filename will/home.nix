@@ -16,9 +16,9 @@
 
     packages = with pkgs; [
       # gnome
-      gnome.gnome-system-monitor
-      gnome.nautilus
-      gnome.baobab
+      gnome-system-monitor
+      nautilus
+      baobab
       gnomeExtensions.night-theme-switcher
       gnomeExtensions.emoji-copy
       gnomeExtensions.brightness-control-using-ddcutil
@@ -108,9 +108,9 @@
       rubyPackages.solargraph
 
       # haskell
-      haskell.compiler.ghc98
+      haskell.compiler.ghc910
       cabal-install
-      (haskell-language-server.override { supportedGhcVersions = [ "98" ]; })
+      (haskell-language-server.override { supportedGhcVersions = [ "910" ]; })
       haskellPackages.hoogle
       ormolu
 
