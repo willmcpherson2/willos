@@ -32,6 +32,7 @@
       obs-studio
       gpu-screen-recorder-gtk
       bitwig-studio
+      renoise
       blender-hip
       kdenlive
 
