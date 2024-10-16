@@ -44,6 +44,7 @@
        (:if (featurep :system 'macos) macos)
 
        :lang
+       (agda +local)
        (cc +lsp)
        (clojure +lsp)
        data

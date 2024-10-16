@@ -115,6 +115,9 @@
       haskellPackages.hoogle
       ormolu
 
+      # agda
+      agda
+
       # java
       jdk17
 
