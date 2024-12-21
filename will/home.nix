@@ -42,7 +42,7 @@
 
       # voip
       zoom-us
-      discord
+      discord-canary
 
       # peripherals
       libratbag
@@ -161,10 +161,6 @@
       ghci = {
         source = ./dot/.ghci;
         target = ".ghci";
-      };
-      discord = {
-        source = ./dot/settings.json;
-        target = ".config/discord/settings.json";
       };
     };
   };
