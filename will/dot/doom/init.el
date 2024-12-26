@@ -59,6 +59,7 @@
        (org +pandoc)
        (ruby +lsp +rails)
        (rust +lsp)
+       (scala +lsp)
        (sh +lsp)
        web
        (yaml +lsp)

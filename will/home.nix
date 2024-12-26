@@ -121,6 +121,10 @@
       # java
       jdk17
 
+      # scala
+      sbt
+      metals
+
       # clojure
       leiningen
       clojure-lsp
