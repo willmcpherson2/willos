@@ -64,7 +64,7 @@
       desktopManager.gnome.enable = true;
       displayManager.gdm.enable = true;
     };
-    displayManager.defaultSession = "gnome-xorg";
+    displayManager.defaultSession = "gnome";
     gnome.core-utilities.enable = false;
     ratbagd.enable = true;
     pipewire = {
