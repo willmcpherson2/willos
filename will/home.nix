@@ -291,5 +291,8 @@
     "org/gnome/desktop/a11y" = {
       always-show-universal-access-status = true;
     };
+    "org/gnome/mutter" = {
+      edge-tiling = true;
+    };
   };
 }
