@@ -1,8 +1,6 @@
 {
   inputs,
-  lib,
   pkgs,
-  config,
   ...
 }: {
   system.stateVersion = "23.11";
@@ -15,21 +13,10 @@
     inputs.nixos-hardware.nixosModules.common-pc-ssd
   ];
 
-  nixpkgs = {
-    config.allowUnfree = true;
-    overlays = [
-      (final: prev: {
-        steam = prev.steam.override ({ extraLibraries ? pkgs': [], ... }: {
-          extraLibraries = pkgs': (extraLibraries pkgs') ++ ( [
-            pkgs'.gperftools
-          ]);
-        });
-      })
-    ];
-  };
+
+  nixpkgs.config.allowUnfree = true;
 
   nix.settings = {
-    auto-optimise-store = true;
     experimental-features = [
       "nix-command"
       "flakes"
@@ -45,7 +32,6 @@
   };
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;

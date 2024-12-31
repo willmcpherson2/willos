@@ -55,7 +55,6 @@
       flatpak
       lutris
       winetricks
-      openmw
 
       # emacs
       (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
@@ -67,7 +66,7 @@
       git
       git-lfs
       gh
-      xclip
+      wl-clipboard
       file
       tree
       cloc
