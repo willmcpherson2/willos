@@ -238,6 +238,7 @@
     "org/gnome/desktop/interface" = {
       clock-format = "12h";
       clock-show-weekday = true;
+      clock-show-seconds = true;
       enable-animations = false;
       text-scaling-factor = 1.25;
       enable-hot-corners = false;
