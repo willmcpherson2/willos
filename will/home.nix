@@ -54,7 +54,10 @@
       prismlauncher
       flatpak
       lutris
+
+      # wine
       winetricks
+      wineWowPackages.staging
 
       # emacs
       (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
