@@ -90,6 +90,7 @@
       # c
       gcc
       clang-tools
+      valgrind
 
       # web
       nodejs
