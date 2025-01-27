@@ -34,7 +34,7 @@
       bitwig-studio
       renoise
       blender-hip
-      kdenlive
+      davinci-resolve
 
       # extra browsers
       chromium

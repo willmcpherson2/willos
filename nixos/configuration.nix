@@ -63,6 +63,7 @@
     };
   };
   hardware = {
+    amdgpu.opencl.enable = true;
     pulseaudio.enable = false;
     i2c.enable = true;
   };
