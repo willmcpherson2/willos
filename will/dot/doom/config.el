@@ -7,8 +7,7 @@
 
 (after! doom-ui
   (setq! custom-safe-themes t
-         auto-dark-dark-theme 'doom-one
-         auto-dark-light-theme 'doom-one-light)
+         auto-dark-themes '((doom-one) (doom-one-light)))
   (auto-dark-mode 1))
 
 (setq-default tab-width 2)
