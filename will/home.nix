@@ -94,6 +94,7 @@
       gcc
       clang-tools
       valgrind
+      kcachegrind
 
       # web
       nodejs
