@@ -4,7 +4,16 @@
 # drive push
 # drive pull
 #
-# https://rclone.org/commands/rclone_sync/
+# Auth
+# - Run rclone config
+# - Enter "drive-willmcpherson2" for name of config
+# - Set backend to Google Drive
+# - Get client ID and client secret from "OAuth 2.0 Client IDs" https://console.cloud.google.com/apis/credentials?project=drive-willmcpherson2
+# - Enter client ID
+# - Enter client secret
+# - Select full access
+# - Skip rest of steps
+# - Browser should open for login
 
 set -euxo pipefail
 
@@ -12,12 +21,7 @@ declare -a folders=(
     "doc"
     "photos"
     "masters"
-    "stems"
-    "samples"
     "bitwig"
-    "blender"
-    "kdenlive"
-    "scratch"
 )
 
 if [ "$1" == "push" ]; then
