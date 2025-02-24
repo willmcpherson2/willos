@@ -21,6 +21,7 @@ declare -a folders=(
     "doc"
     "photos"
     "masters"
+    "ableton"
     "bitwig"
 )
 
