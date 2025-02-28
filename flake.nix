@@ -13,7 +13,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-doom-emacs-unstraightened = {
-      url = "github:marienz/nix-doom-emacs-unstraightened/5b9444a";
+      url = "github:marienz/nix-doom-emacs-unstraightened";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
