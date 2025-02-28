@@ -242,12 +242,7 @@
         "display-brightness-ddcutil@themightydeity.github.com"
       ];
     };
-    "org/gnome/shell/extensions/nightthemeswitcher/gtk-variants" = {
-      enabled = true;
-    };
     "org/gnome/shell/extensions/nightthemeswitcher/time" = {
-      always-enable-ondemand = true;
-      nightlight-follow-disable = true;
       manual-schedule = false;
     };
     "org/gnome/shell/extensions/display-brightness-ddcutil" = {
