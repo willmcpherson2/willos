@@ -92,7 +92,8 @@
       nodePackages.bash-language-server
 
       # c
-      gcc
+      (hiPrio gcc)
+      clang
       clang-tools
       valgrind
       kcachegrind
