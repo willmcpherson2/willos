@@ -69,7 +69,6 @@
       wget
       git
       git-lfs
-      gh
       wl-clipboard
       file
       tree
@@ -84,9 +83,6 @@
       # nix
       nixd
       nixfmt-rfc-style
-
-      # just
-      just
 
       # bash
       nodePackages.bash-language-server
