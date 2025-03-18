@@ -59,6 +59,7 @@
       # wine
       winetricks
       wineWowPackages.staging
+      bottles
 
       # emacs
       (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
@@ -91,6 +92,7 @@
       (hiPrio gcc)
       clang
       clang-tools
+      llvm
       valgrind
       kcachegrind
 
@@ -245,6 +247,9 @@
     "org/gnome/shell/extensions/display-brightness-ddcutil" = {
       ddcutil-binary-path = "/etc/profiles/per-user/will/bin/ddcutil";
       show-value-label = true;
+    };
+    "org/gnome/desktop/datetime" = {
+      "automatic-timezone" = true;
     };
     "org/gnome/desktop/interface" = {
       clock-format = "12h";
