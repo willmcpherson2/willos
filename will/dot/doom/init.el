@@ -2,6 +2,7 @@
 
 (doom! :completion
        (vertico +icons)
+       (company +childframe)
 
        :ui
        doom
@@ -25,7 +26,7 @@
        vterm
 
        :checkers
-       syntax
+       (syntax +childframe)
        (spell +aspell +flyspell)
        grammar
 
