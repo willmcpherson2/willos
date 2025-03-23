@@ -31,6 +31,7 @@
       screenkey
       gimp
       obs-studio
+      guvcview
       gpu-screen-recorder-gtk
       bitwig-studio
       renoise
