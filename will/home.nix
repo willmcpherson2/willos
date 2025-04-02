@@ -115,8 +115,8 @@
 
       # haskell
       haskell.compiler.ghc910
+      haskell.packages.ghc910.haskell-language-server
       cabal-install
-      (haskell-language-server.override { supportedGhcVersions = [ "910" ]; })
       haskellPackages.hoogle
       ormolu
 
