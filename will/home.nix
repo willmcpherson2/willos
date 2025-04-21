@@ -218,19 +218,6 @@
       };
     };
     configFile."mimeapps.list".force = true;
-
-    desktopEntries = {
-      ableton-live-11 = {
-        name = "Ableton Live 11 Suite";
-        exec =
-          let
-            ableton = pkgs.writeShellScriptBin "ableton" (builtins.readFile ./bin/ableton.sh);
-          in
-          "${ableton}/bin/ableton";
-        type = "Application";
-        icon = "wine";
-      };
-    };
   };
 
   dconf.settings = {
