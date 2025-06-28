@@ -51,8 +51,9 @@
       displayManager.gdm.enable = true;
     };
     displayManager.defaultSession = "gnome";
-    gnome.core-utilities.enable = false;
+    gnome.core-apps.enable = false;
     ratbagd.enable = true;
+    pulseaudio.enable = false;
     pipewire = {
       enable = true;
       alsa = {
@@ -64,7 +65,6 @@
   };
   hardware = {
     amdgpu.opencl.enable = true;
-    pulseaudio.enable = false;
     i2c.enable = true;
   };
   security.rtkit.enable = true;
