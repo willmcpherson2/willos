@@ -127,7 +127,7 @@
       jdk17
 
       # scala
-      sbt
+      sbt-extras
       metals
 
       # clojure
