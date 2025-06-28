@@ -95,13 +95,14 @@
       clang-tools
       llvm
       valgrind
-      kcachegrind
+      kdePackages.kcachegrind
 
       # web
-      nodejs
+      nodejs_24
       nodePackages.vscode-langservers-extracted
       nodePackages.typescript
       nodePackages.typescript-language-server
+      nodePackages.prettier
 
       # docker
       nodePackages.dockerfile-language-server-nodejs
@@ -114,8 +115,8 @@
       rubyPackages.solargraph
 
       # haskell
-      haskell.compiler.ghc910
-      haskell.packages.ghc910.haskell-language-server
+      haskell.compiler.ghc912
+      haskell.packages.ghc912.haskell-language-server
       cabal-install
       haskellPackages.hoogle
       ormolu
@@ -135,7 +136,7 @@
       clojure-lsp
 
       # rust
-      (rust-bin.stable."1.81.0".default.override {
+      (rust-bin.stable."1.88.0".default.override {
         targets = [ "wasm32-unknown-unknown" ];
         extensions = [ "rust-src" "rust-analyzer-preview" ];
       })
