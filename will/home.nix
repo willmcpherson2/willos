@@ -186,6 +186,7 @@
     doom-emacs = {
       enable = true;
       doomDir = ./dot/doom;
+      emacs = pkgs.emacs-pgtk;
     };
     direnv = {
       enable = true;
