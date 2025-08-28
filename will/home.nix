@@ -66,6 +66,9 @@
       (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
       pandoc
       python311Packages.grip
+      (texlive.combine {
+        inherit (texlive) scheme-medium wrapfig capt-of hyphenat sectsty;
+      })
 
       # cli
       wget
