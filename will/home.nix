@@ -28,6 +28,7 @@
       ffmpeg
       yt-dlp
       mpv
+      rhythmbox
       screenkey
       gimp
       obs-studio
