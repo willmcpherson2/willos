@@ -2,4 +2,4 @@
 
 set -euxo pipefail
 
-yt-dlp --extract-audio --audio-format wav --audio-quality 10 -o "$HOME/Desktop/samples/%(title)s.%(ext)s" "$1"
+yt-dlp --no-mtime --extract-audio --audio-format wav --audio-quality 10 -o "$HOME/Desktop/samples/%(title)s.%(ext)s" "$1"
