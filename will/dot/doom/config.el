@@ -22,7 +22,9 @@
       initial-scratch-message nil
       initial-major-mode #'text-mode
       vterm-buffer-name-string "*vterm %s*"
-      warning-minimum-level :error)
+      warning-minimum-level :error
+      js-indent-level 2
+      typescript-indent-level 2)
 
 (after! lsp-ui
   (setq! lsp-ui-doc-show-with-cursor t
