@@ -86,6 +86,7 @@
       google-cloud-sdk
       rclone
       jq
+      claude-code
 
       # nix
       nixd
