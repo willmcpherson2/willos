@@ -85,6 +85,7 @@
       unzip
       google-cloud-sdk
       rclone
+      jq
 
       # nix
       nixd
