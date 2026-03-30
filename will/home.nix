@@ -29,6 +29,7 @@
       yt-dlp
       mpv
       rhythmbox
+      celluloid
       screenkey
       gimp
       obs-studio
@@ -167,6 +168,7 @@
       (writeShellScriptBin "audio-to-video" (builtins.readFile ./bin/audio-to-video.sh))
       (writeShellScriptBin "new-ssh-key" (builtins.readFile ./bin/new-ssh-key.sh))
       (writeShellScriptBin "ydl" (builtins.readFile ./bin/ydl.sh))
+      (writeShellScriptBin "play" (builtins.readFile ./bin/play.sh))
       (writeShellScriptBin "drive" (builtins.readFile ./bin/drive.sh))
     ];
     file = {
@@ -216,6 +218,8 @@
         "application/x-extension-xht" = "firefox.desktop";
         "application/x-extension-xhtml" = "firefox.desktop";
         "application/xhtml+xml" = "firefox.desktop";
+        "audio/mpeg" = "play.desktop";
+        "audio/wav" = "play.desktop";
         "image/jpeg" = "firefox.desktop";
         "image/png" = "firefox.desktop";
         "text/html" = "firefox.desktop";
@@ -224,6 +228,11 @@
         "x-scheme-handler/http" = "firefox.desktop";
         "x-scheme-handler/https" = "firefox.desktop";
       };
+    };
+    desktopEntries.play = {
+      name = "Play";
+      exec = "play %f";
+      mimeType = ["audio/mpeg" "audio/wav"];
     };
     configFile."mimeapps.list".force = true;
   };
